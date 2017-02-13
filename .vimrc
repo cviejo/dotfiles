@@ -24,3 +24,8 @@ source $HOME/.vim/config/key-bindings.vim
 source $HOME/.vim/config/functions.vim
 source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/theme.vim
+
+autocmd VimEnter * NERDTree
+autocmd BufEnter * NERDTreeMirror
+autocmd VimEnter * wincmd w
+
