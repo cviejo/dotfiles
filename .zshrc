@@ -1,6 +1,7 @@
 
-source ./.zshrc-local
-
+if [[ -f ~/.zshrc-local && -r ~/.zshrc-local ]]; then
+	source ~/.zshrc-local
+fi
 
 # vars
 export LANG=en_US.UTF-8

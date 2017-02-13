@@ -10,6 +10,10 @@ nmap <leader>s :w<cr>
 nmap <leader>r :source ~/.vimrc<cr>
 nmap <leader>a :
 
+" nmap <leader>s :w<cr>
+nnoremap <C-s> :w<cr>
+nnoremap <C-c> :call CloseWindow()<cr>
+" nnoremap <C-w> :call CloseWindow()<cr>
 nnoremap <C-c> :call CloseWindow()<cr>
 nnoremap <A-w> :call CloseWindow()<cr>
 
