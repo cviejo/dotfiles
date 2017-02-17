@@ -9,6 +9,8 @@ export LC_COLLATE="C"
 export EDITOR="nvim"
 export TERM="xterm-256color"
 export ZSH=~/.oh-my-zsh
+export NVM_DIR=~/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 
 # oh-my-zsh
@@ -29,4 +31,5 @@ alias ran='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
 	LASTDIR=`cat $HOME/.config/ranger/dir`; \
 	cd "$LASTDIR"'
-
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
