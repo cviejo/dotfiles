@@ -63,7 +63,7 @@ endfunction
 
 "-----------------------------------------
 function! EclipseSetup()
-	set guifont=Ubuntu\ Mono\ Regular\ 14
+	set guifont=Ubuntu\ Mono\ Regular\ 13
 	set guioptions -=T
 endfunction
 command! EclipseSetup call EclipseSetup()
