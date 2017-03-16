@@ -29,7 +29,8 @@ endfunction
 "-----------------------------------------
 function! CloseWindow()
 	let name = bufname("%")
-	if match(name, "NERD_tree") == 0 || name == "[Plugins]" || name == ""
+	" if match(name, "NERD_tree") == 0 || name == "[Plugins]" || name == ""
+	if match(name, "NERD_tree") == 0 || name == "[Plugins]"
 		exe "q"
 	else
 		exe "Bclose"
@@ -82,4 +83,15 @@ function! s:ZoomToggle() abort
 	endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
+
+
+"-----------------------------------------
+function! Retab()
+	set tabstop=4   " To match the sample file
+	set noexpandtab " Use tabs, not spaces
+	%retab!         " Retabulate the whole file
+	set tabstop=3   " To match the sample file
+endfunction
+command! Retab call Retab()
+" command! -nargs=1 Retab call Retab(<f-args>)
 
