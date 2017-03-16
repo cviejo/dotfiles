@@ -9,6 +9,9 @@ export LC_COLLATE="C"
 export EDITOR="nvim"
 export TERM="xterm-256color"
 export ZSH=~/.oh-my-zsh
+export PATH="$PATH:`yarn global bin`"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 
 # oh-my-zsh
@@ -29,4 +32,5 @@ alias ran='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
 	LASTDIR=`cat $HOME/.config/ranger/dir`; \
 	cd "$LASTDIR"'
+
 
