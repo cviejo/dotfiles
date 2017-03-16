@@ -35,3 +35,7 @@ nnoremap <C-w>- :sp<cr>
 
 nmap <C-_> <leader>c<Space>
 vmap <C-_> <leader>c<Space>
+
+" reselect after indent
+vnoremap < <gv
+vnoremap > >gv
