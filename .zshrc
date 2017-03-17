@@ -21,7 +21,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # aliases
-alias tmux="env TERM=xterm-256color tmux"
+alias tmux="env TERM=xterm-256color tmux a || tmux new"
 alias c='clear'
 alias e='exit'
 alias q='exit'
