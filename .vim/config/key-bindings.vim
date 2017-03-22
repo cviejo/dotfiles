@@ -23,6 +23,7 @@ nnoremap J :bp<cr>
 
 " plugins
 nmap <leader>k :NERDTreeToggle<cr>
+nmap <leader>h :NERDTreeFind<cr>
 nmap <leader>t :Tabularize /=<cr>:Tabularize /:<cr>:Tabularize /from/<cr>
 nnoremap U :GundoToggle<cr>
 nnoremap <C-w>z :ZoomToggle<cr>
