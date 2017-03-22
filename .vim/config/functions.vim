@@ -46,7 +46,7 @@ command! Name call Name()
 
 
 "-----------------------------------------
-function! Enum()
+function! EnumPanes()
 	for i in range(1, tabpagewinnr(tabpagenr(), '$'))
 		let dim = 1
 		if i == winnr()
@@ -60,6 +60,7 @@ function! Enum()
 		setlocal colorcolumn<
 	endfor
 endfunction
+command! EnumPanes call EnumPanes()
 
 
 "-----------------------------------------
@@ -83,15 +84,15 @@ function! s:ZoomToggle() abort
 	endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
+command! Zoom call s:ZoomToggle()
 
 
 "-----------------------------------------
-function! Retab()
-	set tabstop=4   " To match the sample file
-	set noexpandtab " Use tabs, not spaces
-	%retab!         " Retabulate the whole file
-	set tabstop=3   " To match the sample file
+function! Retab(...)
+	let &tabstop=a:0 > 0 ? a:1 : 2
+	set noexpandtab
+	%retab!
+	set tabstop=3
 endfunction
-command! Retab call Retab()
-" command! -nargs=1 Retab call Retab(<f-args>)
+command! -nargs=* Retab call Retab(<f-args>)
 
