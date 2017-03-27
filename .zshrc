@@ -16,7 +16,7 @@ export NVM_DIR=~/.nvm
 
 # oh-my-zsh
 ZSH_THEME="cv" # "robbyrussell", "bira", "random"
-plugins=(git)
+plugins=(git wd)
 source $ZSH/oh-my-zsh.sh
 
 
