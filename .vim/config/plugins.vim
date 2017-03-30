@@ -50,6 +50,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'kevinlitchfield/open-tmux-pane.vim'
+Plug 'sbl/scvim'
 " Plug 'terryma/vim-smooth-scroll'
 " Plug 'farseer90718/vim-taskwarrior'
 " Plug 'vimoutliner/vimoutliner'
@@ -62,6 +63,11 @@ Plug 'kevinlitchfield/open-tmux-pane.vim'
 " Plug 'blueyed/vim-diminactive'
 " Plug 'dyng/ctrlsf.vim'
 call plug#end()
+
+"-------scvim------
+let g:sclangTerm = "gnome-terminal -x $SHELL -ic"
+let g:sclangPipeApp = "~/.vim/plugged/scvim/bin/start_pipe"
+let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
 
 "-------js-beautify------
 command! FormatJS call JsBeautify()

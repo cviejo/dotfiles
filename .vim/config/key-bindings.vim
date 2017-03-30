@@ -34,3 +34,6 @@ vmap <C-_> <leader>c<Space>
 " reselect after indent
 vnoremap < <gv
 vnoremap > >gv
+
+" supercollider
+au Filetype supercollider nnoremap <C-e> :call SClang_block()<CR>
