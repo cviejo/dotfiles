@@ -95,4 +95,16 @@ function! Retab(...)
 	set tabstop=3
 endfunction
 command! -nargs=* Retab call Retab(<f-args>)
+command! -nargs=* RT call Retab(<f-args>)
+
+
+"-----------------------------------------
+function! Spaces(...)
+	" let &tabstop=a:0 > 0 ? a:1 : 2
+	let &shiftwidth = a:0 > 0 ? a:1 : 2
+	" set shiftwidth=3
+	set expandtab
+endfunction
+command! -nargs=* Spaces call Spaces(<f-args>)
+command! -nargs=* SP call Spaces(<f-args>)
 

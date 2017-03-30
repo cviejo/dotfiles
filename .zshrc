@@ -3,6 +3,10 @@ if [[ -f ~/.zshrc-local && -r ~/.zshrc-local ]]; then
 	source ~/.zshrc-local
 fi
 
+if [[ ! -z $TMUX ]]; then
+	printf '\n';
+fi
+
 # vars
 export LANG=en_US.UTF-8
 export LC_COLLATE="C"
@@ -30,7 +34,25 @@ alias path='echo -e ${PATH//:/\\n}'
 alias vimdiff='nvim -d'
 alias ran='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
-	LASTDIR=`cat $HOME/.config/ranger/dir`; \
-	cd "$LASTDIR"'
+              LASTDIR=`cat $HOME/.config/ranger/dir`; \
+              cd "$LASTDIR"'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias gi='git add -i'
+
+
+# function
+function chpwd() {
+   emulate -L zsh
+   ls --color -a --group-directories-first
+}
+
+function mkcd() {
+   mkdir -p $1
+   cd $1
+}
+
+function gitbranch (){
+   git checkout -b $1
+   git push -u origin HEAD
+}
