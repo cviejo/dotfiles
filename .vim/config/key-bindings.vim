@@ -37,3 +37,6 @@ vnoremap > >gv
 
 " supercollider
 au Filetype supercollider nnoremap <C-e> :call SClang_block()<CR>
+
+" overtone
+au Filetype clojure map <C-f> :Eval<CR>
