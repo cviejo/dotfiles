@@ -108,3 +108,19 @@ endfunction
 command! -nargs=* Spaces call Spaces(<f-args>)
 command! -nargs=* SP call Spaces(<f-args>)
 
+"-----------------------------------------
+function! AlignSelection()
+	execute "Tabularize /".GetSelection()
+endfunction
+
+"-----------------------------------------
+function! GetSelection()
+	try
+		let a_save = @a
+		normal! gv"ay
+		return @a
+	finally
+		let @a = a_save
+	endtry
+endfunction
+
