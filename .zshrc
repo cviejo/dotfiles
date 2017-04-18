@@ -4,7 +4,7 @@ if [[ -f ~/.zshrc-local && -r ~/.zshrc-local ]]; then
 fi
 
 if [[ ! -z $TMUX ]]; then
-	printf '\n';
+	# printf '\n';
 fi
 
 # vars
@@ -20,9 +20,10 @@ export NVM_DIR=~/.nvm
 
 # oh-my-zsh
 ZSH_THEME="cv" # "robbyrussell", "bira", "random"
-plugins=(git wd)
+plugins=(git wd zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
+bindkey '^ ' autosuggest-accept
 
 # aliases
 alias tmux="env TERM=xterm-256color tmux a || tmux new"

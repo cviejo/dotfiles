@@ -108,10 +108,12 @@ endfunction
 command! -nargs=* Spaces call Spaces(<f-args>)
 command! -nargs=* SP call Spaces(<f-args>)
 
+
 "-----------------------------------------
 function! AlignSelection()
 	execute "Tabularize /".GetSelection()
 endfunction
+
 
 "-----------------------------------------
 function! GetSelection()
@@ -123,4 +125,11 @@ function! GetSelection()
 		let @a = a_save
 	endtry
 endfunction
+
+
+"-----------------------------------------
+function! ChangeWorkingDirectory()
+	silent! lcd %:p:h
+endfunction
+command! CWD call ChangeWorkingDirectory()
 

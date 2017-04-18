@@ -8,12 +8,12 @@ nmap <leader>a :
 
 nnoremap <C-s> :w<cr>
 nnoremap <C-c> :call CloseWindow()<cr>
-nnoremap <C-c> :call CloseWindow()<cr>
 nnoremap <A-w> :call CloseWindow()<cr>
 
 " vimium
 nnoremap K :bn<cr>
 nnoremap J :bp<cr>
+nnoremap X :call CloseWindow()<cr>
 
 " plugins
 nmap <leader>f :Ag ""<left>
