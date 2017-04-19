@@ -26,34 +26,46 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 
 # aliases
-alias tmux="env TERM=xterm-256color tmux a || tmux new"
+alias tmux='env TERM=xterm-256color tmux a || tmux new'
 alias c='clear'
 alias e='exit'
 alias q='exit'
 alias sd='sudo shutdown now'
 alias path='echo -e ${PATH//:/\\n}'
 alias vimdiff='nvim -d'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+alias gi='git add -i'
 alias ran='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               LASTDIR=`cat $HOME/.config/ranger/dir`; \
               cd "$LASTDIR"'
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-alias gi='git add -i'
 
-
-# function
-function chpwd() {
+# functions
+function chpwd(){
    emulate -L zsh
-   ls --color -a --group-directories-first
+   if linux ; then
+      ls --color -a --group-directories-first
+   else
+      ls
+   fi
 }
 
-function mkcd() {
+function mkcd(){
    mkdir -p $1
    cd $1
 }
 
-function gitbranch (){
+function gitbranch(){
    git checkout -b $1
    git push -u origin HEAD
 }
+
+function linux(){
+   if [ "$(uname 2> /dev/null)" = "Linux" ]; then
+      return 0
+   else
+      return 1
+   fi
+}
+
