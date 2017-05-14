@@ -1,8 +1,4 @@
 
-if [[ -f ~/.zshrc-local && -r ~/.zshrc-local ]]; then
-	source ~/.zshrc-local
-fi
-
 if [[ ! -z $TMUX ]]; then
 	# printf '\n';
 fi
@@ -19,7 +15,7 @@ export NVM_DIR=~/.nvm
 
 
 # oh-my-zsh
-ZSH_THEME="cv" # "robbyrussell", "bira", "random"
+ZSH_THEME="cv"
 plugins=(git wd zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
@@ -33,6 +29,7 @@ alias q='exit'
 alias sd='sudo shutdown now'
 alias path='echo -e ${PATH//:/\\n}'
 alias vimdiff='nvim -d'
+
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias gi='git add -i'
@@ -69,3 +66,14 @@ function linux(){
    fi
 }
 
+
+# todo
+function load(){
+
+	if [[ -f $1 && -r $1 ]]; then
+		source $1
+	fi
+}
+
+
+load "$HOME/.zshrc-local"

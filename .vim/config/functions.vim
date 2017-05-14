@@ -27,6 +27,12 @@ endfunction
 
 
 "-----------------------------------------
+function! Pretty(...)
+	execute "%! node /developer/node/pretty.js"
+endfunction
+
+
+"-----------------------------------------
 function! CloseWindow()
 	let name = bufname("%")
 	" if match(name, "NERD_tree") == 0 || name == "[Plugins]" || name == ""
