@@ -16,6 +16,7 @@ export NVM_DIR=~/.nvm
 
 # oh-my-zsh
 ZSH_THEME="cv"
+DISABLE_AUTO_UPDATE="true"
 plugins=(git wd zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
