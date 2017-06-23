@@ -7,8 +7,8 @@ bind-key h quit
 
 articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
 
-highlight feedlist    "^  *[0-9]+  *N  "                    color156 default
-highlight articlelist "^  *[0-9]+  *N  "                    color156 default
+highlight feedlist    "^  *[0-9]+  *N  "                    color4 default
+highlight articlelist "^  *[0-9]+  *N  "                    color4 default
 
 highlight article     "(^Feed:.*|^Title:.*|^Author:.*)"     color4   default
 highlight article     "(^Link:.*|^Date:.*)"                 color4   default
@@ -21,9 +21,23 @@ highlight article     ":.*\\(link\\)$"                      color4   default
 highlight article     ":.*\\(image\\)$"                     color4   default
 highlight article     ":.*\\(embedded flash\\)$"            color4   default
 
-color listnormal                                            default  default
-color listfocus                                             default  color8
-color info                                                  default  color213
+
+# color listnormal color244 color234
+# color listnormal_unread color244 color234 bold
+# color listfocus  color166 color235
+# color info       color136 color235
+# color background color244 color234
+# color article    color244 color234
 
 browser "opera %u"
 # html-renderer "w3m -dump -T text/html"
+
+# color listnormal                                            default  color234
+color listnormal                                            color8  default
+color listfocus                                             default  color8
+color article                                               default  color8
+color info                                                  default  color8
+color listnormal_unread                                     default  default
+color listfocus_unread                                      default  color8
+
+# background          white   black
