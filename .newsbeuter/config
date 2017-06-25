@@ -2,21 +2,25 @@ bind-key k up
 bind-key j down
 bind-key l open
 bind-key h quit
+bind-key J next-feed
+bind-key K prev-feed
+bind-key J next article
+bind-key K prev article
 
 # formatting and colorization ------------------------------------------
 
 # articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
 
-# highlight feedlist    "^  *[0-9]+  *N  .*"                    color4 default
+highlight feedlist    "^  *[0-9]+  *N  .*"                    default default
 # highlight articlelist "^  *[0-9]+  *N  "                    color4 default
 
-# highlight article     "(^Feed:.*|^Title:.*|^Author:.*)"     color2   default
-highlight article     "(^Link:.*|^Date:.*)"                 color4   default
+highlight article     "(^Feed:.*|^Title:.*|^Author:.*)"     color2   default
+# highlight article     "(^Link:.*|^Date:.*)"                 color4   default
 # highlight article     "^Podcast Download URL:.*"            color2   default
 # highlight article     "^Links:.*"                           white    color240 underline
 # highlight article     "\\[[0-9][0-9]*\\]"                   color2   default  bold
 # highlight article     "\\[image [0-9][0-9]*\\]"             color2   default  bold
-# highlight article     "^\\[image [0-9][0-9]*\\]"             color2   default  bold
+# highlight article     "^\\[image [0-9][0-9]*\\]"            color2   default  bold
 # highlight article     "\\[embedded flash: [0-9][0-9]*\\]"   color2   default  bold
 # highlight article     ":.*\\(link\\)$"                      color4   default
 # highlight article     ":.*\\(image\\)$"                     color4   default
@@ -30,11 +34,15 @@ highlight article     "(^Link:.*|^Date:.*)"                 color4   default
 # color background color244 color234
 # color article    color244 color234
 
-browser "termux-open-url %u"
-browser "opera %u"
 # html-renderer "w3m -dump -T text/html"
+# browser "termux-open-url %u"
+browser "opera %u"
 
-color listnormal                                            default  default
+browser "[[ -n \"$( uname -a | grep aarch64 )\"  ]] && termux-open-url %u || opera %u"
+# " || w3m -M %u &> /dev/null "
+feed-sort-order name
+
+color listnormal                                            color8   default
 color listfocus                                             default  color210 bold
 color article                                               default  default
 color info                                                  default  color213

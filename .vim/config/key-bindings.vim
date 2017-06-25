@@ -24,7 +24,7 @@ vmap <leader>t :call AlignSelection()<cr>
 nnoremap U :GundoToggle<cr>
 nnoremap <C-w>z :ZoomToggle<cr>
 " map <C-i> <Plug>(easymotion-bd-w)
-nmap f <Plug>(easymotion-bd-w)
+nmap <C-f> <Plug>(easymotion-bd-w)
 
 " tmux
 nnoremap <C-w>/ :vsp<cr>

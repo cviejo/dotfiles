@@ -1,14 +1,13 @@
-http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml news
-http://feeds.bbci.co.uk/news/technology/rss.xml                       news tech
-http://ep00.epimg.net/rss/elpais/portada.xml                          news
-http://ep00.epimg.net/rss/tags/ultimas_noticias.xml                   news
-http://javascriptweekly.com/rss/1h9bm00c                              code tech
-http://www.echojs.com/rss                                             code tech
-http://pitchfork.com/feed/feed-news/rss
-http://pitchfork.com/rss/reviews/albums/                              music
-http://pitchfork.com/rss/reviews/best/albums/                         music
-https://www.genbeta.com/tag/rss/rss2.xml                              tech
-http://feeds.weblogssl.com/xataka2                                    tech
-https://electrek.co/feed                                              tech
-https://www.reddit.com/r/creativecoding/.rss ~reddit-creative-coding  reddit
-https://www.reddit.com/r/javascript/.rss ~reddit-js                   reddit
+http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml ~[news]___bbc               news
+http://feeds.bbci.co.uk/news/technology/rss.xml                       ~[news]___bbc-tech               tech
+http://ep00.epimg.net/rss/elpais/portada.xml                          ~[news]___elpais            news
+http://ep00.epimg.net/rss/tags/ultimas_noticias.xml                   ~[news]___elpais-last       news
+http://javascriptweekly.com/rss/1h9bm00c                              ~[code]___js-weekly                          code
+http://www.echojs.com/rss                                             ~[code]___echo-js                            code
+http://pitchfork.com/feed/feed-news/rss                               ~[music]__pitchfork-news               music
+http://pitchfork.com/rss/reviews/albums/                              ~[music]__pitchfork-albums             music
+http://pitchfork.com/rss/reviews/best/albums                          ~[music]__pitchfork-best               music
+http://feeds.weblogssl.com/xataka2                                    ~[tech]___xataka                  tech
+https://electrek.co/feed                                              ~[tech]___electrek                tech
+https://www.reddit.com/r/creativecoding/.rss                          ~[reddit]_creative-coding                         reddit
+https://www.reddit.com/r/javascript/.rss                              ~[reddit]_js                                      reddit
