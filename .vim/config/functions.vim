@@ -27,6 +27,30 @@ endfunction
 
 
 "-----------------------------------------
+let s:hidden_all = 0
+function! FullScreenToggle()
+    set number!
+	 execute "AirlineToggle"
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set listchars=tab:\ \ ,trail:·
+        set noshowmode
+        set noruler
+        set laststatus=0
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set listchars=tab:\|\ ,trail:·
+        set showmode
+        set ruler
+        set laststatus=2
+        set showcmd
+    endif
+endfunction
+command! FS call FullScreenToggle()
+
+
+"-----------------------------------------
 function! Pretty(...)
 	execute "%! node /developer/node/pretty.js"
 endfunction

@@ -19,6 +19,7 @@ endfunction
 
 "-------plugins------
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/goyo.vim'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
@@ -147,3 +148,27 @@ let g:airline_mode_map = {
 \ 's' : 'S',
 \ 'S' : 'S',
 \ }
+
+let g:goyo_height = '95%'
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  execute "NERDTreeClose"
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  hi NonText guifg=bg "~ at the end of the file
+  hi LineNr  guibg=bg
+  execute "NERDTreeClose"
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()

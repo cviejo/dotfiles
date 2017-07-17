@@ -27,6 +27,6 @@ source $HOME/.vim/config/theme.vim
 source $HOME/.vim/config/macros.vim
 
 autocmd VimEnter * NERDTree
-autocmd BufEnter * NERDTreeMirror
+" autocmd BufEnter * NERDTreeMirror
 autocmd VimEnter * wincmd w
 " autocmd BufEnter * silent! lcd %:p:h
