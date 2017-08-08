@@ -33,6 +33,10 @@ nnoremap <C-w>- :sp<cr>
 nmap <C-_> <leader>c<Space>
 vmap <C-_> <leader>c<Space>
 
+
+" neomake / eslint
+map <C-e> :lnext<cr>
+
 " reselect after indent
 vnoremap < <gv
 vnoremap > >gv

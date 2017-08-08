@@ -30,3 +30,4 @@ autocmd VimEnter * NERDTree
 " autocmd BufEnter * NERDTreeMirror
 autocmd VimEnter * wincmd w
 " autocmd BufEnter * silent! lcd %:p:h
+autocmd! BufWritePost * Neomake eslint
