@@ -9,7 +9,11 @@ export LC_COLLATE="C"
 export EDITOR="nvim"
 export TERM="xterm-256color"
 export ZSH=~/.oh-my-zsh
+ 
+if hash yarn 2>/dev/null; then
 export PATH="$PATH:`yarn global bin`"
+fi
+
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
