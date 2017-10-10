@@ -48,36 +48,35 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
 
 # functions
 function chpwd(){
-   emulate -L zsh
-   if linux ; then
-      ls --color -a --group-directories-first
-   else
-      ls
-   fi
+	emulate -L zsh
+	if linux ; then
+		ls --color -a --group-directories-first
+	else
+		ls
+	fi
 }
 
 function mkcd(){
-   mkdir -p $1
-   cd $1
+	mkdir -p $1
+	cd $1
 }
 
 function gitbranch(){
-   git checkout -b $1
-   git push -u origin HEAD
+	git checkout -b $1
+	git push -u origin HEAD
 }
 
 function linux(){
-   if [ "$(uname 2> /dev/null)" = "Linux" ]; then
-      return 0
-   else
-      return 1
-   fi
+	if [ "$(uname 2> /dev/null)" = "Linux" ]; then
+		return 0
+	else
+		return 1
+	fi
 }
 
 
 # todo
 function load(){
-
 	if [[ -f $1 && -r $1 ]]; then
 		source $1
 	fi
