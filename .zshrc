@@ -1,9 +1,50 @@
 
-if [[ ! -z $TMUX ]]; then
-	# printf '\n';
-fi
+# functions
+function linux(){
+	if [ "$(uname 2> /dev/null)" = "Linux" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+function chpwd(){
+	emulate -L zsh
+	if linux ; then
+		ls --color -a --group-directories-first
+	else
+		ls
+	fi
+}
+
+function mkcd(){
+	mkdir -p $1
+	cd $1
+}
+
+function gitbranch(){
+	git checkout -b $1
+	git push -u origin HEAD
+}
+
+function load(){
+	if [[ -f $1 && -r $1 ]]; then
+		source $1
+	fi
+}
+
+function tmuxActive(){
+	if [[ ! -z $TMUX ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 
 # vars
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 export LANG=en_US.UTF-8
 export LC_COLLATE="C"
 export EDITOR="nvim"
@@ -35,8 +76,10 @@ alias sd='sudo shutdown now'
 alias path='echo -e ${PATH//:/\\n}'
 alias vimdiff='nvim -d'
 
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+if linux ; then
+	alias pbcopy='xclip -selection clipboard'
+	alias pbpaste='xclip -selection clipboard -o'
+fi
 alias gi='git add -i'
 alias gs='git status'
 alias gp='git push'
@@ -46,42 +89,5 @@ alias ran='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               LASTDIR=`cat $HOME/.config/ranger/dir`; \
               cd "$LASTDIR"'
-
-# functions
-function chpwd(){
-	emulate -L zsh
-	if linux ; then
-		ls --color -a --group-directories-first
-	else
-		ls
-	fi
-}
-
-function mkcd(){
-	mkdir -p $1
-	cd $1
-}
-
-function gitbranch(){
-	git checkout -b $1
-	git push -u origin HEAD
-}
-
-function linux(){
-	if [ "$(uname 2> /dev/null)" = "Linux" ]; then
-		return 0
-	else
-		return 1
-	fi
-}
-
-
-# todo
-function load(){
-	if [[ -f $1 && -r $1 ]]; then
-		source $1
-	fi
-}
-
 
 load "$HOME/.zshrc-local"
