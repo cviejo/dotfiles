@@ -30,4 +30,11 @@ autocmd VimEnter * NERDTree
 " autocmd BufEnter * NERDTreeMirror
 autocmd VimEnter * wincmd w
 " autocmd BufEnter * silent! lcd %:p:h
-autocmd! BufWritePost * Neomake eslint
+" autocmd! BufWritePost *.js Neomake eslint
+" autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake eslint
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+
+call neomake#configure#automake('w')
+" autocmd BufRead,BufWritePost,BufEnter *.js,*.jsx silent! Neomake eslint
