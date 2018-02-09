@@ -17,6 +17,7 @@ nnoremap X :call CloseWindow()<cr>
 
 " plugins
 nmap <leader>f :Ag ""<left>
+nmap <leader>g :Goyo<cr>
 nmap <leader>k :NERDTreeToggle<cr>
 nmap <leader>h :NERDTreeFind<cr>
 nmap <leader>t :Tabularize /=<cr>:Tabularize /:<cr>:Tabularize /from/<cr>
