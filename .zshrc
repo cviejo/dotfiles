@@ -18,7 +18,7 @@ function chpwd(){
 }
 
 function mkcd(){
-	mkdir -p $1
+	mkdir $1
 	cd $1
 }
 
@@ -73,6 +73,7 @@ alias c='clear'
 alias e='exit'
 alias q='exit'
 alias sd='sudo shutdown now'
+alias mkdir='mkdir -p'
 alias path='echo -e ${PATH//:/\\n}'
 alias vimdiff='nvim -d'
 
