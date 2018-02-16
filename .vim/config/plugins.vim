@@ -57,6 +57,9 @@ Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
 Plug 'neomake/neomake'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 " Plug 'terryma/vim-smooth-scroll'
 " Plug 'farseer90718/vim-taskwarrior'
 " Plug 'vimoutliner/vimoutliner'
