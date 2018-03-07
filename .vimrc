@@ -38,3 +38,4 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 call neomake#configure#automake('w')
 " autocmd BufRead,BufWritePost,BufEnter *.js,*.jsx silent! Neomake eslint
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
