@@ -1,13 +1,23 @@
-http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml ~[news]___bbc               news
-http://feeds.bbci.co.uk/news/technology/rss.xml                       ~[news]___bbc-tech               tech
-http://ep00.epimg.net/rss/elpais/portada.xml                          ~[news]___elpais            news
-http://ep00.epimg.net/rss/tags/ultimas_noticias.xml                   ~[news]___elpais-last       news
-http://javascriptweekly.com/rss/1h9bm00c                              ~[code]___js-weekly                          code
-http://www.echojs.com/rss                                             ~[code]___echo-js                            code
-http://pitchfork.com/feed/feed-news/rss                               ~[music]__pitchfork-news               music
-http://pitchfork.com/rss/reviews/albums/                              ~[music]__pitchfork-albums             music
-http://pitchfork.com/rss/reviews/best/albums                          ~[music]__pitchfork-best               music
-http://feeds.weblogssl.com/xataka2                                    ~[tech]___xataka                  tech
-https://electrek.co/feed                                              ~[tech]___electrek                tech
-https://www.reddit.com/r/creativecoding/.rss                          ~[reddit]_creative-coding                         reddit
-https://www.reddit.com/r/javascript/.rss                              ~[reddit]_js                                      reddit
+http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml ~[news]____bbc               news
+http://feeds.bbci.co.uk/news/technology/rss.xml                       ~[news]____bbc-tech               tech
+http://ep00.epimg.net/rss/elpais/portada.xml                          ~[news]____elpais            news
+http://ep00.epimg.net/rss/tags/ultimas_noticias.xml                   ~[news]____elpais-last       news
+http://javascriptweekly.com/rss/1h9bm00c                              ~[js]______js-weekly                          code
+http://www.echojs.com/rss                                             ~[js]______echo-js                            code
+http://pitchfork.com/feed/feed-news/rss                               ~[music]___pitchfork-news               music
+http://pitchfork.com/rss/reviews/albums/                              ~[music]___pitchfork-albums             music
+http://pitchfork.com/rss/reviews/best/albums                          ~[music]___pitchfork-best               music
+http://feeds.weblogssl.com/xataka2                                    ~[tech]____xataka                  tech
+https://www.reddit.com/r/creativecoding/.rss                          ~[reddit]__creative-coding                         reddit
+https://www.reddit.com/r/javascript/.rss                              ~[reddit]__js                                      reddit
+https://www.reddit.com/r/vim/.rss                                     ~[reddit]__vim                                     reddit
+https://www.reddit.com/r/neovim/.rss                                  ~[reddit]__neovim                                  reddit
+http://www.theparisreview.org/blog/feed/                              ~[read]____paris-review
+https://www.worldliteraturetoday.org/feeds/blog                       ~[read]____world-literature
+https://electricliterature.com/feed                                   ~[read]____electric-literature
+https://lithub.com/feed/                                              ~[read]____lithub
+http://feeds.feedburner.com/mcsweeneys                                ~[read]____mcsweeneys
+http://www.writersdigest.com/feed                                     ~[read]____writersdigest
+https://lareviewofbooks.org/feed/?ver=2                               ~[read]____la-book-review
+https://www.reddit.com/r/vim/                                         ~[tools]___pitchfork-albums             music
+http://pitchfork.com/rss/reviews/best/albums                          ~[tools]___pitchfork-best               music
