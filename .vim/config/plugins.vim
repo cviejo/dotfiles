@@ -19,8 +19,15 @@ endfunction
 
 "-------plugins------
 call plug#begin('~/.vim/plugged')
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'junegunn/goyo.vim'
-Plug 'vim-scripts/AutoComplPop'
+" Plug 'vim-scripts/AutoComplPop'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
@@ -34,7 +41,7 @@ Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'keith/swift.vim'
-" Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'rking/ag.vim'
 Plug 'mkitt/tabline.vim'
@@ -91,11 +98,22 @@ let g:ctrlp_show_hidden            = 1
 let g:ag_prg                       = 'ag -S --nocolor --nogroup --column --ignore "\.gradle" --ignore node_modules --ignore "*.sublime-workspace" --ignore "*min.js"'
 let g:ag_working_path_mode         = "r"
 let g:ag_highlight                 = 1
-let g:UltiSnipsExpandTrigger       = "<tab>"
+
+"-------deoplete-ultisnips------
+let g:deoplete#enable_at_startup   = 1
+let g:UltiSnipsExpandTrigger       = "<nothing>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" If you want : UltiSnipsEdit to split your window.
-" let g       : UltiSnipsEditSplit="vertical"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrCarriageReturn()
+	let snippet = UltiSnips#ExpandSnippetOrJump()
+	if g:ulti_expand_or_jump_res > 0
+		return snippet
+	else
+		return "\<CR>"
+	endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 
 " tidy up here
@@ -189,5 +207,6 @@ function! s:goyo_leave()
   execute "NERDTreeClose"
 endfunction
 
+call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
