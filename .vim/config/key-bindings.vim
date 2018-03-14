@@ -5,6 +5,7 @@ let mapleader = " "
 nmap <leader>s :w<cr>
 nmap <leader>r :source ~/.vimrc<cr>
 nmap <leader>a :
+nmap ; :
 
 nnoremap <C-s> :w<cr>
 nnoremap <C-c> :call CloseWindow()<cr>
