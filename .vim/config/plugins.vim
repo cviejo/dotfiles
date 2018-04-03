@@ -19,15 +19,15 @@ endfunction
 
 "-------plugins------
 call plug#begin('~/.vim/plugged')
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+  " Plug 'Shougo/deoplete.nvim'
+  " Plug 'roxma/nvim-yarp'
+  " Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 Plug 'junegunn/goyo.vim'
-" Plug 'vim-scripts/AutoComplPop'
+Plug 'vim-scripts/AutoComplPop'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
@@ -207,6 +207,6 @@ function! s:goyo_leave()
   execute "NERDTreeClose"
 endfunction
 
-call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+" call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
