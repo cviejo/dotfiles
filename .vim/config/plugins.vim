@@ -187,6 +187,7 @@ let g:NERDTreeIndicatorMapCustom = {
 \ }
 
 let g:goyo_height = '95%'
+let g:goyo_width = '120'
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z

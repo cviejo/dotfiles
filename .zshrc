@@ -11,7 +11,7 @@ function linux(){
 function chpwd(){
 	emulate -L zsh
 	if linux ; then
-		ls --color -a --group-directories-first
+		ls --color -1a --group-directories-first
 	else
 		ls
 	fi
