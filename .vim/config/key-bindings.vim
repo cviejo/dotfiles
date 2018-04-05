@@ -5,6 +5,7 @@ let mapleader = " "
 nmap <leader>r :source ~/.vimrc<cr>
 nmap ; :
 
+nnoremap <leader>s :w<cr>
 nnoremap <C-s> :w<cr>
 nnoremap <C-c> :call CloseWindow()<cr>
 nnoremap <A-w> :call CloseWindow()<cr>
@@ -30,7 +31,7 @@ nnoremap <C-w>- :sp<cr>
 
 " terminal
 :tnoremap <Esc> <C-\><C-n>
-:tnoremap jk <C-\><C-n>
+:tnoremap jj <C-\><C-n>
 
 " neomake / eslint
 map <C-e> :lnext<cr>
