@@ -1,33 +1,33 @@
 
 function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh
-  endif
+	if a:info.status == 'installed' || a:info.force
+		!./install.sh
+	endif
 endfunction
 
 function! BuildTern(info)
-  if a:info.status == 'installed' || a:info.force
-    !npm install
-  endif
+	if a:info.status == 'installed' || a:info.force
+		!npm install
+	endif
 endfunction
 
 function! InstallESLint(info)
-  if a:info.status == 'installed' || a:info.force
-    !npm install -g eslint
-  endif
+	if a:info.status == 'installed' || a:info.force
+		!npm install -g eslint
+	endif
 endfunction
 
 "-------plugins------
 call plug#begin('~/.vim/plugged')
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 Plug 'junegunn/goyo.vim'
-" Plug 'vim-scripts/AutoComplPop'
+Plug 'vim-scripts/AutoComplPop'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
@@ -100,7 +100,7 @@ let g:ag_working_path_mode         = "r"
 let g:ag_highlight                 = 1
 
 "-------deoplete-ultisnips------
-let g:deoplete#enable_at_startup   = 1
+" let g:deoplete#enable_at_startup   = 1
 let g:UltiSnipsExpandTrigger       = "<nothing>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -189,25 +189,25 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:goyo_height = '95%'
 let g:goyo_width = '120'
 function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  execute "NERDTreeClose"
+	silent !tmux set status off
+	silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+	set noshowmode
+	set noshowcmd
+	set scrolloff=999
+	execute "NERDTreeClose"
 endfunction
 
 function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set showmode
-  set showcmd
-  set scrolloff=5
-  hi NonText guifg=bg "~ at the end of the file
-  hi LineNr  guibg=bg
-  execute "NERDTreeClose"
+	silent !tmux set status on
+	silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+	set showmode
+	set showcmd
+	set scrolloff=5
+	hi NonText guifg=bg "~ at the end of the file
+	hi LineNr  guibg=bg
+	execute "NERDTreeClose"
 endfunction
 
-call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+" call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
