@@ -90,5 +90,6 @@ alias ran='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               LASTDIR=`cat $HOME/.config/ranger/dir`; \
               cd "$LASTDIR"'
+alias weather='curl wttr.in'
 
 load "$HOME/.zshrc-local"
