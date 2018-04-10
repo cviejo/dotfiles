@@ -40,6 +40,10 @@ map <C-e> :lnext<cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" NERDCommenter
+nmap <C-_> <Plug>NERDCommenterToggle
+vmap <C-_> <Plug>NERDCommenterToggle
+
 " supercollider
 au Filetype supercollider nnoremap <C-e> :call SClang_block()<CR>
 

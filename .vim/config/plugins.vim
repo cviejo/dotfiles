@@ -45,7 +45,6 @@ Plug 'SirVer/ultisnips'
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'rking/ag.vim'
 Plug 'mkitt/tabline.vim'
-Plug 'scrooloose/nerdcommenter'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-obsession'
@@ -68,6 +67,7 @@ Plug 'neomake/neomake'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'scrooloose/nerdcommenter'
 " Plug 'terryma/vim-smooth-scroll'
 " Plug 'farseer90718/vim-taskwarrior'
 " Plug 'vimoutliner/vimoutliner'
