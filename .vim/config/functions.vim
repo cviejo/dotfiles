@@ -163,3 +163,16 @@ function! ChangeWorkingDirectory()
 endfunction
 command! CWD call ChangeWorkingDirectory()
 
+
+"-----------------------------------------
+function! OpenTerminal(split)
+	let $vimDir = getcwd()
+	cd %:p:h
+	execute a:split."terminal"
+	cd $vimDir
+endfunction
+
+
+command! TT call OpenTerminal("")
+command! VT call OpenTerminal("vs | ")
+command! HT call OpenTerminal("sp | ")

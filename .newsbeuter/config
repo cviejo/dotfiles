@@ -11,7 +11,7 @@ bind-key K prev article
 
 # articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
 
-highlight feedlist    "^  *[0-9]+  *N  .*"                    default default
+# highlight feedlist    "^  *[0-9]+  *N  .*"                    default default
 # highlight articlelist "^  *[0-9]+  *N  "                    color4 default
 
 highlight article     "(^Feed:.*|^Title:.*|^Author:.*)"     color2   default
@@ -42,10 +42,10 @@ browser "[[ -n \"$( uname -a | grep aarch64 )\"  ]] && termux-open-url %u || ope
 # " || w3m -M %u &> /dev/null "
 feed-sort-order name
 
-color listnormal                                            color8   default
-color listfocus                                             default  color210 bold
+# color listnormal                                            color8   default
+color listfocus                                             default  color239 bold
 color article                                               default  default
-color info                                                  default  color213
+color info                                                  default  color237
 color listnormal_unread                                     default  default
 color listfocus_unread                                      default  color8
 # color background                                            white    black

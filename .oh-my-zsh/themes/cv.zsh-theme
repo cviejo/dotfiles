@@ -16,11 +16,14 @@ else
   printf_template_custom='\033]%s%s\033\\'
 fi
 
-printf $printf_template 210 "4F/5B/66" # vim bar light
-printf $printf_template 211 "C0/C5/CE"
-printf $printf_template 212 "99/C7/94"
-printf $printf_template 213 "34/3D/46" # vim bar dark
-printf $printf_template 214 "2B/30/3B"
+# vim bar light
+printf $printf_template 239 "4F/5B/66" # 210
+
+printf $printf_template 249 "C0/C5/CE" # 211
+
+# vim bar dark
+printf $printf_template 237 "34/3D/46" # 213
+printf $printf_template 234 "2B/30/3B" # 214
 
 # black / bg
 printf $printf_template 000 "2B/30/3B"
@@ -88,7 +91,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment 212 214 "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment 002 324 "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -108,9 +111,9 @@ prompt_git() {
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment 212 214
+      prompt_segment 002 234
     else
-      prompt_segment 210 211
+      prompt_segment 239 249
     fi
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
@@ -138,7 +141,7 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment 213 211 '%~'
+  prompt_segment 237 249 '%~'
 }
 
 # Status:
