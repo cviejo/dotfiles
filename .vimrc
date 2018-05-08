@@ -30,15 +30,26 @@ autocmd VimEnter * NERDTree
 " autocmd BufEnter * NERDTreeMirror
 autocmd VimEnter * wincmd w
 
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_args = ['-f', 'compact', '--fix']
 
 augroup neomake_hooks
   au!
   autocmd User NeomakeJobFinished :checktime
 augroup END
 
-call neomake#configure#automake('w')
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+" let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_javascript_eslint_args = ['-f', 'compact', '--fix']
+" let g:neomake_javascript_eslint_args = ['--fix']
+" call neomake#configure#automake('w')
 
 " autocmd BufEnter * silent! lcd %:p:h
 " autocmd! BufWritePost *.js Neomake eslint
