@@ -60,7 +60,7 @@ endfunction
 function! CloseWindow()
 	let name = bufname("%")
 	" if match(name, "NERD_tree") == 0 || name == "[Plugins]" || name == ""
-	if match(name, "NERD_tree") == 0 || name == "[Plugins]"
+	if match(name, "NERD_tree") == 0 || name == "[Plugins]" || name == ".git/index" || match(name, "fugitive:") == 0
 		exe "q"
 	else
 		exe "Bclose"
