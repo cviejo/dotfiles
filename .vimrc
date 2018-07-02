@@ -46,6 +46,7 @@ let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
+let g:prettier#config#parser = 'babylon'
 " let g:neomake_javascript_enabled_makers = ['eslint']
 " let g:neomake_javascript_eslint_args = ['-f', 'compact', '--fix']
 " let g:neomake_javascript_eslint_args = ['--fix']
