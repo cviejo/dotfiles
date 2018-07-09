@@ -9,9 +9,13 @@ http://pitchfork.com/rss/reviews/albums/                              ~[music]__
 http://pitchfork.com/rss/reviews/best/albums                          ~[music]___pitchfork-best               music
 http://feeds.weblogssl.com/xataka2                                    ~[tech]____xataka                  tech
 https://www.reddit.com/r/creativecoding/.rss                          ~[reddit]__creative-coding                         reddit
+https://www.reddit.com/r/commandline/.rss                             ~[reddit]__commandline                             reddit
 https://www.reddit.com/r/javascript/.rss                              ~[reddit]__js                                      reddit
+https://www.reddit.com/r/programming/.rss                             ~[reddit]__programming                             reddit
+https://www.reddit.com/r/unixporn/.rss                                ~[reddit]__unixporn                                reddit
 https://www.reddit.com/r/vim/.rss                                     ~[reddit]__vim                                     reddit
 https://www.reddit.com/r/neovim/.rss                                  ~[reddit]__neovim                                  reddit
+https://www.reddit.com/r/termux/.rss                                  ~[reddit]__termux                                  reddit
 https://www.reddit.com/r/MachineLearning/.rss                         ~[reddit]__machine-learning                        reddit
 http://www.theparisreview.org/blog/feed/                              ~[read]____paris-review
 https://www.worldliteraturetoday.org/feeds/blog                       ~[read]____world-literature
