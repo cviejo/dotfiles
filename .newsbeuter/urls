@@ -12,6 +12,7 @@ https://www.reddit.com/r/creativecoding/.rss                          ~[reddit]_
 https://www.reddit.com/r/javascript/.rss                              ~[reddit]__js                                      reddit
 https://www.reddit.com/r/vim/.rss                                     ~[reddit]__vim                                     reddit
 https://www.reddit.com/r/neovim/.rss                                  ~[reddit]__neovim                                  reddit
+https://www.reddit.com/r/MachineLearning/.rss                         ~[reddit]__machine-learning                        reddit
 http://www.theparisreview.org/blog/feed/                              ~[read]____paris-review
 https://www.worldliteraturetoday.org/feeds/blog                       ~[read]____world-literature
 https://electricliterature.com/feed                                   ~[read]____electric-literature
@@ -19,5 +20,3 @@ https://lithub.com/feed/                                              ~[read]___
 http://feeds.feedburner.com/mcsweeneys                                ~[read]____mcsweeneys
 http://www.writersdigest.com/feed                                     ~[read]____writersdigest
 https://lareviewofbooks.org/feed/?ver=2                               ~[read]____la-book-review
-https://www.reddit.com/r/vim/                                         ~[tools]___pitchfork-albums             music
-http://pitchfork.com/rss/reviews/best/albums                          ~[tools]___pitchfork-best               music
