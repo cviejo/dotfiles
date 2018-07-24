@@ -7,7 +7,6 @@ function! WordWrap()
 		set wrap
 	endif
 endfunction
-command! WordWrap call WordWrap()
 command! WW call WordWrap()
 
 
@@ -171,8 +170,12 @@ function! OpenTerminal(split)
 	execute a:split."terminal"
 	cd $vimDir
 endfunction
-
-
 command! TT call OpenTerminal("")
 command! VT call OpenTerminal("vs | ")
 command! HT call OpenTerminal("sp | ")
+
+
+"-----------------------------------------
+for cmd in ['WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
+	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
+endfor

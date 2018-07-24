@@ -212,3 +212,12 @@ endfunction
 " call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+
+"-----------------------------------------
+for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
+\ 'Grebase', 'Gpush', 'Gfetch', 'Grename', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse',
+\ 'Ggrep', 'Glgrep', 'Glog', 'Gllog', 'Gedit', 'Gsplit', 'Gvsplit', 'Gtabedit', 'Gpedit',
+\ 'Gread', 'Gw', 'Gwrite', 'Gw', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff', 'Gmove']
+	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
+endfor
