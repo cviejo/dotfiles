@@ -221,3 +221,8 @@ for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
 \ 'Gread', 'Gw', 'Gwrite', 'Gw', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff', 'Gmove']
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
+
+if has("nvim")
+    au BufEnter,TermOpen term://* AcpDisable
+    au BufLeave term://* AcpEnable
+endif
