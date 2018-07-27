@@ -68,7 +68,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 
 # aliases
-alias tmux='env TERM=xterm-256color tmux a || tmux new'
+alias tmux='tmux new-session -A -s main'
 alias c='clear'
 alias e='exit'
 alias q='exit'

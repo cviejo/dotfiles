@@ -82,10 +82,31 @@ Plug 'SirVer/ultisnips'
 " Plug 'dyng/ctrlsf.vim'
 call plug#end()
 
+
+"-------ale------
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+autocmd BufWrite *.js ALEFix
+
+"-------prettier------
+let g:prettier#config#parser = 'babylon'
+
+
 "-------scvim------
 let g:sclangTerm = "gnome-terminal -x $SHELL -ic"
 let g:sclangPipeApp = "~/.vim/plugged/scvim/bin/start_pipe"
 let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
+
 
 "-------js-beautify------
 command! FormatJS call JsBeautify()
@@ -99,6 +120,7 @@ let g:ctrlp_show_hidden            = 1
 let g:ag_prg                       = 'ag -S --nocolor --nogroup --column --ignore "\.gradle" --ignore node_modules --ignore "*.sublime-workspace" --ignore "*min.js"'
 let g:ag_working_path_mode         = "r"
 let g:ag_highlight                 = 1
+
 
 "-------deoplete-ultisnips------
 " let g:deoplete#enable_at_startup   = 1
@@ -149,7 +171,7 @@ let g:airline#extensions#branch#format = 2
 let g:airline#extensions#hunks#enabled = 1
 let g:airline_symbols.branch = '⎇'
 " let g:airline_left_sep = '▶'
-
+"
 " show Obsession Status:
 " Prepend $ sign if Obsession is active
 let g:airline_section_z = airline#section#create(['%{ObsessionStatus(''$'', '''')}', 'windowswap', '%3p%% ', 'linenr', ':%3v '])

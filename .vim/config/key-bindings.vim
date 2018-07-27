@@ -5,6 +5,8 @@ let mapleader = " "
 nmap <leader>r :source ~/.vimrc<cr>
 nmap ; :
 nmap <C-l> <C-w>w
+nmap Q @q
+nmap rr @:
 
 nnoremap <leader>s :w<cr>
 nnoremap <C-s> :w<cr>
