@@ -83,23 +83,13 @@ Plug 'SirVer/ultisnips'
 call plug#end()
 
 
-"-------ale------
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
-
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_fix_on_save = 1
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-
-autocmd BufWrite *.js ALEFix
 
 "-------prettier------
 let g:prettier#config#parser = 'babylon'
+
+
+"-------notes------
+let g:notes_word_boundaries = 1
 
 
 "-------scvim------
@@ -111,23 +101,58 @@ let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
 "-------js-beautify------
 command! FormatJS call JsBeautify()
 
-let NERDTreeWinSize                = 25
-let NERDTreeShowHidden             = 1
-let NERDTreeShowBookmarks          = 1
-let NERDSpaceDelims                = 1
-let g:ctrlp_custom_ignore          = 'node_modules\|DS_Store\|git\|.gradle'
-let g:ctrlp_show_hidden            = 1
-let g:ag_prg                       = 'ag -S --nocolor --nogroup --column --ignore "\.gradle" --ignore node_modules --ignore "*.sublime-workspace" --ignore "*min.js"'
-let g:ag_working_path_mode         = "r"
-let g:ag_highlight                 = 1
+
+"-------NERDTree------
+let NERDTreeWinSize              = 25
+let NERDTreeShowHidden           = 1
+let NERDTreeShowBookmarks        = 1
+let NERDSpaceDelims              = 1
+let g:NERDTreeIndicatorMapCustom = {
+\ "Modified"  : "✹",
+\ "Staged"    : "✚",
+\ "Untracked" : "✭",
+\ "Renamed"   : "➜",
+\ "Unmerged"  : "═",
+\ "Deleted"   : "✖",
+\ "Dirty"     : "x",
+\ "Clean"     : "✔︎",
+\ 'Ignored'   : '☒',
+\ "Unknown"   : "?"
+\ }
+
+
+"-------ctrlp------
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.gradle'
+let g:ctrlp_show_hidden   = 1
+
+
+"-------ag------
+let g:ag_prg               = 'ag -S --nocolor --nogroup --column --ignore "\.gradle" --ignore node_modules --ignore "*.sublime-workspace" --ignore "*min.js"'
+let g:ag_working_path_mode = "r"
+let g:ag_highlight         = 1
+
+
+"-------ale------
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
+autocmd BufWrite *.js ALEFix
 
 
 "-------deoplete-ultisnips------
-" let g:deoplete#enable_at_startup   = 1
 let g:UltiSnipsExpandTrigger       = "<nothing>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:ulti_expand_or_jump_res = 0
+" let g:deoplete#enable_at_startup   = 1
 function! ExpandSnippetOrCarriageReturn()
 	let snippet = UltiSnips#ExpandSnippetOrJump()
 	if g:ulti_expand_or_jump_res > 0
@@ -139,12 +164,10 @@ endfunction
 inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 
-" tidy up here
 "-------airlline-------
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
-
 let g:airline_detect_spell=0
 let g:airline_right_alt_sep = ''
 let g:airline_left_sep = ''
@@ -196,18 +219,6 @@ let g:airline_mode_map = {
 \ 'S' : 'S',
 \ }
 
-let g:NERDTreeIndicatorMapCustom = {
-\ "Modified"  : "✹",
-\ "Staged"    : "✚",
-\ "Untracked" : "✭",
-\ "Renamed"   : "➜",
-\ "Unmerged"  : "═",
-\ "Deleted"   : "✖",
-\ "Dirty"     : "x",
-\ "Clean"     : "✔︎",
-\ 'Ignored'   : '☒',
-\ "Unknown"   : "?"
-\ }
 
 let g:goyo_height = '95%'
 let g:goyo_width = '120'
@@ -248,3 +259,4 @@ if has("nvim")
     au BufEnter,TermOpen term://* AcpDisable
     au BufLeave term://* AcpEnable
 endif
+

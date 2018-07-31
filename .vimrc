@@ -26,9 +26,8 @@ source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/theme.vim
 source $HOME/.vim/config/macros.vim
 
-autocmd VimEnter * NERDTree
-" autocmd BufEnter * NERDTreeMirror
-autocmd VimEnter * wincmd w
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd w
 
 
 augroup neomake_hooks
