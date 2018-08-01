@@ -180,8 +180,9 @@ command! PreferDestructring call feedkeys("0f;F.dt;F=bi{}xi ea p0")
 " command! Eqeqeq call feedkeys("0/(!=\ \|==)ea=0")
 command! Noplusplus call feedkeys("0/++vlc += 10")
 
+command! Gr exe 'Gread'
 
 "-----------------------------------------
-for cmd in [ 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
+for cmd in [ 'Gr', 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
