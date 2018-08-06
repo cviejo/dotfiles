@@ -183,6 +183,6 @@ command! Noplusplus call feedkeys("0/++vlc += 10")
 command! Gr exe 'Gread'
 
 "-----------------------------------------
-for cmd in [ 'Gr', 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
+for cmd in [ 'Note', 'Gr', 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
