@@ -81,6 +81,8 @@ alias vimdiff='nvim -d'
 if linux ; then
 	alias pbcopy='xclip -selection clipboard'
 	alias pbpaste='xclip -selection clipboard -o'
+else 
+	alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 fi
 alias gi='git add -i'
 alias gs='git status'

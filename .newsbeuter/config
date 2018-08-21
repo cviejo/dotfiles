@@ -38,7 +38,7 @@ highlight article     "(^Feed:.*|^Title:.*|^Author:.*)"     color2   default
 # browser "termux-open-url %u"
 browser "opera %u"
 
-browser "[[ -n \"$( uname -a | grep aarch64 )\"  ]] && termux-open-url %u || opera %u"
+browser "[[ -n \"$( uname -a | grep aarch64 )\"  ]] && termux-open-url %u || google-chrome %u"
 # " || w3m -M %u &> /dev/null "
 feed-sort-order name
 
