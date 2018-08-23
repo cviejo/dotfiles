@@ -19,15 +19,18 @@ endfunction
 
 "-------plugins------
 call plug#begin('~/.vim/plugged')
-" if has('nvim')
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-  " Plug 'Shougo/deoplete.nvim'
-  " Plug 'roxma/nvim-yarp'
-  " Plug 'roxma/vim-hug-neovim-rpc'
-" endif
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/goyo.vim'
-Plug 'vim-scripts/AutoComplPop'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
 Plug 'scrooloose/nerdtree'
@@ -39,7 +42,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
 Plug 'keith/swift.vim'
 Plug 'rking/ag.vim'
 Plug 'mkitt/tabline.vim'
@@ -49,13 +51,11 @@ Plug 'tpope/vim-obsession'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ervandew/supertab'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'kevinlitchfield/open-tmux-pane.vim'
 Plug 'supercollider/scvim'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-classpath'
@@ -66,7 +66,11 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
-Plug 'SirVer/ultisnips'
+" Plug 'vim-scripts/AutoComplPop'
+" Plug 'garbas/vim-snipmate'
+" Plug 'ervandew/supertab'
+" Plug 'kevinlitchfield/open-tmux-pane.vim'
+" Plug 'SirVer/ultisnips'
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'neomake/neomake'
 " Plug 'terryma/vim-smooth-scroll'
@@ -148,20 +152,20 @@ autocmd BufWrite *.js ALEFix
 
 
 "-------deoplete-ultisnips------
-let g:UltiSnipsExpandTrigger       = "<nothing>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:ulti_expand_or_jump_res = 0
+" let g:UltiSnipsExpandTrigger       = "<nothing>"
+" let g:UltiSnipsJumpForwardTrigger  = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:ulti_expand_or_jump_res = 0
 " let g:deoplete#enable_at_startup   = 1
-function! ExpandSnippetOrCarriageReturn()
-	let snippet = UltiSnips#ExpandSnippetOrJump()
-	if g:ulti_expand_or_jump_res > 0
-		return snippet
-	else
-		return "\<CR>"
-	endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+" function! ExpandSnippetOrCarriageReturn()
+	" let snippet = UltiSnips#ExpandSnippetOrJump()
+	" if g:ulti_expand_or_jump_res > 0
+		" return snippet
+	" else
+		" return "\<CR>"
+	" endif
+" endfunction
+" inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 
 "-------airlline-------
@@ -259,4 +263,29 @@ if has("nvim")
     au BufEnter,TermOpen term://* AcpDisable
     au BufLeave term://* AcpEnable
 endif
+
+"-------neosnippets-------
+imap <C-o> <Plug>(neosnippet_expand_or_jump)
+smap <C-o> <Plug>(neosnippet_expand_or_jump)
+xmap <C-o> <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <expr><TAB>
+\ pumvisible() ? "\<C-n>" :
+\ neosnippet#expandable_or_jumpable() ?
+\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" use tab to forward cycle
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 
