@@ -18,17 +18,43 @@ options head
 		${3}
 	}
 
+snippet for
+options head
+   for (let ${1:i} = 0; $1 < ${2:#:things}.length; $1 += 1) {
+      ${0}
+   }
+
+snippet \(\)
+options word
+   () => { ${0} 
+
+snippet arrow-1
+options word
+   () => ${0}
+
+snippet arrow-2
+options word
+   () => { ${0} 
+
 snippet setTimeout
 options head
 	setTimeout(() => {
 		${0}
 	}, ${1:1000});
 
+snippet setTimeout-function
+options head
+	setTimeout(${1:functioName}, ${2:1000});
+
 snippet setInterval
 options head
 	setInterval(() => {
 		${0}
 	}, ${1:1000});
+
+snippet setInterval-function
+options head
+	setInterval(${1:functioName}, ${2:1000});
 
 snippet reduce
 options word
