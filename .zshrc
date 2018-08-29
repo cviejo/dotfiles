@@ -41,6 +41,10 @@ function tmuxActive(){
 	fi
 }
 
+function newtask(){
+	task add new task | awk '{print $3}' | sed 's/.$//' | xargs task edit
+}
+
 
 # vars
 export CLICOLOR=1

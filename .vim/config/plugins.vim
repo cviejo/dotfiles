@@ -29,7 +29,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/goyo.vim'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
@@ -259,10 +259,10 @@ for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
 
-if has("nvim")
-    au BufEnter,TermOpen term://* AcpDisable
-    au BufLeave term://* AcpEnable
-endif
+" if has("nvim")
+    " au BufEnter,TermOpen term://* AcpDisable
+    " au BufLeave term://* AcpEnable
+" endif
 
 "-------neosnippets-------
 imap <C-o> <Plug>(neosnippet_expand_or_jump)
