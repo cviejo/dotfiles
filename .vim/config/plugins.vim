@@ -29,7 +29,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/goyo.vim'
 Plug 'sjl/gundo.vim'
 Plug 'VundleVim/Vundle.vim'
@@ -287,5 +287,5 @@ endif
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
+let g:neosnippet#disable_runtime_snippets = { 'javascript' : 1, }
 let g:neosnippet#snippets_directory='~/.vim/snippets'
-
