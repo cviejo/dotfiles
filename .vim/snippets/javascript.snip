@@ -91,6 +91,24 @@ options head
 			break;
 	}
 
+snippet try
+options head
+  try {
+    ${1:TARGET}
+  } catch (${2:e}) {
+    ${3}
+  }
+
+snippet try_finally
+options head
+  try {
+    ${1:TARGET}
+  } catch (${2:e}) {
+    ${3}
+  } finally {
+    ${4}
+  }
+
 snippet require
 options word
 	require('${1:module}');
@@ -109,3 +127,4 @@ options head
 	function ${1:name}(${2}) {
 		${0}
 	}
+
