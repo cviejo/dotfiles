@@ -1,7 +1,7 @@
 
 snippet console.log
 options head
-  console.log(${0:TARGET});
+	console.log(${0:TARGET});
 
 snippet if
 options head
@@ -20,21 +20,27 @@ options head
 
 snippet for
 options head
-   for (let ${1:i} = 0; $1 < ${2:#:things}.length; $1 += 1) {
-      ${0}
-   }
+	for (let ${1:i} = 0; $1 < ${2:#:things}.length; $1 += 1) {
+		${0}
+	}
+
+snippet new Promise
+options word
+	new Promise(${1:(resolve, reject)} => {
+		${0}
+	})
 
 snippet \(\)
 options word
-   () => { ${0} 
+	() => { ${0} 
 
 snippet arrow-1
 options word
-   () => ${0}
+	() => ${0}
 
 snippet arrow-2
 options word
-   () => { ${0} 
+	() => { ${0} }
 
 snippet setTimeout
 options head
@@ -93,21 +99,21 @@ options head
 
 snippet try
 options head
-  try {
-    ${1:TARGET}
-  } catch (${2:e}) {
-    ${3}
-  }
+	try {
+		${1:TARGET}
+	} catch (${2:e}) {
+		${3}
+	}
 
-snippet try_finally
+snippet try-finally
 options head
-  try {
-    ${1:TARGET}
-  } catch (${2:e}) {
-    ${3}
-  } finally {
-    ${4}
-  }
+	try {
+		${1:TARGET}
+	} catch (${2:e}) {
+		${3}
+	} finally {
+		${4}
+	}
 
 snippet require
 options word
@@ -115,11 +121,11 @@ options word
 
 snippet JSON.stringify
 options head
-  JSON.stringify(${1:var}, null, 3);
+	JSON.stringify(${1:var}, null, 3)
 
 snippet JSON.parse
 options head
-  JSON.parse(${1:var});
+	JSON.parse(${1:var})
 
 snippet function
 options head

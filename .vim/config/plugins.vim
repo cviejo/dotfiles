@@ -127,7 +127,8 @@ let g:NERDTreeIndicatorMapCustom = {
 
 "-------ctrlp------
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.gradle'
-let g:ctrlp_show_hidden   = 1
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_clear_cache_on_exit = 0
 
 
 "-------ag------
@@ -251,14 +252,6 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
-"-----------------------------------------
-for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
-\ 'Grebase', 'Gpush', 'Gfetch', 'Grename', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse',
-\ 'Ggrep', 'Glgrep', 'Glog', 'Gllog', 'Gedit', 'Gsplit', 'Gvsplit', 'Gtabedit', 'Gpedit',
-\ 'Gread', 'Gw', 'Gwrite', 'Gw', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff', 'Gmove']
-	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
-endfor
-
 " if has("nvim")
     " au BufEnter,TermOpen term://* AcpDisable
     " au BufLeave term://* AcpEnable
@@ -289,3 +282,12 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 let g:neosnippet#disable_runtime_snippets = { 'javascript' : 1, }
 let g:neosnippet#snippets_directory='~/.vim/snippets'
+
+
+"-----------------------------------------
+for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
+\ 'Grebase', 'Gpush', 'Gfetch', 'Grename', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse',
+\ 'Ggrep', 'Glgrep', 'Glog', 'Gllog', 'Gedit', 'Gsplit', 'Gvsplit', 'Gtabedit', 'Gpedit',
+\ 'Gread', 'Gw', 'Gwrite', 'Gw', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff', 'Gmove']
+	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
+endfor
