@@ -15,7 +15,7 @@ else
 	let g:solarized_termcolors=256
 endif
 
-:hi NonText guifg=bg "~ at the end of the file
+:hi EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 :hi LineNr  guibg=bg
 " set foldcolumn=2
 " set numberwidth=3
