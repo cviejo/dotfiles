@@ -35,12 +35,15 @@ highlight article     "(^Feed:.*|^Title:.*|^Author:.*)"     color2   default
 # color article    color244 color234
 
 # html-renderer "w3m -dump -T text/html"
-# browser "termux-open-url %u"
-browser "opera %u"
-
-browser "[[ -n \"$( uname -a | grep aarch64 )\"  ]] && termux-open-url %u || google-chrome %u"
-# " || w3m -M %u &> /dev/null "
 feed-sort-order name
+
+# browser "termux-open-url %u"
+# browser "opera %u"
+# " || w3m -M %u &> /dev/null "
+# browser "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary %u"
+# browser google-chrome
+# browser "google-chrome %u"
+browser "/usr/local/bin/google-chrome.sh"
 
 # color listnormal                                            color8   default
 color listfocus                                             default  color239 bold
