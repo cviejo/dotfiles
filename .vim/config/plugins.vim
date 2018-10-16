@@ -126,7 +126,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 "-------ctrlp------
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.gradle'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
 
