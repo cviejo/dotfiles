@@ -56,6 +56,19 @@ endfunction
 
 
 "-----------------------------------------
+function! Easy()
+	let name = bufname("%")
+	echo name
+	" name == ""
+	if match(name, "NERD_tree") == 0
+		echo "eee"
+		exe "<Plug>(easymotion-bd-w)"
+	else 
+		echo "nopew"
+	endif
+endfunction
+
+"-----------------------------------------
 function! CloseWindow()
 	let name = bufname("%")
 	" name == ""
@@ -175,6 +188,7 @@ function! PrintCommand(cmd)
 endfunction
 command! -nargs=+ -complete=command PrintCommand call PrintCommand(<q-args>)
 
+command! -nargs=+ PrintCommand2 call feedkeys(":redir @a\r:silent ".<q-args>."\r:redir END\r:enew\n\"ap")
 
 "-----------------------------------------
 function! OpenTerminal(split)
@@ -188,7 +202,7 @@ command! VT call OpenTerminal("vs | ")
 command! HT call OpenTerminal("sp | ")
 
 
-command! PreferDestructring call feedkeys("0f;F.dt;F=bi{}xi ea p0")
+command! PreferDestructring call feedkeys("0t;lF.dt;F=bi{}xi ea p0")
 " command! Eqeqeq call feedkeys("0/\( == \| != \)ea=0")
 " command! Eqeqeq call feedkeys("0/(!=\ \|==)ea=0")
 command! Noplusplus call feedkeys("0/++vlc += 10")
