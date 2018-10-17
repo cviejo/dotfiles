@@ -164,6 +164,19 @@ command! CWD call ChangeWorkingDirectory()
 
 
 "-----------------------------------------
+function! PrintCommand(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  if !empty(message)
+    enew
+    silent put=message
+  endif
+endfunction
+command! -nargs=+ -complete=command PrintCommand call PrintCommand(<q-args>)
+
+
+"-----------------------------------------
 function! OpenTerminal(split)
 	let $vimDir = getcwd()
 	cd %:p:h
