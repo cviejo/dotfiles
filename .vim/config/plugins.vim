@@ -129,6 +129,10 @@ let g:NERDTreeIndicatorMapCustom = {
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtSelectMove("j")':   ['<c-m>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-o>', '<up>'],
+  \ }
 
 
 "-------ag------

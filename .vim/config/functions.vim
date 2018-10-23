@@ -203,14 +203,12 @@ command! HT call OpenTerminal("sp | ")
 
 
 command! Sjs call feedkeys(":set\ syntax=js\n")
-command! Sjson call feedkeys(":set\ syntax=js\n")
+command! Sjson call feedkeys(":set\ syntax=json\n")
 command! PreferDestructring call feedkeys("0t;lF.dt;F=bi{}xi ea p0")
 command! Noplusplus call feedkeys("0/++vlc += 10")
 " command! Eqeqeq call feedkeys("0/\( == \| != \)ea=0")
 " command! Eqeqeq call feedkeys("0/(!=\ \|==)ea=0")
-
 command! Gr exe 'Gread'
-
 
 "-----------------------------------------
 for cmd in [ 'Sjson', 'Sjs', 'Note', 'Gr', 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
