@@ -202,7 +202,7 @@ command! VT call OpenTerminal("vs | ")
 command! HT call OpenTerminal("sp | ")
 
 
-command! Sjs call feedkeys(":set\ syntax=js\n")
+command! Sjs call feedkeys(":set\ syntax=javascript\n")
 command! Sjson call feedkeys(":set\ syntax=json\n")
 command! PreferDestructring call feedkeys("0t;lF.dt;F=bi{}xi ea p0")
 command! Noplusplus call feedkeys("0/++vlc += 10")
