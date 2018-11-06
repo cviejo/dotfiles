@@ -208,6 +208,8 @@ command! PreferDestructring call feedkeys("0t;lF.dt;F=bi{}xi ea p0")
 command! Noplusplus call feedkeys("0/++vlc += 10")
 " command! Eqeqeq call feedkeys("0/\( == \| != \)ea=0")
 " command! Eqeqeq call feedkeys("0/(!=\ \|==)ea=0")
+command! Eqeqeq call feedkeys("\:%s/ == / === /g | %s/ != / !== /g")
+
 command! Gr exe 'Gread'
 
 "-----------------------------------------
