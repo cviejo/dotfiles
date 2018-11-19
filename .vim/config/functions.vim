@@ -209,10 +209,10 @@ command! Noplusplus call feedkeys("0/++vlc += 10")
 " command! Eqeqeq call feedkeys("0/\( == \| != \)ea=0")
 " command! Eqeqeq call feedkeys("0/(!=\ \|==)ea=0")
 command! Eqeqeq call feedkeys("\:%s/ == / === /g | %s/ != / !== /g")
-
 command! Gr exe 'Gread'
+command! Reload call feedkeys(":edit!\n")
 
 "-----------------------------------------
-for cmd in [ 'Sjson', 'Sjs', 'Note', 'Gr', 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
+for cmd in [ 'Reload', 'Sjson', 'Sjs', 'Note', 'Gr', 'WW', 'FS', 'CWD', 'TT', 'VT', 'HT' ]
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
