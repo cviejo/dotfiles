@@ -1,33 +1,10 @@
 
-function! BuildYCM(info)
-	if a:info.status == 'installed' || a:info.force
-		!./install.sh
-	endif
-endfunction
-
-function! BuildTern(info)
-	if a:info.status == 'installed' || a:info.force
-		!npm install
-	endif
-endfunction
-
-function! InstallESLint(info)
-	if a:info.status == 'installed' || a:info.force
-		!npm install -g eslint
-	endif
-endfunction
-
 "-------plugins------
 call plug#begin('~/.vim/plugged')
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug '~/.vim/plugged/neovim-test/', { 'do': ':UpdateRemotePlugins' }
+Plug 'leafgarland/typescript-vim'
+Plug 'reasonml-editor/vim-reason-plus'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'junegunn/goyo.vim'
@@ -66,30 +43,17 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
-" Plug 'vim-scripts/AutoComplPop'
-" Plug 'garbas/vim-snipmate'
-" Plug 'ervandew/supertab'
-" Plug 'kevinlitchfield/open-tmux-pane.vim'
-" Plug 'SirVer/ultisnips'
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" Plug 'neomake/neomake'
-" Plug 'terryma/vim-smooth-scroll'
-" Plug 'farseer90718/vim-taskwarrior'
-" Plug 'vimoutliner/vimoutliner'
-" Plug 'goldfeld/vim-seek'
-" Plug 'tpope/vim-surround'
-" Plug 'jelera/vim-javascript-syntax'
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-" Plug 'marijnh/tern_for_vim',   { 'do': function('BuildTern') }
-" Plug 'scrooloose/syntastic',   { 'do': function('InstallESLint') }
-" Plug 'blueyed/vim-diminactive'
-" Plug 'dyng/ctrlsf.vim'
 call plug#end()
 
+
+"-------deoplete------
+let g:deoplete#enable_at_startup = 1
 
 
 "-------prettier------
 let g:prettier#config#parser = 'babylon'
+let g:prettier#config#use_tabs = 'true'
+let g:prettier#config#print_width = 100
 
 
 "-------notes------
@@ -156,23 +120,6 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 autocmd BufWrite *.js ALEFix
 
 
-"-------deoplete-ultisnips------
-" let g:UltiSnipsExpandTrigger       = "<nothing>"
-" let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" let g:ulti_expand_or_jump_res = 0
-" let g:deoplete#enable_at_startup   = 1
-" function! ExpandSnippetOrCarriageReturn()
-	" let snippet = UltiSnips#ExpandSnippetOrJump()
-	" if g:ulti_expand_or_jump_res > 0
-		" return snippet
-	" else
-		" return "\<CR>"
-	" endif
-" endfunction
-" inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
-
-
 "-------airlline-------
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
@@ -229,6 +176,7 @@ let g:airline_mode_map = {
 \ }
 
 
+"-------goyo-------
 let g:goyo_height = '95%'
 let g:goyo_width = '120'
 function! s:goyo_enter()
@@ -251,15 +199,9 @@ function! s:goyo_leave()
 	execute "NERDTreeClose"
 endfunction
 
-" call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-
-" if has("nvim")
-    " au BufEnter,TermOpen term://* AcpDisable
-    " au BufLeave term://* AcpEnable
-" endif
 
 "-------neosnippets-------
 imap <C-o> <Plug>(neosnippet_expand_or_jump)
@@ -287,7 +229,6 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 let g:neosnippet#disable_runtime_snippets = { 'javascript' : 1, }
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
-
 "-----------------------------------------
 for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
 \ 'Grebase', 'Gpush', 'Gfetch', 'Grename', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse',
@@ -295,3 +236,4 @@ for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
 \ 'Gread', 'Gw', 'Gwrite', 'Gw', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff', 'Gmove']
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
+
