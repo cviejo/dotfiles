@@ -100,5 +100,6 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
 alias weather='curl wttr.in'
 alias f='bash $HOME/.scripts/fff'
 
+load "$HOME/.cargo/env"
 load "$HOME/.zshrc-local"
 # load "~/fff"

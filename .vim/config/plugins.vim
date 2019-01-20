@@ -43,6 +43,7 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 
@@ -228,6 +229,8 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 let g:neosnippet#disable_runtime_snippets = { 'javascript' : 1, }
 let g:neosnippet#snippets_directory='~/.vim/snippets'
+
+let g:rustfmt_autosave=1
 
 "-----------------------------------------
 for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',
