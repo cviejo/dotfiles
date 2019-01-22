@@ -230,7 +230,9 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 let g:neosnippet#disable_runtime_snippets = { 'javascript' : 1, }
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
+"-------rust-------
 let g:rustfmt_autosave=1
+let g:rust_recommended_style = 0
 
 "-----------------------------------------
 for cmd in ['Goyo', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull',

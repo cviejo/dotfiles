@@ -91,6 +91,7 @@ alias gp='git push'
 alias gr='git pull -r'
 alias dsa='docker stop $(docker ps -a -q)'
 alias ran='ranger'
+alias r='ranger'
 alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               LASTDIR=`cat $HOME/.config/ranger/dir`; \
               cd "$LASTDIR"'
