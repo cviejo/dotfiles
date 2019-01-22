@@ -59,9 +59,6 @@ if hash yarn 2>/dev/null; then
 export PATH="$PATH:`yarn global bin`"
 fi
 
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
 
 # oh-my-zsh
 ZSH_THEME="cv"
