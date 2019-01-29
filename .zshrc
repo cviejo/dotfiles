@@ -96,6 +96,7 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               LASTDIR=`cat $HOME/.config/ranger/dir`; \
               cd "$LASTDIR"'
 alias weather='curl wttr.in'
+alias translate='gawk -f <(curl -Ls git.io/translate) -- -shell'
 alias f='bash $HOME/.scripts/fff'
 
 load "$HOME/.cargo/env"
