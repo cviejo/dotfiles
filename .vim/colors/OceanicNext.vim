@@ -212,11 +212,7 @@ call <sid>hi("TabLineSel",    s:gui0B, s:gui01, s:cterm0B, s:cterm01, "none")
 " Standard syntax highlighting {{{
 call <sid>hi("Boolean",      s:gui09, "", s:cterm09, "", "")
 call <sid>hi("Character",    s:gui08, "", s:cterm08, "", "")
-if exists('$TMUX')
-call <sid>hi("Comment",      s:gui00, s:gui03, s:cterm03, "", s:italic)
-else
 call <sid>hi("Comment",      s:gui03, "", s:cterm03, "", s:italic)
-endif
 call <sid>hi("Conditional",  s:gui0E, "", s:cterm0E, "", "")
 call <sid>hi("Constant",     s:gui09, "", s:cterm09, "", "")
 call <sid>hi("Define",       s:gui0E, "", s:cterm0E, "", "none")
