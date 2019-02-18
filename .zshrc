@@ -45,6 +45,12 @@ function newtask(){
 	task add new task | awk '{print $3}' | sed 's/.$//' | xargs task edit
 }
 
+function f() {
+	bash $HOME/.scripts/fff "$@"
+	cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+
+
 
 # vars
 export CLICOLOR=1
@@ -97,8 +103,6 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               cd "$LASTDIR"'
 alias weather='curl wttr.in'
 alias translate='gawk -f <(curl -Ls git.io/translate) -- -shell'
-alias f='bash $HOME/.scripts/fff'
 
 load "$HOME/.cargo/env"
 load "$HOME/.zshrc-local"
-# load "~/fff"
