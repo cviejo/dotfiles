@@ -42,7 +42,7 @@ function tmuxActive(){
 }
 
 function newtask(){
-	task add new task | awk '{print $3}' | sed 's/.$//' | xargs task edit
+	task add new task | awk 'gsub(/.*\ |\./, "")' | xargs task edit
 }
 
 function f() {
@@ -75,7 +75,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey '^ ' autosuggest-accept
 
 # aliases
-alias tmux='tmux new-session -A -s main'
+alias t='tmux new-session -A -s main'
 alias c='clear'
 alias e='exit'
 alias q='exit'
@@ -103,6 +103,7 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/dir; \
               cd "$LASTDIR"'
 alias weather='curl wttr.in'
 alias translate='gawk -f <(curl -Ls git.io/translate) -- -shell'
+alias d='docker'
 
 load "$HOME/.cargo/env"
 load "$HOME/.zshrc-local"

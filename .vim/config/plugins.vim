@@ -91,6 +91,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 "-------ctrlp------
+let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_clear_cache_on_exit = 0
@@ -101,7 +102,7 @@ let g:ctrlp_prompt_mappings = {
 
 
 "-------ag------
-let g:ag_prg               = 'ag -S --nocolor --nogroup --column --ignore "\.gradle" --ignore node_modules --ignore "*.sublime-workspace" --ignore "*min.js"'
+let g:ag_prg               = 'ag --nocolor --nogroup --column --ignore "\.gradle" --ignore dist --ignore node_modules --ignore "*min.js" -i'
 let g:ag_working_path_mode = "r"
 let g:ag_highlight         = 1
 
