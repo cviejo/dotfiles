@@ -69,10 +69,16 @@ fi
 # oh-my-zsh
 ZSH_THEME="cv"
 DISABLE_AUTO_UPDATE="true"
-plugins=(git wd zsh-autosuggestions)
+plugins=(
+	git
+	wd
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	z
+)
 source $ZSH/oh-my-zsh.sh
 
-bindkey '^ ' autosuggest-accept
+bindkey '^f' autosuggest-accept
 
 # aliases
 alias t='tmux new-session -A -s main'
