@@ -51,6 +51,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
+Plug 'tomtom/tcomment_vim'
+Plug 'mg979/vim-visual-multi'
 Plug 'sjl/gundo.vim'
 call plug#end()
 
@@ -78,6 +80,8 @@ nnoremap K :bn<cr>
 nnoremap J :bp<cr>
 vnoremap < <gv
 vnoremap > >gv
+noremap <c-d> 5j
+noremap <c-u> 5k
 
 " q bindings
 " -------------------------------------------------------------
@@ -96,7 +100,10 @@ let mapleader="'"
 nmap <leader>; @:
 vmap <leader>; @:
 nmap <leader>a ggVG
+nmap <leader>c gc
+vmap <leader>c gc
 nmap <leader>d :bd<cr>
+nmap <leader>e :CocCommand explorer<cr>
 vmap <leader>f "vy:Rg <c-r>=escape(@v, '[].')<cr><cr>
 nmap <leader>f :Rg 
 nmap <leader>h :noh<cr>
@@ -107,13 +114,12 @@ nmap <leader>n *
 vmap <leader>p "_dP
 nmap <leader>q @q
 xmap <leader>q : norm @q<cr>
-nmap <leader>r :Vex<cr>
 xmap <leader>s <Plug>SlimeRegionSend
 nmap <leader>s <Plug>SlimeParagraphSend
-nmap <leader>t :CocCommand explorer<cr>
 nmap <leader>w :w<cr>
 nmap <leader>z vip"by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
 xmap <leader>z "by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
+
 
 " inner as default for text objects, omit shift for common keys
 " -------------------------------------------------------------
