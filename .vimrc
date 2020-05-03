@@ -3,6 +3,7 @@
 " -------------------------------------------------------------
 filetype plugin indent on
 set autoread
+set background=dark
 set clipboard+=unnamedplus
 set complete=.,w,b,u,t,i,kspell
 set diffopt+=vertical
@@ -27,34 +28,48 @@ set spelllang=en
 set splitbelow
 set splitright
 set tabstop=3
+set t_Co=256
+set termguicolors
 set wildignore+=**/node_modules/** 
 set wildmenu
+
 
 " plugins
 " -------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-surround'
+if !exists('g:vscode')
 Plug 'HiPhish/awk-ward.nvim'
-Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'mhartington/oceanic-next'
-Plug 'mkitt/tabline.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'tomtom/tcomment_vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'sjl/gundo.vim'
+else
+Plug 'asvetliakov/vim-easymotion', { 'as': 'vim-easymotion-vc' }
+endif
 call plug#end()
+let g:coc_global_extensions = [
+	\'coc-eslint',
+	\'coc-explorer',
+	\'coc-git',
+	\'coc-prettier',
+	\'coc-snippets',
+	\'coc-svelte',
+	\'https://github.com/nathanchapman/vscode-javascript-snippets'
+\]
+
 
 " plugin settings
 " -------------------------------------------------------------
@@ -68,7 +83,22 @@ autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-" general
+
+" coc-snippets tab behaviour
+" -------------------------------------------------------------
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
+
+
+" general bindings
 " -------------------------------------------------------------
 imap jk <Esc>
 imap jj <Esc>
@@ -76,12 +106,17 @@ imap <C-l> <Esc>la
 map ; :
 noremap ;; ;
 noremap S J
-nnoremap K :bn<cr>
-nnoremap J :bp<cr>
 vnoremap < <gv
 vnoremap > >gv
+
+
+" vimium bindings
+" -------------------------------------------------------------
+nnoremap K :bn<cr>
+nnoremap J :bp<cr>
 noremap <c-d> 5j
 noremap <c-u> 5k
+
 
 " q bindings
 " -------------------------------------------------------------
@@ -91,6 +126,8 @@ noremap qb :Buffers<cr>
 noremap ql :Lines<cr>
 noremap qp :Files<cr>
 noremap qr :History<cr>
+noremap qh :History:<cr>
+
 
 " leader bindings
 " -------------------------------------------------------------
@@ -100,7 +137,7 @@ let mapleader="'"
 nmap <leader>; @:
 vmap <leader>; @:
 nmap <leader>a ggVG
-nmap <leader>c gc
+nmap <leader>c gcc
 vmap <leader>c gc
 nmap <leader>d :bd<cr>
 nmap <leader>e :CocCommand explorer<cr>
@@ -123,7 +160,8 @@ xmap <leader>z "by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
 
 " inner as default for text objects, omit shift for common keys
 " -------------------------------------------------------------
-for [key, value] in items({ '4': '$', '9': 'i(', '0': 'i)', 'p': 'ap' })
+let movements = { '4': '$', '9': 'i(', '0': 'i)', 'p': 'ap', '<space>': 't<space>', ',': 't,', ';': 't;' }
+for [key, value] in items(movements)
 	execute 'nnoremap d'.key.' d'.value
 	execute 'nnoremap c'.key.' c'.value
 	execute 'nnoremap v'.key.' v'.value
@@ -136,6 +174,7 @@ for char in [ 'b', 'B', '(', ')', '{', '}', '[', ']', "'", '"', '/', ',' ]
 	execute 'nnoremap y'.char.' yi'.char
 endfor
 
+
 " extra pseudo objects
 " -------------------------------------------------------------
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
@@ -145,12 +184,14 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', 
 	execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
+
 " window
 " -------------------------------------------------------------
 nmap <C-l> <C-w>w
 nnoremap <C-w>/ :vsp<cr>
 nnoremap <C-w>- :sp<cr>
-nnoremap <C-w>z :call ZoomToggle()<cr>
+nnoremap <C-w>z call ZoomToggle()<cr>
+
 
 " pane zooming
 " -------------------------------------------------------------
@@ -166,28 +207,31 @@ function! ZoomToggle() abort
 	endif
 endfunction
 
+
 " theme
 " -------------------------------------------------------------
-set background=dark
-set termguicolors
 source $HOME/.vim/colors/OceanicNext.vim
 colorscheme OceanicNext
 let g:airline_theme='base16_ocean'
 :hi EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 :hi LineNr guibg=bg
 
+
 " misc
 " -------------------------------------------------------------
 command! CloseOtherBufs exe 'norm mb' | silent! exe "%bd|e#|bd#" | exe 'norm `b'
+command! TmuxVerticalSplit exe "silent !pwd | awk '{ print $0 \"/%\" }' | xargs dirname | xargs tmux split-window -h -c"
+command! TmuxHorizontalSplit exe "silent !pwd | awk '{ print $0 \"/%\" }' | xargs dirname | xargs tmux split-window -c"
 cnoreabbrev sjs set syntax=javascript
 cnoreabbrev sjson set syntax=json
 
+
 " lowercase abbreviations
 " -------------------------------------------------------------
-for cmd in [ 'Sjson', 'Spps', 'Note', 'Goyo',
-	\ 'Gr', 'Gread', 'Gw', 'Gwrite', 'Gblame', 'Gedit', 'Gcommit', 'Gdiffsplit' ]
+for cmd in ['Sjson', 'Spps', 'Note', 'Goyo', 'Gr', 'Gread', 'Gw', 'Gwrite', 'Gblame', 'Gedit', 'Gcommit', 'Gdiffsplit']
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
+
 
 " airline
 " -------------------------------------------------------------
@@ -215,8 +259,18 @@ let g:airline_mode_map = {
 \ 'v'  : 'V', 'V' : 'V', 's' : 'S', 'S' : 'S'
 \ }
 
+
 " autocmd
 " -------------------------------------------------------------
 autocmd TermOpen * startinsert
 autocmd FileType netrw setl bufhidden=wipe
 
+if exists('g:vscode')
+nnoremap K :call VSCodeCall("workbench.action.nextEditor")<cr>
+nnoremap J :call VSCodeCall("workbench.action.previousEditor")<cr>
+nnoremap qp :call VSCodeCall("workbench.action.quickOpen")<cr>
+nnoremap <C-w>/ :call VSCodeCall("workbench.action.splitEditorRight")<cr>
+nnoremap <C-w>- :call VSCodeCall("workbench.action.splitEditorDown")<cr>
+nmap <leader>e :call VSCodeCall("workbench.action.toggleSidebarVisibility")<cr>
+nmap <leader>d :call VSCodeCall("workbench.action.closeActiveEditor")<cr>
+endif
