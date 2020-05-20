@@ -3,10 +3,8 @@
 " -------------------------------------------------------------
 filetype plugin indent on
 set autoread
-set background=dark
 set clipboard+=unnamedplus
 set complete=.,w,b,u,t,i,kspell
-set diffopt+=vertical
 set foldmethod=indent
 set hidden
 set ignorecase
@@ -28,10 +26,14 @@ set spelllang=en
 set splitbelow
 set splitright
 set tabstop=3
-set t_Co=256
-set termguicolors
 set wildignore+=**/node_modules/** 
 set wildmenu
+set background=dark
+set t_Co=256
+set termguicolors
+if has('nvim')
+set diffopt+=vertical
+endif
 
 
 " plugins
@@ -46,14 +48,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 Plug 'mhartington/oceanic-next'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
 Plug 'mg979/vim-visual-multi'
 Plug 'sjl/gundo.vim'
 else
@@ -73,12 +74,18 @@ let g:coc_global_extensions = [
 
 " plugin settings
 " -------------------------------------------------------------
+let g:codi#raw = 0
+let g:codi#width = 50.0
 let g:notes_word_boundaries = 1
 let g:slime_target = "tmux"
 let g:slime_dont_ask_default = 1
 let g:slime_default_config = {'target_pane': '{next}', 'socket_name': 'default'}
-nmap s <Plug>(easymotion-bd-w)
-vmap s <Plug>(easymotion-bd-w)
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap <silent> gi <Plug>(coc-type-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap s <Plug>(easymotion-overwin-f2)
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
@@ -102,7 +109,7 @@ let g:coc_snippet_next = '<tab>'
 " -------------------------------------------------------------
 imap jk <Esc>
 imap jj <Esc>
-imap <C-l> <Esc>la
+imap <c-l> <Esc>la
 map ; :
 noremap ;; ;
 noremap S J
@@ -160,14 +167,18 @@ xmap <leader>z "by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
 
 " inner as default for text objects, omit shift for common keys
 " -------------------------------------------------------------
-let movements = { '4': '$', '9': 'i(', '0': 'i)', 'p': 'ap', '<space>': 't<space>', ',': 't,', ';': 't;' }
+let movements = {
+\ '4': '$', '9': 'i(', '0': 'i)', 'p': 'ap', 'q': 'i"',
+\ '<space>': 't<space>', ',': 't,', ';': 't;', ':': 't:',
+\ 'n': 'i{'
+\ }
 for [key, value] in items(movements)
 	execute 'nnoremap d'.key.' d'.value
 	execute 'nnoremap c'.key.' c'.value
 	execute 'nnoremap v'.key.' v'.value
 	execute 'nnoremap y'.key.' y'.value
 endfor
-for char in [ 'b', 'B', '(', ')', '{', '}', '[', ']', "'", '"', '/', ',' ]
+for char in [ 'w', 'b', 'B', '(', ')', '{', '}', '[', ']', "'", '"', '/' ]
 	execute 'nnoremap d'.char.' di'.char
 	execute 'nnoremap c'.char.' ci'.char
 	execute 'nnoremap v'.char.' vi'.char
@@ -187,10 +198,11 @@ endfor
 
 " window
 " -------------------------------------------------------------
-nmap <C-l> <C-w>w
-nnoremap <C-w>/ :vsp<cr>
-nnoremap <C-w>- :sp<cr>
-nnoremap <C-w>z call ZoomToggle()<cr>
+nnoremap qww <C-w>w
+nnoremap qwo <C-w>o
+nnoremap qw/ :vsp<cr>
+nnoremap qw- :sp<cr>
+nnoremap qwz call ZoomToggle()<cr>
 
 
 " pane zooming
@@ -262,15 +274,17 @@ let g:airline_mode_map = {
 
 " autocmd
 " -------------------------------------------------------------
-autocmd TermOpen * startinsert
 autocmd FileType netrw setl bufhidden=wipe
+if has('nvim')
+autocmd TermOpen * startinsert
+endif
 
 if exists('g:vscode')
 nnoremap K :call VSCodeCall("workbench.action.nextEditor")<cr>
 nnoremap J :call VSCodeCall("workbench.action.previousEditor")<cr>
 nnoremap qp :call VSCodeCall("workbench.action.quickOpen")<cr>
-nnoremap <C-w>/ :call VSCodeCall("workbench.action.splitEditorRight")<cr>
-nnoremap <C-w>- :call VSCodeCall("workbench.action.splitEditorDown")<cr>
+nnoremap q/ :call VSCodeCall("workbench.action.splitEditorRight")<cr>
+nnoremap q- :call VSCodeCall("workbench.action.splitEditorDown")<cr>
 nmap <leader>e :call VSCodeCall("workbench.action.toggleSidebarVisibility")<cr>
 nmap <leader>d :call VSCodeCall("workbench.action.closeActiveEditor")<cr>
 endif
