@@ -57,6 +57,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mg979/vim-visual-multi'
 Plug 'sjl/gundo.vim'
+Plug 'metakirby5/codi.vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'NicholasDunham/chuck.nvim'
 else
 Plug 'asvetliakov/vim-easymotion', { 'as': 'vim-easymotion-vc' }
 endif
@@ -68,9 +71,9 @@ let g:coc_global_extensions = [
 	\'coc-prettier',
 	\'coc-snippets',
 	\'coc-svelte',
+	\'coc-rls',
 	\'https://github.com/nathanchapman/vscode-javascript-snippets'
 \]
-
 
 " plugin settings
 " -------------------------------------------------------------
@@ -82,6 +85,7 @@ let g:slime_dont_ask_default = 1
 let g:slime_default_config = {'target_pane': '{next}', 'socket_name': 'default'}
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
+nmap cm :CocCommand<cr>
 nmap <silent> gi <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -152,8 +156,8 @@ vmap <leader>f "vy:Rg <c-r>=escape(@v, '[].')<cr><cr>
 nmap <leader>f :Rg 
 nmap <leader>h :noh<cr>
 nmap <leader>i mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>
-nmap <leader>j vip"by:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
-xmap <leader>j "by:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
+nmap <leader>j mbvip"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
+xmap <leader>j mb"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
 nmap <leader>n *
 vmap <leader>p "_dP
 nmap <leader>q @q
@@ -161,8 +165,8 @@ xmap <leader>q : norm @q<cr>
 xmap <leader>s <Plug>SlimeRegionSend
 nmap <leader>s <Plug>SlimeParagraphSend
 nmap <leader>w :w<cr>
-nmap <leader>z vip"by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
-xmap <leader>z "by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
+nmap <leader>z mbvip"by`b:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
+xmap <leader>z mb"by`b:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
 
 
 " inner as default for text objects, omit shift for common keys
@@ -170,7 +174,7 @@ xmap <leader>z "by:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
 let movements = {
 \ '4': '$', '9': 'i(', '0': 'i)', 'p': 'ap', 'q': 'i"',
 \ '<space>': 't<space>', ',': 't,', ';': 't;', ':': 't:',
-\ 'n': 'i{'
+\ 'n': 'i{', 'rb': '])', 'rB': ']]'
 \ }
 for [key, value] in items(movements)
 	execute 'nnoremap d'.key.' d'.value
@@ -184,7 +188,7 @@ for char in [ 'w', 'b', 'B', '(', ')', '{', '}', '[', ']', "'", '"', '/' ]
 	execute 'nnoremap v'.char.' vi'.char
 	execute 'nnoremap y'.char.' yi'.char
 endfor
-
+nnoremap vp vip
 
 " extra pseudo objects
 " -------------------------------------------------------------
@@ -234,8 +238,8 @@ let g:airline_theme='base16_ocean'
 command! CloseOtherBufs exe 'norm mb' | silent! exe "%bd|e#|bd#" | exe 'norm `b'
 command! TmuxVerticalSplit exe "silent !pwd | awk '{ print $0 \"/%\" }' | xargs dirname | xargs tmux split-window -h -c"
 command! TmuxHorizontalSplit exe "silent !pwd | awk '{ print $0 \"/%\" }' | xargs dirname | xargs tmux split-window -c"
-cnoreabbrev sjs set syntax=javascript
-cnoreabbrev sjson set syntax=json
+cnoreabbrev sjs set filetype=javascript syntax=javascript
+cnoreabbrev sjson set filetype=json syntax=json
 
 
 " lowercase abbreviations
