@@ -1,18 +1,36 @@
 {
-	"coc.preferences.formatOnSaveFiletypes": ["svelte", "javascript", "rust"],
+	"coc.preferences.formatOnSaveFiletypes": [
+		"svelte",
+		"json",
+		"javascript",
+		"typescript",
+		"purescript"
+	],
 	"diagnostic.errorSign": "✖",
 	"diagnostic.hintSign": "ẍ",
 	"diagnostic.infoSign": "⚐",
 	"diagnostic.warningSign": "⚠",
-	"eslint.autoFixOnSave": true,
+	"eslint.autoFixOnSave": false,
+	"eslint.enable": true,
 	"eslint.filetypes": ["javascript", "svelte", "javascriptreact", "typescript", "typescriptreact"],
 	"explorer.buffer.showHiddenBuffers": true,
 	"explorer.file.showHiddenFiles": true,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.previewAction.onHover": false,
+	"explorer.keyMappings": {
+		"y": "copyFile",
+		"Y": "copyFile",
+		"x": "delete",
+		"d": "cutFile",
+		"zh": "toggleHidden"
+	},
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	},
 	"javascript.suggestionActions.enabled": false,
-	"prettier.onlyUseLocalVersion": true,
+	"prettier.onlyUseLocalVersion": false,
 	"prettier.printWidth": 100,
+	"prettier.tabWidth": 3,
 	"prettier.singleQuote": true,
 	"prettier.useTabs": true,
 	"snippets.priority": 100,
