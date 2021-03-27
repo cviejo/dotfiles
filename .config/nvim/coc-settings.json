@@ -2,22 +2,32 @@
 	"coc.preferences.formatOnSaveFiletypes": [
 		"svelte",
 		"json",
-		"javascript",
 		"typescript",
-		"purescript"
+		"javascript",
+		"haskell",
+		"purescript",
+		"html"
 	],
 	"diagnostic.errorSign": "✖",
 	"diagnostic.hintSign": "ẍ",
 	"diagnostic.infoSign": "⚐",
 	"diagnostic.warningSign": "⚠",
-	"eslint.autoFixOnSave": false,
-	"eslint.enable": true,
-	"eslint.filetypes": ["javascript", "svelte", "javascriptreact", "typescript", "typescriptreact"],
+	"eslint.autoFixOnSave": true,
+	"eslint.probe": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"vue",
+		"svelte",
+		"markdown"
+	],
 	"explorer.buffer.showHiddenBuffers": true,
 	"explorer.file.showHiddenFiles": true,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.previewAction.onHover": false,
-	"explorer.keyMappings": {
+	"explorer.keyMappings.global": {
 		"y": "copyFile",
 		"Y": "copyFile",
 		"x": "delete",
@@ -35,5 +45,20 @@
 	"prettier.useTabs": true,
 	"snippets.priority": 100,
 	"suggest.noselect": false,
-	"svelte.plugin.typescript.enable": false
+	"svelte.plugin.typescript.enable": true,
+	"languageserver": {
+		"haskell": {
+			"command": "haskell-language-server-wrapper",
+			"args": ["--lsp"],
+			"rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+			"filetypes": ["haskell", "lhaskell"],
+			"initializationOptions": {
+				"languageServerHaskell": {
+					"hlintOn": true,
+					"maxNumberOfProblems": 10,
+					"completionSnippetsOn": true
+				}
+			}
+		}
+	}
 }

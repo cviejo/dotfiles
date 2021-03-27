@@ -41,18 +41,20 @@ endif
 " plugins
 " -------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
+Plug 'wakatime/vim-wakatime'
+Plug 'liuchengxu/vista.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
+Plug 'rhysd/clever-f.vim'
 if !exists('g:vscode')
-Plug 'HiPhish/awk-ward.nvim'
 Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/gv.vim'
 Plug 'metakirby5/codi.vim'
 Plug 'mg979/vim-visual-multi'
-Plug 'mhartington/oceanic-next'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -61,11 +63,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 Plug 'neoclide/jsonc.vim'
+Plug 'HiPhish/awk-ward.nvim'
 Plug 'NicholasDunham/chuck.nvim'
 else
 Plug 'asvetliakov/vim-easymotion', { 'as': 'vim-easymotion-vc' }
 endif
 call plug#end()
+let g:coc_node_path = '/Users/carlosviejo/.fnm/node-versions/v14.7.0/installation/bin/node'
 let g:coc_global_extensions = [
 	\ 'coc-emmet',
 	\ 'coc-eslint',
@@ -89,12 +93,21 @@ let g:slime_dont_ask_default = 1
 let g:slime_default_config = {'target_pane': '{next}', 'socket_name': 'default'}
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
-nmap cm :CocCommand<cr>
-nmap s <Plug>(easymotion-bd-w)
-xmap s <Plug>VSurround
+let g:fzf_layout = {'down': '50%'}
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
 	\ | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+nmap cm :CocCommand<cr>
+nmap s <Plug>(easymotion-bd-w)
+xmap s <Plug>VSurround
+
+
+" slime - replace const|let with var so we can reevaluate the same chunk
+" -------------------------------------------------------------
+function SlimeOverride_EscapeText_javascript(text)
+	let cmd = "awk '{ gsub(/\\s*(const|let)\\s*/, \" var \"); r=r$0\"\"; } END { print r\"\\n\"; }'"
+	return system(cmd, a:text)
+endfunction
 
 
 " coc-snippets tab behaviour
@@ -114,17 +127,17 @@ let g:coc_snippet_next = '<tab>'
 " general bindings
 " -------------------------------------------------------------
 tnoremap jk <C-\><C-n>
-imap qq <Esc>
-imap jj <Esc>
-imap jl <Esc>la
-imap j[ ${}<Esc>i
-imap >> =>
+inoremap qq <Esc>
+inoremap jj <Esc>
+" inoremap <c-i> <c-k>
+inoremap jl <Right>
+inoremap j[ ${}<Left>
+inoremap >> =>
 map ; :
-noremap ;; ;
+" noremap ;; ;
 nnoremap S J
 vnoremap < <gv
 vnoremap > >gv
-
 
 " vimium bindings
 " -------------------------------------------------------------
@@ -132,6 +145,7 @@ nnoremap K :bn<cr>
 nnoremap J :bp<cr>
 noremap <c-d> 5j
 noremap <c-u> 5k
+nnoremap co :CloseOtherBufs<cr>
 
 
 " g bindings
@@ -143,7 +157,6 @@ nmap <silent> gi <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-
 " q bindings
 " -------------------------------------------------------------
 vnoremap q; q:
@@ -154,6 +167,13 @@ noremap qp :Files<cr>
 noremap qr :History<cr>
 noremap qh :History:<cr>
 
+" window
+" -------------------------------------------------------------
+nnoremap qww <C-w>w
+nnoremap qwo <C-w>o
+nnoremap qw/ :vsp<cr>
+nnoremap qw- :sp<cr>
+nnoremap qwz :call ZoomToggle()<cr>
 
 " leader bindings
 " -------------------------------------------------------------
@@ -179,6 +199,7 @@ nmap <leader>j mbvip"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
 xmap <leader>j mb"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
 nmap <leader>l yiwoconsole.log()i"pla, pA;
 nmap <leader>n *
+nmap <leader>o o<Esc>
 vmap <leader>p "_dP
 nmap <leader>q @q
 xmap <leader>q : norm @q<cr>
@@ -195,6 +216,7 @@ let movements = {
 \ '4': '$', 'l': '$',
 \ '9': 'i(', '0': 'i)', 'p': 'ap', 'q': 'i"',
 \ '<space>': 't<space>', ',': 't,', ';': 't;', ':': 't:', '.': 't.',
+\ '=': 't=',
 \ 'n': 'i{', 'rb': '])', 'rB': ']]'
 \ }
 for [key, value] in items(movements)
@@ -250,15 +272,6 @@ for [key, items] in items({ 'b': "( [ {", 'q': "\\\" ' `" })
 endfor
 
 
-" window
-" -------------------------------------------------------------
-nnoremap qww <C-w>w
-nnoremap qwo <C-w>o
-nnoremap qw/ :vsp<cr>
-nnoremap qw- :sp<cr>
-nnoremap qwz :call ZoomToggle()<cr>
-
-
 " pane zooming
 " -------------------------------------------------------------
 function! ZoomToggle() abort
@@ -274,15 +287,6 @@ function! ZoomToggle() abort
 endfunction
 
 
-" theme
-" -------------------------------------------------------------
-source $HOME/.vim/colors/OceanicNext.vim
-colorscheme OceanicNext
-let g:airline_theme='base16_ocean'
-:hi EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
-:hi LineNr guibg=bg
-
-
 " misc
 " -------------------------------------------------------------
 command! LogVar exe 'norm mbyiwoconsole.log()<Esc>i"<Esc>pla, <Esc>pA;<Esc>`b'
@@ -295,7 +299,7 @@ cnoreabbrev sjson set filetype=json syntax=json
 
 " lowercase abbreviations
 " -------------------------------------------------------------
-for cmd in ['Note', 'Goyo', 'Gr', 'Gread', 'Gw', 'Gwrite', 'Gblame', 'Gedit', 'Gcommit', 'Gdiffsplit']
+for cmd in [ 'Note', 'Goyo', 'Gr', 'Gw' ]
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
 
@@ -336,12 +340,22 @@ autocmd TermOpen * startinsert
 endif
 
 
+" theme
+" -------------------------------------------------------------
+source $HOME/.vim/colors/OceanicNext.vim
+colorscheme OceanicNext
+let g:airline_theme='base16_ocean'
+:hi EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
+:hi LineNr guibg=bg
+
+
 " vscode neovim
 " -------------------------------------------------------------
 if exists('g:vscode')
 nnoremap J :call VSCodeCall("workbench.action.previousEditor")<cr>
 nnoremap K :call VSCodeCall("workbench.action.nextEditor")<cr>
 nnoremap qp :call VSCodeCall("workbench.action.quickOpen")<cr>
+nnoremap qwo :call VSCodeCall("workbench.action.joinAllGroups")<cr>
 nnoremap qw/ :call VSCodeCall("workbench.action.splitEditorRight")<cr>
 nnoremap qw- :call VSCodeCall("workbench.action.splitEditorDown")<cr>
 nmap <leader>e :call VSCodeCall("workbench.action.toggleSidebarVisibility")<cr>
