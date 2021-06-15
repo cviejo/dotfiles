@@ -153,7 +153,7 @@ nnoremap co :CloseOtherBufs<cr>
 nnoremap gl L
 nnoremap gm M
 nnoremap gh H
-nmap <silent> gi <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -185,6 +185,7 @@ vmap <leader>; @:
 nmap <leader>a ggVG
 nmap <leader>c gcc
 vmap <leader>c gc
+"  && bufname() =~ 'coc-explorer'
 nmap <expr> <leader>d 
 	\ getbufvar(bufname(), '&buftype') == "" && bufname() != '[Command Line]'
 	\ ? ':bdelete<cr>'
@@ -203,6 +204,7 @@ nmap <leader>o o<Esc>
 vmap <leader>p "_dP
 nmap <leader>q @q
 xmap <leader>q : norm @q<cr>
+nmap <leader>r q:k<cr>
 xmap <leader>s <Plug>SlimeRegionSend
 nmap <leader>s <Plug>SlimeParagraphSend
 nmap <leader>w :w<cr>
@@ -268,6 +270,9 @@ for [key, items] in items({ 'b': "( [ {", 'q': "\\\" ' `" })
 		exe 'nnoremap '.action.key.' :call NearestTextObject("'.action.'i", "'.items.'")<cr>'
 		exe 'nnoremap '.action.'a'.key.' :call NearestTextObject("'.action.'a", "'.items.'")<cr>'
 		exe 'nnoremap '.action.'i'.key.' :call NearestTextObject("'.action.'i", "'.items.'")<cr>'
+	endfor
+	for action in ['ds', 'cs']
+		exe 'nnoremap '.action.key.' :call NearestTextObject("'.action.'", "'.items.'")<cr>'
 	endfor
 endfor
 
