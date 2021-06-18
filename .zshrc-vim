@@ -32,14 +32,19 @@ exit_zsh() {
 set-cursor insert
 
 bindkey -v
+
+# insert mode
 bindkey 'jj' vi-cmd-mode
 bindkey '^r' fzf-history-widget # / history-incremental-search-backward
 bindkey '^f' autosuggest-accept
 bindkey '^?' backward-delete-char
 bindkey '^u' kill-whole-line
 bindkey '^p' up-line-or-search
+
+# normal mode
 bindkey -a 'ZZ' exit_zsh
 bindkey -a ';q' exit_zsh
+bindkey -a '^r' fzf-history-widget # / history-incremental-search-backward
 
 zle -N exit_zsh
 zle -N zle-keymap-select
