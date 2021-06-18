@@ -35,7 +35,7 @@ bindkey -v
 
 # insert mode
 bindkey 'jj' vi-cmd-mode
-bindkey '^r' fzf-history-widget # / history-incremental-search-backward
+bindkey '^r' fzf-history-widget
 bindkey '^f' autosuggest-accept
 bindkey '^?' backward-delete-char
 bindkey '^u' kill-whole-line
@@ -44,7 +44,8 @@ bindkey '^p' up-line-or-search
 # normal mode
 bindkey -a 'ZZ' exit_zsh
 bindkey -a ';q' exit_zsh
-bindkey -a '^r' fzf-history-widget # / history-incremental-search-backward
+bindkey -a '^r' fzf-history-widget
+bindkey -a 'qh' fzf-history-widget
 
 zle -N exit_zsh
 zle -N zle-keymap-select
