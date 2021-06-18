@@ -45,6 +45,7 @@ bindkey 'jj' vi-cmd-mode
 bindkey -a 'ZZ' exit_zsh
 bindkey -a '^r' fzf-history-widget
 bindkey -a 'qh' fzf-history-widget
+bindkey -a 'qr' fzf-history-widget
 bindkey -a 'qp' fzf-file-widget
 
 
