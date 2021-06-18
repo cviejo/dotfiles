@@ -16,10 +16,8 @@ fi
 
 # oh-my-zsh
 # -------------------------------------------------------------
-DISABLE_AUTO_UPDATE=true
-ZSH_THEME=cv
 plugins=(fzf git zsh-autosuggestions zsh-syntax-highlighting z)
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+DISABLE_AUTO_UPDATE=true ZSH_THEME=cv source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 
 # aliases
