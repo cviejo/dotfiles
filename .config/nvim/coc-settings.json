@@ -60,5 +60,6 @@
 				}
 			}
 		}
-	}
+  },
+  "git.enableGutters": true
 }

@@ -199,6 +199,7 @@ nmap <leader>i mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>
 nmap <leader>j mbvip"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
 xmap <leader>j mb"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
 nmap <leader>l yiwoconsole.log()i"pla, pA;
+vmap <leader>l ywoconsole.log()i"pla, pA;
 nmap <leader>n *
 nmap <leader>o o<Esc>
 vmap <leader>p "_dP
