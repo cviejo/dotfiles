@@ -14,10 +14,19 @@ if [[ ! -z $TMUX ]]; then
 fi
 
 
+# fns
+# -------------------------------------------------------------
+safeSource(){
+	if [[ -f $1 && -r $1 ]]; then
+		source $1
+	fi
+}
+
+
 # oh-my-zsh
 # -------------------------------------------------------------
 plugins=(fzf git zsh-autosuggestions zsh-syntax-highlighting z)
-DISABLE_AUTO_UPDATE=true ZSH_THEME=cv source $HOME/.oh-my-zsh/oh-my-zsh.sh
+DISABLE_AUTO_UPDATE=true ZSH_THEME=cv safeSource $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 
 # aliases
@@ -36,16 +45,11 @@ alias ranger='RD=$HOME/.config/ranger/dir; ranger --choosedir=$RD; cd `cat $RD`'
 alias t='tmux new-session -A -s main'
 
 
+
 # local scripts
 # -------------------------------------------------------------
-load(){
-	if [[ -f $1 && -r $1 ]]; then
-		source $1
-	fi
-}
-
-load $HOME/.zshrc-vim
-load $HOME/.zshrc-local
-load $HOME/.config/fzf/base16-ocean.config
+safeSource $HOME/.zshrc-vim
+safeSource $HOME/.zshrc-local
+safeSource $HOME/.config/fzf/base16-ocean.config
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/local/bin/bit bit
