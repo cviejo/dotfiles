@@ -9,7 +9,6 @@ export LANG=en_US.UTF-8
 export LC_COLLATE=C
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM=xterm-256color
-export ZSH=~/.oh-my-zsh
 if [[ ! -z $TMUX ]]; then
 	export TERM=screen-256color
 fi
@@ -20,7 +19,7 @@ fi
 DISABLE_AUTO_UPDATE=true
 ZSH_THEME=cv
 plugins=(fzf git zsh-autosuggestions zsh-syntax-highlighting z)
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 
 # aliases
