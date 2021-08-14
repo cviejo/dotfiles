@@ -2,6 +2,7 @@
 " settings
 " -------------------------------------------------------------
 filetype plugin indent on
+syntax sync fromstart
 set autoread
 set background=dark
 set clipboard+=unnamedplus
@@ -35,6 +36,7 @@ set wildmenu
 if has('nvim')
 set inccommand=nosplit
 set diffopt+=vertical
+set cursorline
 endif
 
 
@@ -53,9 +55,8 @@ Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
-Plug 'metakirby5/codi.vim'
 Plug 'mg979/vim-visual-multi'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tpope/vim-fugitive'
@@ -65,6 +66,7 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 Plug 'neoclide/jsonc.vim'
 Plug 'HiPhish/awk-ward.nvim'
 Plug 'NicholasDunham/chuck.nvim'
+Plug 'folke/twilight.nvim'
 else
 Plug 'asvetliakov/vim-easymotion', { 'as': 'vim-easymotion-vc' }
 endif
@@ -83,6 +85,14 @@ let g:coc_global_extensions = [
 	\ 'coc-tsserver',
 	\ 'https://github.com/nathanchapman/vscode-javascript-snippets'
 \]
+
+
+" marks across files as default
+" -------------------------------------------------------------
+for s:char in split('QWERTYUIOPASDFGHJKLZXCVBNM', '\zs')
+	execute 'nnoremap m'.tolower(s:char).' m'.s:char
+	execute 'nnoremap `'.tolower(s:char).' `'.s:char
+endfor
 
 
 " plugin settings
@@ -136,6 +146,7 @@ inoremap >> =>
 map ; :
 " noremap ;; ;
 nnoremap S J
+nnoremap <space> o<Esc>
 vnoremap < <gv
 vnoremap > >gv
 
@@ -208,6 +219,7 @@ xmap <leader>q : norm @q<cr>
 nmap <leader>r q:k<cr>
 xmap <leader>s <Plug>SlimeRegionSend
 nmap <leader>s <Plug>SlimeParagraphSend
+nmap <leader>t :Twilight<cr>
 nmap <leader>w :w<cr>
 nmap <leader>z mbvip"by`b:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
 xmap <leader>z mb"by`b:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
@@ -235,6 +247,7 @@ for char in [ 'w', 'B', '(', ')', '{', '}', '[', ']', '"', "'", '/' ]
 	execute 'nnoremap y'.char.' yi'.char
 endfor
 nnoremap vp vip
+nnoremap vrb v])h
 
 
 " extra pseudo objects
