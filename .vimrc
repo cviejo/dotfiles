@@ -149,6 +149,7 @@ nnoremap S J
 nnoremap <space> o<Esc>
 vnoremap < <gv
 vnoremap > >gv
+nnoremap ZZ :qa!<cr>
 
 " vimium bindings
 " -------------------------------------------------------------
@@ -248,6 +249,13 @@ for char in [ 'w', 'B', '(', ')', '{', '}', '[', ']', '"', "'", '/' ]
 endfor
 nnoremap vp vip
 nnoremap vrb v])h
+
+
+" " dn, vn, yn, cn for function blocks 
+" " -------------------------------------------------------------
+" for [key, value] in items({ 'v': '', 'd': 'd', 'c': 'c', 'y': 'y' })
+" 	execute 'nnoremap '.key.'n va{V'.value
+" endfor
 
 
 " extra pseudo objects

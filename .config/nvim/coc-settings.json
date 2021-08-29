@@ -2,6 +2,7 @@
 	"coc.preferences.formatOnSaveFiletypes": [
 		"svelte",
 		"json",
+		"elm",
 		"typescript",
 		"javascript",
 		"haskell",
@@ -25,6 +26,7 @@
 	],
 	"explorer.buffer.showHiddenBuffers": true,
 	"explorer.file.showHiddenFiles": true,
+	"explorer.file.reveal.whenOpen": true,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.previewAction.onHover": false,
 	"explorer.keyMappings.global": {
@@ -59,7 +61,34 @@
 					"completionSnippetsOn": true
 				}
 			}
+		},
+		"elmLS": {
+			"command": "elm-language-server",
+			"filetypes": ["elm"],
+			"rootPatterns": ["elm.json"],
+			"initializationOptions": {
+				"elmPath": "elm",
+				"elmFormatPath": "elm-format",
+				"elmTestPath": "elm-test",
+				"elmAnalyseTrigger": "change",
+				"disableElmLSDiagnostics": false,
+				"skipInstallPackageConfirmation": false
+			}
+		},
+		"purescript": {
+			"command": "purescript-language-server",
+			"args": ["--stdio"],
+			"filetypes": ["purescript"],
+			"trace.server": "off",
+			"rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
+			"settings": {
+				"purescript": {
+					"addSpagoSources": true,
+					"addNpmPath": true // Set to true if using a local purty install for formatting
+					// etc
+				}
+			}
 		}
-  },
-  "git.enableGutters": true
+	},
+	"git.enableGutters": true
 }
