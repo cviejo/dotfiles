@@ -10,6 +10,7 @@ export LC_COLLATE=C
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
+export ELECTRON_ENV=development
 if [[ ! -z $TMUX ]]; then
 	export TERM=screen-256color
 fi
@@ -43,6 +44,7 @@ alias gr='git pull -r'
 alias h='$HOME'
 alias n='nvim'
 alias r='ranger'
+alias qrurl="qrencode -o - -t UTF8 "
 alias ranger='RD=$HOME/.config/ranger/dir; ranger --choosedir=$RD; cd `cat $RD`'
 alias t='tmux new-session -A -s main'
 

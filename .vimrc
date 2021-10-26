@@ -55,6 +55,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
+Plug 'metakirby5/codi.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
@@ -136,20 +137,19 @@ let g:coc_snippet_next = '<tab>'
 
 " general bindings
 " -------------------------------------------------------------
+map ; :
 tnoremap jk <C-\><C-n>
 inoremap qq <Esc>
 inoremap jj <Esc>
-" inoremap <c-i> <c-k>
 inoremap jl <Right>
 inoremap j[ ${}<Left>
 inoremap >> =>
-map ; :
-" noremap ;; ;
 nnoremap S J
 nnoremap <space> o<Esc>
 vnoremap < <gv
 vnoremap > >gv
 nnoremap ZZ :qa!<cr>
+
 
 " vimium bindings
 " -------------------------------------------------------------
@@ -169,6 +169,7 @@ nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+
 " q bindings
 " -------------------------------------------------------------
 vnoremap q; q:
@@ -179,6 +180,7 @@ noremap qp :Files<cr>
 noremap qr :History<cr>
 noremap qh :History:<cr>
 
+
 " window
 " -------------------------------------------------------------
 nnoremap qww <C-w>w
@@ -186,6 +188,7 @@ nnoremap qwo <C-w>o
 nnoremap qw/ :vsp<cr>
 nnoremap qw- :sp<cr>
 nnoremap qwz :call ZoomToggle()<cr>
+
 
 " leader bindings
 " -------------------------------------------------------------
@@ -208,8 +211,8 @@ nmap <leader>g :G<cr>
 nmap <leader>f :Rg 
 nmap <leader>h :noh<cr>
 nmap <leader>i mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>
-nmap <leader>j mbvip"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
-xmap <leader>j mb"by`b:exec '!cd %:p:h && node -e' shellescape(@b, 1)<cr>
+nmap <leader>j :call RunLines("'{", "'}", "node -e")<cr>
+xmap <leader>j :call RunLines("'<", "'>", "node -e")<cr>
 nmap <leader>l yiwoconsole.log()i"pla, pA;
 vmap <leader>l ywoconsole.log()i"pla, pA;
 nmap <leader>n *
@@ -222,8 +225,8 @@ xmap <leader>s <Plug>SlimeRegionSend
 nmap <leader>s <Plug>SlimeParagraphSend
 nmap <leader>t :Twilight<cr>
 nmap <leader>w :w<cr>
-nmap <leader>z mbvip"by`b:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
-xmap <leader>z mb"by`b:exec '!cd %:p:h && zsh -c ' shellescape(@b, 1)<cr>
+nmap <leader>z :call RunLines("'{", "'}", "zsh -c")<cr>
+xmap <leader>z :call RunLines("'<", "'>", "zsh -c")<cr>
 
 
 " inner as default for text objects, omit shift for common keys
@@ -250,7 +253,6 @@ endfor
 nnoremap vp vip
 nnoremap vrb v])h
 
-
 " " dn, vn, yn, cn for function blocks 
 " " -------------------------------------------------------------
 " for [key, value] in items({ 'v': '', 'd': 'd', 'c': 'c', 'y': 'y' })
@@ -266,6 +268,18 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', 
 	execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
 	execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
+
+
+" run paragraph or line selection in external command. range is only set to
+" avoid repeated exection with vmap or xmap
+" -------------------------------------------------------------
+function RunLines(from, to, cmd) range
+	exe 'norm mb'
+	let requires = substitute(execute('g/require(/echo getline(".")'), 'pattern not.*', '', '')
+	exe 'norm `b'
+	let code = join(getline(a:from, a:to), "\n")
+	exec '!cd %:p:h && '.a:cmd.' '.shellescape(requires.code, 1)
+endfunction
 
 
 " experimental
@@ -317,6 +331,10 @@ endfunction
 " misc
 " -------------------------------------------------------------
 command! LogVar exe 'norm mbyiwoconsole.log()<Esc>i"<Esc>pla, <Esc>pA;<Esc>`b'
+command! Qr exe '.w !qrencode -o - -t UTF8 '
+" TODO: nicer  qedit and qdelete a bit
+command! Qq enew | file @q | exe 'norm "qp'
+command! Qd exe 'norm "qyy' | bd!
 command! CloseOtherBufs exe 'norm mb' | silent! exe "%bd|e#|bd#" | exe 'norm `b'
 command! TmuxVerticalSplit exe "silent !tmux split-window -h -c ".expand('%:p:h')
 command! TmuxHorizontalSplit exe "silent !tmux split-window -c ".expand('%:p:h')
@@ -326,7 +344,7 @@ cnoreabbrev sjson set filetype=json syntax=json
 
 " lowercase abbreviations
 " -------------------------------------------------------------
-for cmd in [ 'Note', 'Goyo', 'Gr', 'Gw' ]
+for cmd in [ 'Note', 'Goyo', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd' ]
 	exe 'cnoreabbrev '.tolower(cmd).' '.cmd
 endfor
 
