@@ -57,3 +57,5 @@ safeSource $HOME/.zshrc-local
 safeSource $HOME/.config/fzf/base16-ocean.config
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/local/bin/bit bit
+
+if [ -e /Users/carlosviejo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/carlosviejo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

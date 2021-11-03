@@ -274,11 +274,12 @@ endfor
 " avoid repeated exection with vmap or xmap
 " -------------------------------------------------------------
 function RunLines(from, to, cmd) range
-	exe 'norm mb'
-	let requires = substitute(execute('g/require(/echo getline(".")'), 'pattern not.*', '', '')
-	exe 'norm `b'
+	" exe 'norm mb'
+	" let requires = substitute(execute('g/require(/echo getline(".")'), 'pattern not.*', '', '')
+	" exe 'norm `b'
 	let code = join(getline(a:from, a:to), "\n")
-	exec '!cd %:p:h && '.a:cmd.' '.shellescape(requires.code, 1)
+	" exec '!cd %:p:h && '.a:cmd.' '.shellescape(requires.code, 1)
+	exec '!cd %:p:h && '.a:cmd.' '.shellescape(code, 1)
 endfunction
 
 
@@ -333,7 +334,7 @@ endfunction
 command! LogVar exe 'norm mbyiwoconsole.log()<Esc>i"<Esc>pla, <Esc>pA;<Esc>`b'
 command! Qr exe '.w !qrencode -o - -t UTF8 '
 " TODO: nicer  qedit and qdelete a bit
-command! Qq enew | file @q | exe 'norm "qp'
+command! Qe enew | file @q | exe 'norm "qp'
 command! Qd exe 'norm "qyy' | bd!
 command! CloseOtherBufs exe 'norm mb' | silent! exe "%bd|e#|bd#" | exe 'norm `b'
 command! TmuxVerticalSplit exe "silent !tmux split-window -h -c ".expand('%:p:h')
