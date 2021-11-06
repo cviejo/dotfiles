@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-if [ $(uname) != 'Darwin' ]; then
-  apt update
-  apt install xz curl
-fi
-
-curl -L https://nixos.org/nix/install | sh
-
-nix-env -i zsh tmux neovim ranger fzf
+apt install curl neovim zsh tmux ranger fzf
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
