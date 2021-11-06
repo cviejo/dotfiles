@@ -2,7 +2,7 @@
 
 if [ $(uname) != 'Darwin' ]; then
   apt update
-  apt install curl
+  apt install xz curl
 fi
 
 curl -L https://nixos.org/nix/install | sh
