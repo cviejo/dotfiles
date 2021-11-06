@@ -1,4 +1,3 @@
-
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
@@ -16,43 +15,20 @@ else
   printf_template_custom='\033]%s%s\033\\'
 fi
 
+# bg
+printf $printf_template 000 "2B/30/3B"
+
 # vim bar light
 printf $printf_template 239 "4F/5B/66" # 210
 
-printf $printf_template 249 "C0/C5/CE" # 211
-
 # vim bar dark
 printf $printf_template 237 "34/3D/46" # 213
-printf $printf_template 234 "2B/30/3B" # 214
 
-# black / bg
-printf $printf_template 000 "2B/30/3B"
-
-# green
-printf $printf_template 002 "99/C7/94"
-printf $printf_template 010 "99/C7/94"
-
-# grey / silver
+# silver / greys
 printf $printf_template 007 "C0/C5/CE"
 printf $printf_template 008 "4F/5B/66"
-
-# blues
-printf $printf_template 004 "66/99/cc"
-printf $printf_template 012 "66/99/cc"
-printf $printf_template 017 "66/99/cc"
-printf $printf_template 018 "66/99/cc"
-printf $printf_template 019 "66/99/cc"
-printf $printf_template 020 "66/99/cc"
-printf $printf_template 021 "66/99/cc"
-
-# aqua
-# printf $printf_template 012 "8F/A1/B3"
-
-# yellow
-printf $printf_template 011 "EB/CB/8B"
-printf $printf_template 226 "EB/CB/8B"
-printf $printf_template 227 "EB/CB/8B"
-printf $printf_template 228 "EB/CB/8B"
+printf $printf_template 236 "2B/30/3B"
+printf $printf_template 251 "C0/C5/CE"
 
 
 CURRENT_BG='NONE'
@@ -91,7 +67,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment 002 324 "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment 002 236  "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -111,9 +87,9 @@ prompt_git() {
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment 002 234
+      prompt_segment 002 236
     else
-      prompt_segment 239 249
+      prompt_segment 239 251
     fi
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
@@ -141,7 +117,7 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment 237 249 '%~'
+  prompt_segment 237 251 '%~'
 }
 
 # Status:

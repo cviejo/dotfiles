@@ -1,4 +1,3 @@
-
 " settings
 " -------------------------------------------------------------
 filetype plugin indent on
@@ -31,7 +30,8 @@ set t_Co=256
 set tabstop=3
 set termguicolors
 set updatetime=300
-set wildignore+=**/node_modules/** 
+set wildignore+=**/node_modules/*
+set wildignore+=**/.git/*
 set wildmenu
 if has('nvim')
 set inccommand=nosplit
@@ -43,7 +43,6 @@ endif
 " plugins
 " -------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
-Plug 'wakatime/vim-wakatime'
 Plug 'liuchengxu/vista.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
@@ -55,7 +54,6 @@ Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
-Plug 'metakirby5/codi.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'sheerun/vim-polyglot'
@@ -67,9 +65,11 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-notes'
 Plug 'neoclide/jsonc.vim'
 Plug 'HiPhish/awk-ward.nvim'
 Plug 'NicholasDunham/chuck.nvim'
-Plug 'folke/twilight.nvim'
 else
 Plug 'asvetliakov/vim-easymotion', { 'as': 'vim-easymotion-vc' }
+endif
+if has('nvim')
+Plug 'folke/twilight.nvim'
 endif
 call plug#end()
 let g:coc_node_path = '/Users/carlosviejo/.fnm/node-versions/v14.7.0/installation/bin/node'
