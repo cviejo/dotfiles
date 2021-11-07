@@ -2,7 +2,6 @@
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
 # TODO: Fix the bell: https://github.com/chriskempson/base16-shell/issues/24
-#
 if [ -n "$TMUX" ]; then
   # tell tmux to pass the escape sequences through
   # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
@@ -30,6 +29,8 @@ printf $printf_template 008 "4F/5B/66"
 printf $printf_template 236 "2B/30/3B"
 printf $printf_template 251 "C0/C5/CE"
 
+# green > pale green (114)
+printf $printf_template 002 "99/C7/94"
 
 CURRENT_BG='NONE'
 
@@ -67,7 +68,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment 002 236  "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment 114 236  "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -87,7 +88,7 @@ prompt_git() {
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment 002 236
+      prompt_segment 114 236
     else
       prompt_segment 239 251
     fi
