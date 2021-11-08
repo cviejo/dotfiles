@@ -72,7 +72,6 @@ if has('nvim')
 Plug 'folke/twilight.nvim'
 endif
 call plug#end()
-let g:coc_node_path = '/Users/carlosviejo/.fnm/node-versions/v14.7.0/installation/bin/node'
 let g:coc_global_extensions = [
 	\ 'coc-emmet',
 	\ 'coc-eslint',

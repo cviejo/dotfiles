@@ -54,7 +54,7 @@ prompt_end() {
 # context: user@hostname (who am I and where am I)
 prompt_context() {
 	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment 114 236	"%(!.%{%F{yellow}%}.)$USER@%m"
+		prompt_segment 002 236	"%(!.%{%F{yellow}%}.)$USER@%m"
 	fi
 }
 
@@ -73,7 +73,7 @@ prompt_git() {
 		dirty=$(parse_git_dirty)
 		ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
 		if [[ -n $dirty ]]; then
-			prompt_segment 114 236
+			prompt_segment 002 236
 		else
 			prompt_segment 239 251
 		fi
