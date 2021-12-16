@@ -82,7 +82,9 @@ let g:coc_global_extensions = [
 	\ 'coc-rls',
 	\ 'coc-snippets',
 	\ 'coc-svelte',
+	\ 'coc-lua',
 	\ 'coc-tsserver',
+	\ 'coc-diagnostic',
 	\ 'https://github.com/nathanchapman/vscode-javascript-snippets'
 \]
 
@@ -212,8 +214,8 @@ nmap <leader>h :noh<cr>
 nmap <leader>i mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>
 nmap <leader>j :call RunLines("'{", "'}", "node -e")<cr>
 xmap <leader>j :call RunLines("'<", "'>", "node -e")<cr>
-nmap <leader>l yiwoconsole.log()i"pla, pA;
-vmap <leader>l ywoconsole.log()i"pla, pA;
+nmap <leader>l yiwoconsole.log()i""hpla, pA;
+vmap <leader>l ywoconsole.log()i""hpla, pA;
 nmap <leader>n *
 nmap <leader>o o<Esc>
 vmap <leader>p "_dP

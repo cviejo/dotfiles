@@ -1,13 +1,16 @@
 {
 	"coc.preferences.formatOnSaveFiletypes": [
-		"svelte",
-		"json",
 		"elm",
-		"typescript",
-		"javascript",
 		"haskell",
+		"html",
+		"javascript",
+		"json",
+		"lua",
 		"purescript",
-		"html"
+		"sh",
+		"shell",
+		"svelte",
+		"typescript"
 	],
 	"diagnostic.errorSign": "✖",
 	"diagnostic.hintSign": "ẍ",
@@ -15,14 +18,14 @@
 	"diagnostic.warningSign": "⚠",
 	"eslint.autoFixOnSave": true,
 	"eslint.probe": [
+		"html",
 		"javascript",
 		"javascriptreact",
+		"markdown",
+		"svelte",
 		"typescript",
 		"typescriptreact",
-		"html",
-		"vue",
-		"svelte",
-		"markdown"
+		"vue"
 	],
 	"explorer.buffer.showHiddenBuffers": true,
 	"explorer.file.showHiddenFiles": true,
@@ -84,12 +87,34 @@
 			"settings": {
 				"purescript": {
 					"addSpagoSources": true,
-					"addNpmPath": true // Set to true if using a local purty install for formatting
-					// etc
+					"addNpmPath": true
 				}
 			}
 		}
 	},
-  "git.enableGutters": true,
-  "svelte.enable-ts-plugin": true
+	"git.enableGutters": true,
+	"svelte.enable-ts-plugin": true,
+	"diagnostic-languageserver.filetypes": {
+		"sh": "shellcheck"
+	},
+	"diagnostic-languageserver.formatFiletypes": {
+		"lua": "lua-format",
+		"sh": "shfmt"
+	},
+	/* "diagnostic-languageserver.linters": { */
+	/* 	"shellcheck": { */
+	/* 		"command": "shellcheck", */
+	/* 		"args": ["--format", "json1", "-"] */
+	/* 	} */
+	/* }, */
+	"diagnostic-languageserver.formatters": {
+		"shfmt": {
+			"command": "shfmt",
+			"args": ["-i", "0"]
+		},
+		"lua-format": {
+			"command": "lua-format",
+			"args": ["--no-keep-simple-function-one-line", "--use-tab", "--indent-width=1"]
+		}
+	}
 }
