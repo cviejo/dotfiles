@@ -1,5 +1,8 @@
 {
+	"Lua.diagnostics.globals": ["draw", "jit", "mpd", "of", "setup", "swig_type", "vim"],
 	"coc.preferences.formatOnSaveFiletypes": [
+		"c++",
+		"cpp",
 		"elm",
 		"haskell",
 		"html",
@@ -26,6 +29,15 @@
 		"typescript",
 		"typescriptreact",
 		"vue"
+	],
+	"eslint.workingDirectories": [
+		{ "pattern": "./context/apps/*" },
+		{ "pattern": "./context/libs/*" },
+		{ "pattern": "./client/apps/*" },
+		{ "pattern": "./client/lins/*" },
+		{ "pattern": "./server/apps/*" },
+		{ "pattern": "./server/libs/*" },
+		{ "pattern": "./tests" }
 	],
 	"explorer.buffer.showHiddenBuffers": true,
 	"explorer.file.showHiddenFiles": true,
@@ -90,6 +102,16 @@
 					"addNpmPath": true
 				}
 			}
+		},
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cpp", "objc", "objcpp"],
+			"rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
+				}
+			}
 		}
 	},
 	"git.enableGutters": true,
@@ -98,6 +120,7 @@
 		"sh": "shellcheck"
 	},
 	"diagnostic-languageserver.formatFiletypes": {
+		"cpp": "cpp-format",
 		"lua": "lua-format",
 		"sh": "shfmt"
 	},
@@ -114,7 +137,16 @@
 		},
 		"lua-format": {
 			"command": "lua-format",
-			"args": ["--no-keep-simple-function-one-line", "--use-tab", "--indent-width=1"]
+			"args": [
+				"--no-keep-simple-control-block-one-line",
+				"--no-keep-simple-function-one-line",
+				"--use-tab",
+				"--indent-width=1"
+			]
+		},
+		"cpp-format": {
+			"command": "clang-format",
+			"args": []
 		}
 	}
 }

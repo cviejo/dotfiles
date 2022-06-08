@@ -1,46 +1,71 @@
 # taken from https://github.com/chriskempson/base16-shell/issues/24
 if [ -n "$TMUX" ]; then
-	printf_template='\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\'
+	setColor() { printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $@; }
 else
-	printf_template='\033]4;%d;rgb:%s\033\\'
+	setColor() { printf '\033]4;%d;rgb:%s\033\\' $@; }
 fi
 
-# bg
-printf $printf_template 000 "2B/30/3B"
+# ~/.local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/core/palettes/frappe.lua
+rosewater="F2/D5/CF"
+flamingo="EE/BE/BE"
+pink="F4/B8/E4"
+mauve="CA/9E/E6"
+red="E7/82/84"
+maroon="EA/99/9C"
+peach="EF/9F/76"
+yellow="E5/C8/90"
+green="A6/D1/89"
+teal="81/C8/BE"
+sky="99/D1/DB"
+sapphire="85/C1/DC"
+blue="8C/AA/EE"
+lavender="BA/BB/F1"
+text="C6/D0/F5"
+subtext1="B5/BF/E2"
+subtext0="A5/AD/CE"
+overlay2="94/9C/BB"
+overlay1="83/8B/A7"
+overlay0="73/79/94"
+surface2="62/68/80"
+surface1="51/57/6D"
+surface0="41/45/59"
+base="30/34/46"
+mantle="29/2C/3C"
+crust="23/26/34"
 
-# vim bar light
-printf $printf_template 239 "4F/5B/66"
-
-# vim bar dark
-printf $printf_template 237 "34/3D/46"
-
-# silver / greys
-printf $printf_template 007 "C0/C5/CE"
-printf $printf_template 008 "4F/5B/66"
-printf $printf_template 236 "2B/30/3B"
-printf $printf_template 251 "C0/C5/CE"
-
-# green > pale green (114)
-printf $printf_template 002 "99/C7/94"
-
+setColor 000 $base     # black
+setColor 002 $green    #
+setColor 006 $teal     #
+setColor 007 $overlay0 # silver
+setColor 008 $surface1 # grey
+setColor 009 $red      #
+setColor 011 $yellow   #
+setColor 012 $blue     #
+setColor 014 $sky      # aqua
+setColor 015 $text     # white
+setColor 235 $crust    # greys
+setColor 238 $mantle   # greys
+setColor 241 $surface0 # greys
+setColor 244 $surface1 # greys
+setColor 247 $surface2 # greys
+setColor 250 $overlay0 # greys
+setColor 252 $subtext0 # greys
 
 currentBg='none'
 
-# two optional arguments: bg and fg
 prompt_segment() {
-	local bg fg
-	[[ -n $1 ]] && bg="%K{$1}" || bg="%k"
-	[[ -n $2 ]] && fg="%F{$2}" || fg="%f"
-	if [[ $currentBg != 'none' && $1 != $currentBg ]]; then
+	local bg="%K{$1}"
+	local fg="%F{$2}"
+	if [[ $currentBg != 'none' && $1 != "$currentBg" ]]; then
 		echo -n " %{$bg%F{$currentBg}%}%{$fg%} "
 	else
 		echo -n "%{$bg%}%{$fg%} "
 	fi
 	currentBg=$1
-	[[ -n $3 ]] && echo -n $3
+	[[ -n $3 ]] && echo -n "$3"
 }
 
-# End the prompt, closing any open segments
+# close open segments
 prompt_end() {
 	if [[ -n $currentBg ]]; then
 		echo -n " %{%k%F{$currentBg}%}"
@@ -51,31 +76,19 @@ prompt_end() {
 	currentBg=''
 }
 
-# context: user@hostname (who am I and where am I)
-prompt_context() {
-	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment 002 236	"%(!.%{%F{yellow}%}.)$USER@%m"
-	fi
-}
-
-# git: branch/detached head, dirty status
 prompt_git() {
-	(( $+commands[git] )) || return
-	local PL_BRANCH_CHAR
-	() {
-		local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-		PL_BRANCH_CHAR=$'⎇' # 
-	}
+	# (($+commands[git])) || return
+	local PL_BRANCH_CHAR='⎇'
 	local ref dirty mode repo_path
 	repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
-	if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+	if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 		dirty=$(parse_git_dirty)
-		ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
+		ref=$(git symbolic-ref HEAD 2>/dev/null) || ref="➦ $(git rev-parse --short HEAD 2>/dev/null)"
 		if [[ -n $dirty ]]; then
-			prompt_segment 002 236
+			prompt_segment 002 000
 		else
-			prompt_segment 239 251
+			prompt_segment 247 015
 		fi
 
 		if [[ -e "${repo_path}/BISECT_LOG" ]]; then
@@ -101,29 +114,21 @@ prompt_git() {
 	fi
 }
 
-# dir: current working directory
 prompt_dir() {
-	prompt_segment 237 251 '%~'
+	prompt_segment 238 015 '%~'
 }
 
-# status:
-# - error
-# - root
-# - background jobs
 prompt_status() {
-	local symbols
-	symbols=()
-	[[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}x"
-	[[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
-	[[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
-
+	local symbols=()
+	[[ $RETVAL -ne 0 ]] && symbols+=("%{%F{red}%}x")             # - error
+	[[ $UID -eq 0 ]] && symbols+=("%{%F{yellow}%}⚡")             # - root
+	[[ $(jobs -l | wc -l) -gt 0 ]] && symbols+=("%{%F{cyan}%}⚙") # - background jobs
 	[[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
 # main
 build_prompt() {
 	RETVAL=$?
-	# prompt_context
 	prompt_git
 	prompt_dir
 	prompt_status
