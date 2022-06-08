@@ -1,0 +1,19 @@
+window:
+  padding:
+    x: 8
+    y: 8
+  decorations: full
+
+font:
+  normal:
+    family: "DejaVuSansMono Nerd Font Mono"
+  bold:
+    family: "DejaVuSansMono Nerd Font Mono"
+  italic:
+    family: "DejaVuSansMono Nerd Font Mono"
+  size: 15.0
+
+colors:
+  primary:
+    background: '0x303446'
+    foreground: '0xeaeaea'
