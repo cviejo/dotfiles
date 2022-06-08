@@ -51,9 +51,6 @@
 		"d": "cutFile",
 		"zh": "toggleHidden"
 	},
-	"emmet.includeLanguages": {
-		"javascript": "javascriptreact"
-	},
 	"javascript.suggestionActions.enabled": false,
 	"prettier.onlyUseLocalVersion": false,
 	"prettier.printWidth": 100,
