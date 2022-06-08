@@ -66,6 +66,18 @@ F.assign(vim.g, {
 })
 -- LuaFormatter on
 
+_G.slimeEscapeJavascript = function(x)
+	return x:gsub('const[%s]+', 'var '):gsub('let[%s]+', 'var ')
+end
+
+vim.cmd([[
+function SlimeOverride_EscapeText_javascript(text)
+	return v:lua.slimeEscapeJavascript(a:text)
+endfunction
+]])
+
+vim.cmd('colorscheme catppuccin')
+
 vim.api.nvim_create_autocmd({"FileType"}, {
 	pattern = {'fzf'},
 	callback = function()
@@ -75,15 +87,6 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 		end)
 	end
 })
-
-vim.cmd([[
-function SlimeOverride_EscapeText_javascript(text)
-	let cmd = "awk '{ gsub(/\\s*(const|let)\\s*/, \" var \"); r=r$0\"\"; } END { print r\"\\n\"; }'"
-	return system(cmd, a:text)
-endfunction
-]])
-
-vim.cmd('colorscheme catppuccin')
 
 require('colorizer').setup()
 
