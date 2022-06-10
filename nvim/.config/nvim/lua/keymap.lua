@@ -1,9 +1,9 @@
 local F = require('utils.functional')
 local toggleZoom = require('utils.toggle-zoom')
-local closeBuffer = require('utils.close-buffer')
+local buffer = require('utils.buffer')
 local runLines = require('utils.run-lines')
+local log = require('utils.log')
 
-local lower = string.lower
 local map = vim.keymap.set
 
 local cmd = F.thunkify(function(x)
@@ -13,12 +13,6 @@ end)
 local mapRunLines = F.thunkify(function(from, to, binary)
 	return runLines(from, to, binary)
 end)
-
-local closeOtherBuffers = function()
-	vim.cmd('norm mb')
-	vim.cmd('silent! exe "%bd|e#|bd#"')
-	vim.cmd('norm `b')
-end
 
 local handleInsertTab = function()
 	return vim.fn.pumvisible() == 1 and '<C-N>' or '<Tab>'
@@ -48,7 +42,7 @@ map('n', 'J', cmd('BufferPrevious'))
 map('n', 'K', cmd('BufferNext'))
 map('n', '<c-d>', '5j')
 map('n', '<c-u>', '5k')
-map('n', 'co', closeOtherBuffers)
+map('n', 'co', buffer.closeOther)
 
 -- g bindings -----------------------------------
 map('n', 'gl', 'L')
@@ -76,8 +70,8 @@ map('n', 'qwz', toggleZoom) --
 
 -- make all marks global ------------------------
 for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
-	map('n', 'm' .. lower(x), 'm' .. x)
-	map('n', '`' .. lower(x), '`' .. x)
+	map('n', 'm' .. x:lower(), 'm' .. x)
+	map('n', '`' .. x:lower(), '`' .. x)
 end
 
 -- make inner the default behaviour -------------
@@ -115,7 +109,7 @@ vim.g.mapleader = "'"
 map('n', '<leader>;', '@:')
 map('v', '<leader>;', '@:')
 map('n', '<leader>a', 'ggVG')
-map('n', '<leader>d', closeBuffer)
+map('n', '<leader>d', buffer.close)
 map('n', '<leader>e', cmd('CocCommand explorer'))
 map('n', '<leader>f', ':Rg ')
 map('v', '<leader>f', [["vy:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
@@ -124,8 +118,8 @@ map('n', '<leader>h', cmd('noh'))
 map('n', '<leader>i', [[mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>j', mapRunLines("'{", "'}", "node"))
 map('x', '<leader>j', mapRunLines("'<", "'>", "node"))
-map('n', '<leader>l', 'yiwoconsole.log()i""hpla, pA;')
-map('v', '<leader>l', 'ywoconsole.log()i""hpla, pA;')
+map('n', '<leader>l', log.underCursor)
+map('v', '<leader>l', log.selection)
 map('n', '<leader>n', '*')
 map('n', '<leader>o', 'o<Esc>')
 map('v', '<leader>p', '"_dP')

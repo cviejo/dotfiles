@@ -1,6 +1,7 @@
 local F = require('utils.functional')
 
 vim.opt.shortmess:append("I")
+vim.opt.diffopt:append("vertical")
 
 F.assign(vim.opt, {
 	autoread = true,
