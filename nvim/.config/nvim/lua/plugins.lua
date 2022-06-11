@@ -31,6 +31,7 @@ require('packer').startup(function(use)
 	use 'NicholasDunham/chuck.nvim'
 	use 'styled-components/vim-styled-components'
 	use 'arjunmahishi/run-code.nvim'
+	use 'meain/vim-printer'
 	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}}
 end)
 

@@ -25,3 +25,7 @@ end
 
 return {underCursor = underCursor, selection = selection}
 
+-- usage
+-- map('n', '<leader>l', log.underCursor)
+-- map('v', '<leader>l', log.selection)
+-- for now using vim-printer instead
