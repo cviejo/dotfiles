@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+github=https://github.com
+zshplugins=~/.oh-my-zsh/custom/plugins
+tmuxplugins=~/.config/tmux-plugins
+
 apt update
 
 apt install -y git curl neovim zsh tmux ranger fzf stow
@@ -10,11 +14,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 stow oh-my-zsh
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone ${github}/zsh-users/zsh-autosuggestions ${zshplugins}/zsh-autosuggestions
+git clone ${github}/zsh-users/zsh-syntax-highlighting.git ${zshplugins}/zsh-syntax-highlighting
+git clone ${github}/Aloxaf/fzf-tab ${zshplugins}/fzf-tab
 
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+git clone ${github}/tmux-plugins/tpm ${tmuxplugins}/tpm
 
 stow config
 
-~/.config/tmux/plugins/tpm/bin/install_plugins
+${tmuxplugins}/tpm/bin/install_plugins
+
+nvim --headless -es -c "lua require('utils.install-packer')"
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'

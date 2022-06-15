@@ -29,7 +29,6 @@ require('packer').startup(function(use)
 	use 'neoclide/jsonc.vim'
 	use 'HiPhish/awk-ward.nvim'
 	use 'NicholasDunham/chuck.nvim'
-	use 'styled-components/vim-styled-components'
 	use 'arjunmahishi/run-code.nvim'
 	use 'meain/vim-printer'
 	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}}
@@ -51,6 +50,7 @@ F.assign(vim.g, {
 		'coc-snippets',
 		'coc-svelte',
 		'coc-tsserver',
+		'coc-yaml',
 		'https://github.com/nathanchapman/vscode-javascript-snippets'
 	},
 	coc_snippet_next = '<tab>',

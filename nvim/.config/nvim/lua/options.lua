@@ -25,7 +25,6 @@ F.assign(vim.opt, {
 	splitbelow = true,
 	splitright = true,
 	swapfile = false,
-	-- t_Co = 256,
 	tabstop = 3,
 	termguicolors = true,
 	updatetime = 300
