@@ -52,11 +52,4 @@ alias qr="qrencode -o - -t UTF8 "
 safeSource $HOME/.zshrc-vim
 safeSource $HOME/.zshrc-local
 safeSource $HOME/.nix-profile/etc/profile.d/nix.sh
-
-# temp fzf theme (TODO: add catpuccin to ~/.config/fzf/base16-ocean.config)
-# -------------------------------------------------------------
-export FZF_DEFAULT_OPTS="
-	--color=bg+:#302D41,spinner:#F8BD96,hl:#F28FAD
-	--color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96
-	--color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD
-"
+safeSource $HOME/.config/fzf/theme.sh
