@@ -8,30 +8,33 @@ require('packer').startup(function(use)
 	use 'tomtom/tcomment_vim'
 	use 'tpope/vim-surround'
 	use 'rhysd/clever-f.vim'
-	use {"catppuccin/nvim", as = "catppuccin"}
 	use 'nvim-treesitter/nvim-treesitter'
-	use 'norcalli/nvim-colorizer.lua'
 	use {'romgrk/barbar.nvim', requires = {devicons}}
 	use 'phaazon/hop.nvim'
 	use 'jiangmiao/auto-pairs'
 	use 'jpalardy/vim-slime'
 	use '/usr/local/opt/fzf'
 	use 'junegunn/fzf.vim'
-	use 'junegunn/goyo.vim'
 	use 'junegunn/gv.vim'
 	use 'mg979/vim-visual-multi'
-	use {'neoclide/coc.nvim', branch = 'release'}
-	use 'sheerun/vim-polyglot'
-	use {'styled-components/vim-styled-components', branch = 'main'}
-	use 'tpope/vim-fugitive'
-	use 'xolox/vim-notes'
-	use 'xolox/vim-misc'
 	use 'neoclide/jsonc.vim'
-	use 'HiPhish/awk-ward.nvim'
-	use 'NicholasDunham/chuck.nvim'
 	use 'arjunmahishi/run-code.nvim'
 	use 'meain/vim-printer'
+
+	if vim.g.vscode then
+		return
+	end
+	use 'HiPhish/awk-ward.nvim'
+	use 'NicholasDunham/chuck.nvim'
+	use 'junegunn/goyo.vim'
+	use 'norcalli/nvim-colorizer.lua'
+	use 'sheerun/vim-polyglot'
+	use 'tpope/vim-fugitive'
+	use {"catppuccin/nvim", as = "catppuccin"}
+	use {'neoclide/coc.nvim', branch = 'release'}
 	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}}
+	use {'styled-components/vim-styled-components', branch = 'main'}
+	use {'xolox/vim-notes', requires = {'xolox/vim-misc'}}
 end)
 
 -- LuaFormatter off
@@ -65,11 +68,11 @@ F.assign(vim.g, {
 	slime_dont_ask_default = 1,
 	slime_target = "tmux"
 })
--- LuaFormatter on
 
 _G.slimeEscapeJavascript = function(x)
-	return x:gsub('const[%s]+', 'var '):gsub('let[%s]+', 'var ')
+	return x:gsub('const[%s]+', 'var '):gsub('let[%s]+', 'var '):gsub('[%s]+%.', '.')
 end
+-- LuaFormatter on
 
 vim.cmd([[
 function SlimeOverride_EscapeText_javascript(text)
@@ -121,4 +124,3 @@ require('run-code').setup({
 	output = {buffer = true, split_cmd = '20split'},
 	enable_custom_commands = false
 })
-

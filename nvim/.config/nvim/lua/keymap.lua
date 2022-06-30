@@ -14,6 +14,10 @@ local mapRunLines = F.thunkify(function(from, to, binary)
 	return runLines(from, to, binary)
 end)
 
+local VSCodeCall = F.thunkify(function(arg)
+	return vim.fn.VSCodeCall(arg)
+end)
+
 local handleInsertTab = function()
 	return vim.fn.pumvisible() == 1 and '<C-N>' or '<Tab>'
 end
@@ -130,3 +134,14 @@ map('n', '<leader>t', cmd('Twilight'))
 map('n', '<leader>w', cmd('w'))
 map('n', '<leader>z', mapRunLines("'{", "'}", "zsh"))
 map('x', '<leader>z', mapRunLines("'<", "'>", "zsh"))
+
+if vim.g.vscode then
+	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))
+	map('n', 'K', VSCodeCall('workbench.action.nextEditor'))
+	map('n', 'qp', VSCodeCall('workbench.action.quickOpen'))
+	map('n', 'qwo', VSCodeCall('workbench.action.joinAllGroups'))
+	map('n', 'qw/', VSCodeCall('workbench.action.splitEditorRight'))
+	map('n', 'qw-', VSCodeCall('workbench.action.splitEditorDown'))
+	map('n', '<leader>e', VSCodeCall('workbench.action.toggleSidebarVisibility'))
+	map('n', '<leader>d', VSCodeCall('workbench.action.closeActiveEditor'))
+end
