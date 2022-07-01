@@ -139,7 +139,8 @@
 				"--no-keep-simple-control-block-one-line",
 				"--no-keep-simple-function-one-line",
 				"--use-tab",
-				"--indent-width=1"
+				"--indent-width=1",
+				"--column-limit=100"
 			]
 		},
 		"cpp-format": {
