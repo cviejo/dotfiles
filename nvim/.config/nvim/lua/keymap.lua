@@ -144,4 +144,11 @@ if vim.g.vscode then
 	map('n', 'qw-', VSCodeCall('workbench.action.splitEditorDown'))
 	map('n', '<leader>e', VSCodeCall('workbench.action.toggleSidebarVisibility'))
 	map('n', '<leader>d', VSCodeCall('workbench.action.closeActiveEditor'))
+	map('n', 'za', VSCodeCall('editor.toggleFold'))
+	map('n', 'zR', VSCodeCall('editor.unfoldAll'))
+	map('n', 'zM', VSCodeCall('editor.foldAll'))
+	map('n', 'zo', VSCodeCall('editor.unfold'))
+	map('n', 'zO', VSCodeCall('editor.unfoldRecursively'))
+	map('n', 'zc', VSCodeCall('editor.fold'))
+	map('n', 'zC', VSCodeCall('editor.foldRecursively'))
 end

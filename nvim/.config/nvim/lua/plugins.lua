@@ -1,6 +1,8 @@
 local F = require('utils.functional')
 local onBufLeave = require('utils.events').onBufLeave
 
+local vscode = vim.g.vscode == 1 and true or false
+
 local devicons = 'kyazdani42/nvim-web-devicons'
 
 require('packer').startup(function(use)
@@ -9,32 +11,29 @@ require('packer').startup(function(use)
 	use 'tpope/vim-surround'
 	use 'rhysd/clever-f.vim'
 	use 'nvim-treesitter/nvim-treesitter'
-	use {'romgrk/barbar.nvim', requires = {devicons}}
 	use 'phaazon/hop.nvim'
-	use 'jiangmiao/auto-pairs'
-	use 'jpalardy/vim-slime'
-	use '/usr/local/opt/fzf'
-	use 'junegunn/fzf.vim'
 	use 'junegunn/gv.vim'
 	use 'mg979/vim-visual-multi'
 	use 'neoclide/jsonc.vim'
-	use 'arjunmahishi/run-code.nvim'
 	use 'meain/vim-printer'
+	use {'romgrk/barbar.nvim', requires = {devicons}}
 
-	if vim.g.vscode then
-		return
-	end
-	use 'HiPhish/awk-ward.nvim'
-	use 'NicholasDunham/chuck.nvim'
-	use 'junegunn/goyo.vim'
-	use 'norcalli/nvim-colorizer.lua'
-	use 'sheerun/vim-polyglot'
-	use 'tpope/vim-fugitive'
-	use {"catppuccin/nvim", as = "catppuccin"}
-	use {'neoclide/coc.nvim', branch = 'release'}
-	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}}
-	use {'styled-components/vim-styled-components', branch = 'main'}
-	use {'xolox/vim-notes', requires = {'xolox/vim-misc'}}
+	use {'jiangmiao/auto-pairs', disable = vscode}
+	use {'arjunmahishi/run-code.nvim', disable = vscode}
+	use {'jpalardy/vim-slime', disable = vscode}
+	use {'/usr/local/opt/fzf', disable = vscode}
+	use {'junegunn/fzf.vim', disable = vscode}
+	use {'junegunn/goyo.vim', disable = vscode}
+	use {'norcalli/nvim-colorizer.lua', disable = vscode}
+	use {'sheerun/vim-polyglot', disable = vscode}
+	use {'tpope/vim-fugitive', disable = vscode}
+	use {'HiPhish/awk-ward.nvim', disable = vscode}
+	use {'NicholasDunham/chuck.nvim', disable = vscode}
+	use {"catppuccin/nvim", as = "catppuccin", disable = vscode}
+	use {'neoclide/coc.nvim', branch = 'release', disable = vscode}
+	use {'xolox/vim-notes', requires = {'xolox/vim-misc'}, disable = vscode}
+	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}, disable = vscode}
+	use {'styled-components/vim-styled-components', branch = 'main', disable = vscode}
 end)
 
 -- LuaFormatter off
@@ -80,8 +79,6 @@ function SlimeOverride_EscapeText_javascript(text)
 endfunction
 ]])
 
-vim.cmd('colorscheme catppuccin')
-
 vim.api.nvim_create_autocmd({"FileType"}, {
 	pattern = {'fzf'},
 	callback = function()
@@ -91,6 +88,20 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 		end)
 	end
 })
+
+require('nvim-treesitter.configs').setup({
+	ensure_installed = {'c', 'lua', 'javascript', 'cpp', 'svelte'},
+	sync_install = false,
+	highlight = {enable = true}
+})
+
+require('hop').setup({keys = 'asdfjkl;weiocmr'})
+
+if vscode then
+	return
+end
+
+vim.cmd('colorscheme catppuccin')
 
 require('colorizer').setup()
 
@@ -108,17 +119,7 @@ require('lualine').setup({
 	options = {theme = "catppuccin", section_separators = {left = "", right = ""}}
 })
 
-require('hop').setup({keys = 'asdfjkl;weiocmr'})
-
-require("catppuccin").setup({
-	integrations = {treesitter = true, bufferline = true}
-})
-
-require('nvim-treesitter.configs').setup({
-	ensure_installed = {'c', 'lua', 'javascript', 'cpp', 'svelte'},
-	sync_install = false,
-	highlight = {enable = true}
-})
+require("catppuccin").setup({integrations = {treesitter = true, bufferline = true}})
 
 require('run-code').setup({
 	output = {buffer = true, split_cmd = '20split'},
