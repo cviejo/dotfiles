@@ -18,7 +18,7 @@ require('packer').startup(function(use)
 	use 'meain/vim-printer'
 	use {'romgrk/barbar.nvim', requires = {devicons}}
 
-	use {'jiangmiao/auto-pairs', disable = vscode}
+	use {'windwp/nvim-autopairs', disable = vscode}
 	use {'arjunmahishi/run-code.nvim', disable = vscode}
 	use {'jpalardy/vim-slime', disable = vscode}
 	use {'/usr/local/opt/fzf', disable = vscode}
@@ -67,11 +67,11 @@ F.assign(vim.g, {
 	slime_dont_ask_default = 1,
 	slime_target = "tmux"
 })
+-- LuaFormatter on
 
 _G.slimeEscapeJavascript = function(x)
 	return x:gsub('const[%s]+', 'var '):gsub('let[%s]+', 'var '):gsub('[%s]+%.', '.')
 end
--- LuaFormatter on
 
 vim.cmd([[
 function SlimeOverride_EscapeText_javascript(text)
@@ -125,3 +125,5 @@ require('run-code').setup({
 	output = {buffer = true, split_cmd = '20split'},
 	enable_custom_commands = false
 })
+
+require('nvim-autopairs').setup({disable_in_macro = true})
