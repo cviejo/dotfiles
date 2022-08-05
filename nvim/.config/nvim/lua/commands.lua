@@ -18,3 +18,5 @@ F.forEach(function(x)
 	vim.cmd('cnoreabbrev ' .. x:lower() .. ' ' .. x)
 end, {'Note', 'Goyo', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd'})
 
+vim.cmd('cnoreabbrev sw ISwapWith')
+

@@ -14,7 +14,7 @@ F.assign(vim.opt, {
 	hlsearch = true,
 	ignorecase = true,
 	inccommand = 'nosplit',
-	laststatus = 2,
+	laststatus = 3,
 	list = true,
 	listchars = 'tab:│ ,trail:·',
 	mouse = "a",

@@ -1,13 +1,12 @@
 local F = require('utils.functional')
 local onBufLeave = require('utils.events').onBufLeave
 
-local vscode = vim.g.vscode == 1 and true or false
+local vscode = vim.g.vscode == 1
 
 local devicons = 'kyazdani42/nvim-web-devicons'
 
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
-	use 'tomtom/tcomment_vim'
 	use 'tpope/vim-surround'
 	use 'rhysd/clever-f.vim'
 	use 'nvim-treesitter/nvim-treesitter'
@@ -16,8 +15,12 @@ require('packer').startup(function(use)
 	use 'mg979/vim-visual-multi'
 	use 'neoclide/jsonc.vim'
 	use 'meain/vim-printer'
-	use {'romgrk/barbar.nvim', requires = {devicons}}
+	use 'mizlan/iswap.nvim'
+	use 'numToStr/Comment.nvim'
 
+	use {'romgrk/barbar.nvim', requires = {devicons}}
+	use {'ziglang/zig.vim', disable = vscode}
+	use {'jbyuki/venn.nvim', disable = vscode}
 	use {'windwp/nvim-autopairs', disable = vscode}
 	use {'arjunmahishi/run-code.nvim', disable = vscode}
 	use {'jpalardy/vim-slime', disable = vscode}
@@ -34,6 +37,10 @@ require('packer').startup(function(use)
 	use {'xolox/vim-notes', requires = {'xolox/vim-misc'}, disable = vscode}
 	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}, disable = vscode}
 	use {'styled-components/vim-styled-components', branch = 'main', disable = vscode}
+
+	-- not ready yet:
+	-- use 'Pocco81/true-zen.nvim'
+	-- use 'kylechui/nvim-surround'
 end)
 
 -- LuaFormatter off
@@ -69,6 +76,34 @@ F.assign(vim.g, {
 })
 -- LuaFormatter on
 
+require('nvim-treesitter.configs').setup({
+	ensure_installed = {'c', 'lua', 'javascript', 'cpp'},
+	sync_install = false,
+	highlight = {enable = true},
+	disable = function(lang)
+		return lang == 'svelte'
+	end,
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = '<cr>',
+			node_incremental = '<cr>', -- / scope_incremental
+			node_decremental = '<space>'
+		}
+	}
+})
+
+require('hop').setup({keys = 'asdfjkl;weiocmr'})
+
+require('iswap').setup({flash_style = 'none', autoswap = true, hl_snipe = 'ErrorMsg'})
+
+require('Comment').setup({mappings = false})
+
+if vscode then
+	return
+end
+
+-- replace all const and lets with vars so that we can resend the same chunk
 _G.slimeEscapeJavascript = function(x)
 	return x:gsub('const[%s]+', 'var '):gsub('let[%s]+', 'var '):gsub('[%s]+%.', '.')
 end
@@ -88,18 +123,6 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 		end)
 	end
 })
-
-require('nvim-treesitter.configs').setup({
-	ensure_installed = {'c', 'lua', 'javascript', 'cpp', 'svelte'},
-	sync_install = false,
-	highlight = {enable = true}
-})
-
-require('hop').setup({keys = 'asdfjkl;weiocmr'})
-
-if vscode then
-	return
-end
 
 vim.cmd('colorscheme catppuccin')
 
@@ -127,3 +150,5 @@ require('run-code').setup({
 })
 
 require('nvim-autopairs').setup({disable_in_macro = true})
+
+require('utils.venn')

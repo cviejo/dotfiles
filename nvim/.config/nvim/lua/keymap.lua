@@ -2,7 +2,6 @@ local F = require('utils.functional')
 local toggleZoom = require('utils.toggle-zoom')
 local buffer = require('utils.buffer')
 local runLines = require('utils.run-lines')
-local log = require('utils.log')
 
 local map = vim.keymap.set
 
@@ -18,20 +17,17 @@ local VSCodeCall = F.thunkify(function(arg)
 	return vim.fn.VSCodeCall(arg)
 end)
 
-local handleInsertTab = function()
-	return vim.fn.pumvisible() == 1 and '<C-N>' or '<Tab>'
+local createTextObject = function(from, to)
+	map('n', 'd' .. from, 'd' .. to)
+	map('n', 'c' .. from, 'c' .. to)
+	map('n', 'v' .. from, 'v' .. to)
+	map('n', 'y' .. from, 'y' .. to)
 end
 
--- plugins ----------------------------------
-map('x', 's', '<Plug>VSurround')
-map('n', 'cm', cmd('CocCommand'))
-map('n', 's', cmd('HopWord'))
-map('i', '<Tab>', handleInsertTab, {expr = true})
-
 map('', ';', ':')
+map('', ':', '@:')
 map('n', '<space>', 'o<Esc>')
--- map('n', 'S', 'J')
-map('n', 'S', cmd('BufferPick'))
+map('n', 'D', 'J')
 map('n', 'ZZ', cmd('qa!'))
 map('n', 'vv', 'V')
 map('i', '>>', '=>')
@@ -41,20 +37,31 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 map('t', 'jj', '<C-\\><C-n>')
 
+-- plugins ----------------------------------
+map('x', 's', '<Plug>VSurround')
+map('n', 's', cmd('HopWord'))
+map('n', 'S', cmd('BufferPick'))
+
+-- coc --------------------------------------
+-- vim.fn.pumvisible() == 1 and '<C-N>' or '<Tab>'
+map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"', {expr = true})
+map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"', {expr = true})
+map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"', {expr = true})
+map('n', 'gc', cmd('CocCommand'))
+map('n', 'ga', '<plug>(coc-codeaction-line)')
+map('n', 'gd', '<Plug>(coc-definition)')
+map('n', 'gn', '<plug>(coc-diagnostic-next)')
+map('n', 'gh', cmd('call CocAction("definitionHover"'))
+map('n', 'gp', '<plug>(coc-diagnostic-prev)')
+map('n', 'gr', '<Plug>(coc-references)')
+map('n', 'gt', '<Plug>(coc-type-definition)')
+
 -- vimium bindings -----------------------------
 map('n', 'J', cmd('BufferPrevious'))
 map('n', 'K', cmd('BufferNext'))
 map('n', '<c-d>', '5j')
 map('n', '<c-u>', '5k')
 map('n', 'co', buffer.closeOther)
-
--- g bindings -----------------------------------
-map('n', 'gl', 'L')
-map('n', 'gm', 'M')
-map('n', 'gh', 'H')
-map('n', 'gt', '<Plug>(coc-type-definition)')
-map('n', 'gd', '<Plug>(coc-definition)')
-map('n', 'gr', '<Plug>(coc-references)')
 
 -- q bindings -----------------------------------
 map('v', 'q;', 'q:')
@@ -79,11 +86,14 @@ for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
 end
 
 -- make inner the default behaviour -------------
-for x in ('wB(){}[]"\'/'):gmatch(".") do
-	map('n', 'd' .. x, 'di' .. x)
-	map('n', 'c' .. x, 'ci' .. x)
-	map('n', 'v' .. x, 'vi' .. x)
-	map('n', 'y' .. x, 'yi' .. x)
+for x in ([[qwbB(){}[]"'/]]):gmatch(".") do
+	createTextObject(x, 'i' .. x)
+end
+
+-- (r)ound (c)urly (s)quare
+for from, to in pairs({s = '[', r = '(', c = '{'}) do
+	createTextObject('i' .. from, 'i' .. to)
+	createTextObject('a' .. from, 'a' .. to)
 end
 
 -- shortcuts for frequent sequences ---------------
@@ -99,10 +109,7 @@ local abbreviations = {
 	['<space>'] = 't<space>'
 }
 for from, to in pairs(abbreviations) do
-	map('n', 'd' .. from, 'd' .. to)
-	map('n', 'c' .. from, 'c' .. to)
-	map('n', 'v' .. from, 'v' .. to)
-	map('n', 'y' .. from, 'y' .. to)
+	createTextObject(from, to)
 end
 
 map('n', 'vp', 'vip')
@@ -113,6 +120,10 @@ vim.g.mapleader = "'"
 map('n', '<leader>;', '@:')
 map('v', '<leader>;', '@:')
 map('n', '<leader>a', 'ggVG')
+map('n', '<leader>c', '<Plug>(comment_toggle_current_linewise)')
+map('v', '<leader>c', [[
+   mode() ==# "V" ? "<Plug>(comment_toggle_linewise_visual)" : "<Plug>(comment_toggle_blockwise_visual)"
+]], {expr = true})
 map('n', '<leader>d', buffer.close)
 map('n', '<leader>e', cmd('CocCommand explorer'))
 map('n', '<leader>f', ':Rg ')
@@ -144,6 +155,7 @@ if vim.g.vscode then
 	map('n', 'qw-', VSCodeCall('workbench.action.splitEditorDown'))
 	map('n', '<leader>e', VSCodeCall('workbench.action.toggleSidebarVisibility'))
 	map('n', '<leader>d', VSCodeCall('workbench.action.closeActiveEditor'))
+	map('n', '<leader>w', VSCodeCall('workbench.action.files.save'))
 	map('n', 'za', VSCodeCall('editor.toggleFold'))
 	map('n', 'zR', VSCodeCall('editor.unfoldAll'))
 	map('n', 'zM', VSCodeCall('editor.foldAll'))

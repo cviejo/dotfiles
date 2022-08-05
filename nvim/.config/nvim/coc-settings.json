@@ -14,12 +14,20 @@
 		"shell",
 		"svelte",
 		"typescript",
-		"yaml"
+		"yaml",
+		"zig"
 	],
 	"diagnostic.errorSign": "✖",
 	"diagnostic.hintSign": "ẍ",
 	"diagnostic.infoSign": "⚐",
 	"diagnostic.warningSign": "⚠",
+	"diagnostic.checkCurrentLine": true,
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.enableMessage": "jump",
+	"diagnostic.floatConfig": {
+		"border": true
+	},
 	"eslint.autoFixOnSave": true,
 	"eslint.probe": [
 		"html",
@@ -62,6 +70,10 @@
 	"suggest.noselect": false,
 	"svelte.plugin.typescript.enable": true,
 	"languageserver": {
+		"zls": {
+			"command": "zls",
+			"filetypes": ["zig"]
+		},
 		"haskell": {
 			"command": "haskell-language-server-wrapper",
 			"args": ["--lsp"],

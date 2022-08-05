@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
+dotfiles=~/.dotfiles
 github=https://github.com
 zshplugins=~/.oh-my-zsh/custom/plugins
 tmuxplugins=~/.config/tmux-plugins
 
+git clone ${github}/cviejo/dotfiles ${dotfiles}
+
 apt update
 
 apt install -y git curl neovim zsh tmux ranger fzf stow
+
+cd ${dotfiles}
 
 stow zsh nvim
 
