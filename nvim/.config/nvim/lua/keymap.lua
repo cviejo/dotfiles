@@ -2,6 +2,7 @@ local F = require('utils.functional')
 local toggleZoom = require('utils.toggle-zoom')
 local buffer = require('utils.buffer')
 local runLines = require('utils.run-lines')
+local utils = require('utils.nvim')
 
 local map = vim.keymap.set
 
@@ -23,6 +24,12 @@ local createTextObject = function(from, to)
 	map('n', 'v' .. from, 'v' .. to)
 	map('n', 'y' .. from, 'y' .. to)
 end
+
+map('v', 'gi', function()
+	local char = utils.getCurrentChar()
+	utils.feedkeys('<esc>')
+	utils.feedkeys('vi' .. char) -- TODO: limit to ({['"``"']})
+end)
 
 map('', ';', ':')
 map('', ':', '@:')
@@ -53,14 +60,14 @@ map('n', 'gp', '<plug>(coc-diagnostic-prev)')
 map('n', 'gr', '<Plug>(coc-references)')
 map('n', 'gt', '<Plug>(coc-type-definition)')
 
--- vimium bindings -----------------------------
+-- vimium style bindings --------------------
 map('n', 'J', cmd('BufferPrevious'))
 map('n', 'K', cmd('BufferNext'))
 map('n', '<c-d>', '5j')
 map('n', '<c-u>', '5k')
 map('n', 'co', buffer.closeOther)
 
--- q bindings -----------------------------------
+-- q bindings -------------------------------
 map('v', 'q;', 'q:')
 map('n', 'q;', 'q:')
 map('n', 'qa', '<plug>(coc-codeaction-line)')
@@ -71,7 +78,7 @@ map('n', 'qp', cmd('Files'))
 map('n', 'qr', cmd('History'))
 map('n', 'qh', cmd('History:'))
 
--- window ---------------------------------------
+-- window -----------------------------------
 map('n', 'qww', '<C-w>w')
 map('n', 'qwo', '<C-w>o')
 map('n', 'qw/', cmd('vsp'))
@@ -84,7 +91,7 @@ for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
 	map('n', '`' .. x:lower(), '`' .. x)
 end
 
--- make inner the default behaviour -------------
+-- make inner the default behaviour ---------
 for x in ([[qwbB(){}[]"'/]]):gmatch(".") do
 	createTextObject(x, 'i' .. x)
 end
@@ -95,7 +102,7 @@ for from, to in pairs({s = '[', r = '(', c = '{'}) do
 	createTextObject('a' .. from, 'a' .. to)
 end
 
--- shortcuts for frequent sequences ---------------
+-- shortcuts for frequent sequences ---------
 local abbreviations = {
 	l = '$',
 	p = 'ap',
