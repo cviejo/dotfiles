@@ -17,17 +17,17 @@
 		"yaml",
 		"zig"
 	],
-	"diagnostic.errorSign": "✖",
-	"diagnostic.hintSign": "ẍ",
-	"diagnostic.infoSign": "⚐",
-	"diagnostic.warningSign": "⚠",
 	"diagnostic.checkCurrentLine": true,
-	"diagnostic.virtualText": true,
-	"diagnostic.virtualTextCurrentLineOnly": false,
-	"diagnostic.enableMessage": "jump",
+	"diagnostic.enableMessage": "never",
+	"diagnostic.errorSign": "✖",
 	"diagnostic.floatConfig": {
 		"border": true
 	},
+	"diagnostic.hintSign": "ẍ",
+	"diagnostic.infoSign": "⚐",
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.warningSign": "⚠",
 	"eslint.autoFixOnSave": true,
 	"eslint.probe": [
 		"html",
@@ -49,10 +49,9 @@
 		{ "pattern": "./tests" }
 	],
 	"explorer.buffer.showHiddenBuffers": true,
-	"explorer.file.showHiddenFiles": true,
 	"explorer.file.reveal.whenOpen": true,
+	"explorer.file.showHiddenFiles": true,
 	"explorer.icon.enableNerdfont": true,
-	"explorer.previewAction.onHover": false,
 	"explorer.keyMappings.global": {
 		"y": "copyFile",
 		"Y": "copyFile",
@@ -60,11 +59,12 @@
 		"d": "cutFile",
 		"zh": "toggleHidden"
 	},
+	"explorer.previewAction.onHover": false,
 	"javascript.suggestionActions.enabled": false,
 	"prettier.onlyUseLocalVersion": false,
 	"prettier.printWidth": 100,
-	"prettier.tabWidth": 3,
 	"prettier.singleQuote": true,
+	"prettier.tabWidth": 3,
 	"prettier.useTabs": true,
 	"snippets.priority": 100,
 	"suggest.noselect": false,
@@ -134,12 +134,6 @@
 		"lua": "lua-format",
 		"sh": "shfmt"
 	},
-	/* "diagnostic-languageserver.linters": { */
-	/* 	"shellcheck": { */
-	/* 		"command": "shellcheck", */
-	/* 		"args": ["--format", "json1", "-"] */
-	/* 	} */
-	/* }, */
 	"diagnostic-languageserver.formatters": {
 		"shfmt": {
 			"command": "shfmt",
