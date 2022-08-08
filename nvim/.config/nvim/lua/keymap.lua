@@ -79,11 +79,9 @@ map('n', 'qr', cmd('History'))
 map('n', 'qh', cmd('History:'))
 
 -- window -----------------------------------
-map('n', 'qww', '<C-w>w')
-map('n', 'qwo', '<C-w>o')
-map('n', 'qw/', cmd('vsp'))
-map('n', 'qw-', cmd('sp'))
-map('n', 'qwz', toggleZoom) --
+map('n', '<C-w>/', cmd('vsp'))
+map('n', '<C-w>-', cmd('sp'))
+map('n', '<C-w>z', toggleZoom)
 
 -- make all marks global ------------------------
 for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
