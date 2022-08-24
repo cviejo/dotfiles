@@ -32,7 +32,7 @@ map('v', 'gi', function()
 end)
 
 map('', ';', ':')
-map('', ':', '@:')
+map('n', ':', '@:')
 map('n', '<space>', 'o<Esc>')
 map('n', 'D', 'J')
 map('n', 'ZZ', cmd('qa!'))
