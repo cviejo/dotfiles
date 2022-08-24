@@ -38,9 +38,10 @@ require('packer').startup(function(use)
 	use {'nvim-lualine/lualine.nvim', requires = {devicons, opt = true}, disable = vscode}
 	use {'styled-components/vim-styled-components', branch = 'main', disable = vscode}
 
-	-- not ready yet:
+	-- not ready for use yet:
 	-- use 'Pocco81/true-zen.nvim'
 	-- use 'kylechui/nvim-surround'
+	-- use {'phaazon/mind.nvim', requires = {'nvim-lua/plenary.nvim', tag = 'v1.*'}}
 end)
 
 -- LuaFormatter off
@@ -117,9 +118,9 @@ endfunction
 vim.api.nvim_create_autocmd({"FileType"}, {
 	pattern = {'fzf'},
 	callback = function()
-		F.assign(vim.opt, {laststatus = 0, showmode = false, ruler = false})
+		F.assign(vim.opt, {showmode = false, ruler = false})
 		onBufLeave(function()
-			F.assign(vim.opt, {laststatus = 2, showmode = true, ruler = true})
+			F.assign(vim.opt, {showmode = true, ruler = true})
 		end)
 	end
 })
