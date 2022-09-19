@@ -1,6 +1,7 @@
 {
 	"Lua.diagnostics.globals": ["draw", "jit", "mpd", "of", "setup", "swig_type", "vim"],
 	"coc.preferences.formatOnSaveFiletypes": [
+		"awk",
 		"c++",
 		"cpp",
 		"elm",
@@ -70,6 +71,12 @@
 	"suggest.noselect": false,
 	"svelte.plugin.typescript.enable": true,
 	"languageserver": {
+		"awk": {
+			"command": "awk-language-server",
+			"args": ["--noIndex"],
+			"filetypes": ["awk"],
+			"ignoredRootPaths": ["~"]
+		},
 		"zls": {
 			"command": "zls",
 			"filetypes": ["zig"]

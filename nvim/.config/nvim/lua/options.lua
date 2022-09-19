@@ -4,6 +4,7 @@ vim.opt.shortmess:append("I")
 vim.opt.diffopt:append("vertical")
 
 F.assign(vim.opt, {
+	-- cmdwinheight = 16,
 	autoread = true,
 	clipboard = "unnamedplus",
 	cursorline = true,
@@ -30,6 +31,14 @@ F.assign(vim.opt, {
 	updatetime = 300
 })
 
+F.assign(vim.g, {
+	--
+	netrw_altv = 1,
+	netrw_banner = 0,
+	netrw_browse_split = 4,
+	netrw_winsize = 18
+})
+
 -- backup = false,
 -- cmdheight = 2,
 -- completeopt = {"menuone", "noselect"},
@@ -52,7 +61,6 @@ F.assign(vim.opt, {
 -- undofile = true,
 -- wrap = false,
 -- writebackup = false
-
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 -- vim.opt.fillchars.eob = " "

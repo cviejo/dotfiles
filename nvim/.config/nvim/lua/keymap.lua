@@ -79,9 +79,12 @@ map('n', 'qr', cmd('History'))
 map('n', 'qh', cmd('History:'))
 
 -- window -----------------------------------
+map('n', ',', '<c-w>', {remap = true})
 map('n', '<C-w>/', cmd('vsp'))
 map('n', '<C-w>-', cmd('sp'))
 map('n', '<C-w>z', toggleZoom)
+map('n', '<C-w>d', '<C-w>q')
+-- map('n', '<C-w>zs', cmd('BufferPick'))
 
 -- make all marks global ------------------------
 for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
@@ -124,7 +127,7 @@ vim.g.mapleader = "'"
 map('n', '<leader>;', '@:')
 map('v', '<leader>;', '@:')
 map('n', '<leader>a', 'ggVG')
-map('n', '<leader>c', '<Plug>(comment_toggle_current_linewise)')
+map('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)')
 map('v', '<leader>c', [[
    mode() ==# "V" ? "<Plug>(comment_toggle_linewise_visual)" : "<Plug>(comment_toggle_blockwise_visual)"
 ]], {expr = true})

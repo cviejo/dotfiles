@@ -10,6 +10,7 @@ require('packer').startup(function(use)
 	use 'tpope/vim-surround'
 	use 'rhysd/clever-f.vim'
 	use 'nvim-treesitter/nvim-treesitter'
+	use 'nvim-treesitter/playground'
 	use 'phaazon/hop.nvim'
 	use 'junegunn/gv.vim'
 	use 'mg979/vim-visual-multi'
@@ -65,8 +66,12 @@ F.assign(vim.g, {
 	},
 	coc_snippet_next = '<tab>',
 	fzf_layout = {
-		down = '50%'
+		window = { width = 1, height = 0.4, yoffset = 0.99, border ='top' }
 	},
+	fzf_colors = {
+		border = { 'fg', 'VertSplit' }
+	},
+	-- fzf_layout = { down = '50%' },
 	notes_word_boundaries = 1,
 	slime_default_config = {
 		target_pane = '{next}',
@@ -78,7 +83,7 @@ F.assign(vim.g, {
 -- LuaFormatter on
 
 require('nvim-treesitter.configs').setup({
-	ensure_installed = {'c', 'lua', 'javascript', 'cpp'},
+	ensure_installed = {'c', 'lua', 'javascript', 'cpp', 'query', 'json'},
 	sync_install = false,
 	highlight = {enable = true},
 	disable = function(lang)
