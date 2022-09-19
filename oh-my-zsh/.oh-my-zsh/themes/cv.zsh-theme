@@ -17,7 +17,7 @@ yellow="E5/C8/90"
 green="A6/D1/89"
 teal="81/C8/BE"
 sky="99/D1/DB"
-sapphire="85/C1/DC"
+sapphire="85/C1/DC" # 110
 blue="8C/AA/EE"
 lavender="BA/BB/F1"
 text="C6/D0/F5"
@@ -43,6 +43,7 @@ setColor 011 $yellow   #
 setColor 012 $blue     #
 setColor 014 $sky      # aqua
 setColor 015 $text     # white
+setColor 110 $sapphire #
 setColor 235 $crust    # greys
 setColor 238 $mantle   # greys
 setColor 241 $surface0 # greys
