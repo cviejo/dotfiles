@@ -24,9 +24,4 @@ M.onTermOpen = function(callback)
 	})
 end
 
-M.onTermOpen(function()
-	print('ahem')
-	vim.cmd([[startinsert]])
-end)
-
 return M
