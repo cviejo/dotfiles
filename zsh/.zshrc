@@ -35,8 +35,7 @@ DISABLE_AUTO_UPDATE=true ZSH_THEME=cv safeSource $HOME/.oh-my-zsh/oh-my-zsh.sh
 alias c="clear; set-cursor insert"
 alias e='exit'
 alias n='nvim'
-alias ranger='RD=$HOME/.config/ranger/dir; ranger --choosedir=$RD; cd `cat $RD`'
-alias r='ranger'
+alias r='RD=$HOME/.config/ranger/dir; ranger --choosedir=$RD; cd `cat $RD`'
 alias t='tmux new-session -A -s main'
 alias tl="~/.local/bin/tmuxp-load-fzf"
 alias gc='git checkout $(git branch | fzf)'
