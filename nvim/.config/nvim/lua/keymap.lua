@@ -49,7 +49,7 @@ map('x', 's', '<Plug>VSurround')
 map('n', 's', cmd('HopWord'))
 map('n', 'S', cmd('BufferPick'))
 
--- coc --------------------------------------
+-- g bindings (mostly coc) ------------------
 map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"', {expr = true})
 map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"', {expr = true})
 map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"', {expr = true})
@@ -59,6 +59,8 @@ map('n', 'gh', cmd('call CocAction("definitionHover")'))
 map('n', 'gp', '<plug>(coc-diagnostic-prev)')
 map('n', 'gr', '<Plug>(coc-references)')
 map('n', 'gt', '<Plug>(coc-type-definition)')
+map('n', 'gz', ':TZAtaraxis<cr>')
+map('x', 'gz', ":'<,'>TZNarrow<cr>")
 
 -- vimium style bindings --------------------
 map('n', 'J', cmd('BufferPrevious'))
@@ -119,8 +121,8 @@ for from, to in pairs(abbreviations) do
 	createTextObject(from, to)
 end
 
-map('n', 'vp', 'vip')
-map('n', 'vrb', 'v])h')
+-- map('n', 'vp', 'vip')
+-- map('n', 'vrb', 'v])h')
 
 -- leader ----------------------------------------
 vim.g.mapleader = "'"
@@ -152,6 +154,10 @@ map('n', '<leader>t', cmd('Twilight'))
 map('n', '<leader>w', cmd('w'))
 map('n', '<leader>z', mapRunLines("'{", "'}", "zsh"))
 map('x', '<leader>z', mapRunLines("'<", "'>", "zsh"))
+
+-- folding ----------------------------------------
+map('n', 'zl', 'zr') -- opposite of fold (zm)ore is fold (zl)ess
+map('n', 'zl', 'zR') -- also, zr is not very ergonomical
 
 if vim.g.vscode then
 	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))

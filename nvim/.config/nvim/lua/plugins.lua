@@ -19,6 +19,7 @@ require('packer').startup(function(use)
 	use 'mizlan/iswap.nvim'
 	use 'numToStr/Comment.nvim'
 
+	use {'Pocco81/true-zen.nvim', requires = {devicons}}
 	use {'romgrk/barbar.nvim', requires = {devicons}}
 	use {'ziglang/zig.vim', disable = vscode}
 	use {'jbyuki/venn.nvim', disable = vscode}
@@ -27,7 +28,6 @@ require('packer').startup(function(use)
 	use {'jpalardy/vim-slime', disable = vscode}
 	use {'/usr/local/opt/fzf', disable = vscode}
 	use {'junegunn/fzf.vim', disable = vscode}
-	use {'junegunn/goyo.vim', disable = vscode}
 	use {'norcalli/nvim-colorizer.lua', disable = vscode}
 	use {'sheerun/vim-polyglot', disable = vscode}
 	use {'tpope/vim-fugitive', disable = vscode}
@@ -133,6 +133,19 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 vim.cmd('colorscheme catppuccin')
 
 require('colorizer').setup()
+
+require('true-zen').setup({
+	modes = {
+		ataraxis = {
+			padding = {
+				-- ok
+				top = 5
+			}
+		},
+		narrow = {folds_style = 'invisible'}
+	},
+	integrations = {tmux = true, lualine = true}
+})
 
 require('bufferline').setup({
 	tabpages = true,
