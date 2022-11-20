@@ -6,13 +6,11 @@ local utils = require('utils.nvim')
 
 local map = vim.keymap.set
 
-local cmd = F.thunkify(function(x)
-	return vim.cmd(x)
-end)
+local cmd = F.thunkify(vim.cmd)
 
-local mapRunLines = F.thunkify(function(from, to, binary)
-	return runLines(from, to, binary)
-end)
+local feedkeys = F.thunkify(utils.feedkeys)
+
+local mapRunLines = F.thunkify(runLines)
 
 local VSCodeCall = F.thunkify(function(arg)
 	return vim.fn.VSCodeCall(arg)
@@ -30,7 +28,7 @@ map('v', 'gi', function()
 	utils.feedkeys('<esc>')
 	utils.feedkeys('vi' .. char) -- TODO: limit to ({['"``"']})
 end)
-
+--
 map('', ';', ':')
 map('n', ':', '@:')
 map('n', '<space>', 'o<Esc>')
@@ -50,9 +48,12 @@ map('n', 's', cmd('HopWord'))
 map('n', 'S', cmd('BufferPick'))
 
 -- g bindings (mostly coc) ------------------
-map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"', {expr = true})
-map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"', {expr = true})
-map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"', {expr = true})
+map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"',
+    {expr = true, replace_keycodes = false})
+map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"',
+    {expr = true, replace_keycodes = false})
+map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"',
+    {expr = true, replace_keycodes = false})
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', 'gn', '<plug>(coc-diagnostic-next)')
 map('n', 'gh', cmd('call CocAction("definitionHover")'))
@@ -88,7 +89,7 @@ map('n', '<C-w>z', toggleZoom)
 map('n', '<C-w>d', '<C-w>q')
 -- map('n', '<C-w>zs', cmd('BufferPick'))
 
--- make all marks global ------------------------
+-- make all marks global ---------------------
 for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
 	map('n', 'm' .. x:lower(), 'm' .. x)
 	map('n', '`' .. x:lower(), '`' .. x)
@@ -121,18 +122,16 @@ for from, to in pairs(abbreviations) do
 	createTextObject(from, to)
 end
 
--- map('n', 'vp', 'vip')
--- map('n', 'vrb', 'v])h')
+map('n', 'vp', 'vip')
+map('n', 'vrb', 'v])h')
 
--- leader ----------------------------------------
+-- leader ------------------------------------
 vim.g.mapleader = "'"
 map('n', '<leader>;', '@:')
 map('v', '<leader>;', '@:')
 map('n', '<leader>a', 'ggVG')
 map('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)')
-map('v', '<leader>c', [[
-   mode() ==# "V" ? "<Plug>(comment_toggle_linewise_visual)" : "<Plug>(comment_toggle_blockwise_visual)"
-]], {expr = true})
+map('v', '<leader>c', '<Plug>(comment_toggle_linewise_visual)')
 map('n', '<leader>d', buffer.close)
 map('n', '<leader>e', cmd('CocCommand explorer'))
 map('n', '<leader>f', ':Rg ')
@@ -143,6 +142,7 @@ map('n', '<leader>i', [[mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>j', mapRunLines("'{", "'}", "node"))
 map('x', '<leader>j', mapRunLines("'<", "'>", "node"))
 map('n', '<leader>n', '*')
+map('x', '<leader>n', feedkeys('*')) -- 0.8
 map('n', '<leader>o', 'o<Esc>')
 map('v', '<leader>p', '"_dP')
 map('n', '<leader>q', '@q')
@@ -150,22 +150,22 @@ map('x', '<leader>q', ": norm @q<cr>")
 map('n', '<leader>r', 'q:k<cr>') -- probably don't need this, enough with 'q for the macros
 map('x', '<leader>s', '<Plug>SlimeRegionSend')
 map('n', '<leader>s', '<Plug>SlimeParagraphSend')
-map('n', '<leader>t', cmd('Twilight'))
+map('x', '<leader>t', ":'<,'>Translate DE<cr>")
 map('n', '<leader>w', cmd('w'))
 map('n', '<leader>z', mapRunLines("'{", "'}", "zsh"))
 map('x', '<leader>z', mapRunLines("'<", "'>", "zsh"))
 
--- folding ----------------------------------------
+-- folding ----------------------------------
 map('n', 'zl', 'zr') -- opposite of fold (zm)ore is fold (zl)ess
-map('n', 'zl', 'zR') -- also, zr is not very ergonomical
+map('n', 'zL', 'zR') -- also, zr is not very ergonomical
 
 if vim.g.vscode then
 	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))
 	map('n', 'K', VSCodeCall('workbench.action.nextEditor'))
 	map('n', 'qp', VSCodeCall('workbench.action.quickOpen'))
-	map('n', 'qwo', VSCodeCall('workbench.action.joinAllGroups'))
-	map('n', 'qw/', VSCodeCall('workbench.action.splitEditorRight'))
-	map('n', 'qw-', VSCodeCall('workbench.action.splitEditorDown'))
+	map('n', ',o', VSCodeCall('workbench.action.joinAllGroups'))
+	map('n', ',/', VSCodeCall('workbench.action.splitEditorRight'))
+	map('n', ',-', VSCodeCall('workbench.action.splitEditorDown'))
 	map('n', '<leader>e', VSCodeCall('workbench.action.toggleSidebarVisibility'))
 	map('n', '<leader>d', VSCodeCall('workbench.action.closeActiveEditor'))
 	map('n', '<leader>w', VSCodeCall('workbench.action.files.save'))
