@@ -3,20 +3,27 @@ local buffer = require('utils.buffer')
 
 local command = vim.api.nvim_create_user_command
 
-local expand, system = vim.fn.expand, vim.fn.system
+local abbrev = function(from, to)
+	vim.cmd('cnoreabbrev ' .. from .. ' ' .. to)
+end
 
 command('Qr', '.w !qrencode -o - -t UTF8 ', {})
 
 command('TmuxVerticalSplit', function()
-	system('tmux split-window -h -c ' .. expand('%:p:h'))
+	local directory = vim.fn.expand('%:p:h')
+	vim.fn.system('tmux split-window -h -c ' .. directory)
 end, {})
 
 command('CloseOtherBuffers', buffer.closeOther, {})
 
 -- lowercase abbreviations of commands ---------
 F.forEach(function(x)
-	vim.cmd('cnoreabbrev ' .. x:lower() .. ' ' .. x)
+	abbrev(x:lower(), x)
 end, {'Note', 'Goyo', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd'})
 
-vim.cmd('cnoreabbrev sw ISwapWith')
+abbrev('sw', 'ISwapNodeWithRight')
+
+abbrev('swl', 'ISwapNodeWithLeft') -- probably not needed
+
+abbrev('sws', 'ISwapWith')
 
