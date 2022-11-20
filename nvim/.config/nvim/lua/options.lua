@@ -4,7 +4,6 @@ vim.opt.shortmess:append("I")
 vim.opt.diffopt:append("vertical")
 
 F.assign(vim.opt, {
-	-- cmdwinheight = 16,
 	autoread = true,
 	clipboard = "unnamedplus",
 	cursorline = true,
@@ -15,7 +14,6 @@ F.assign(vim.opt, {
 	hlsearch = true,
 	ignorecase = true,
 	inccommand = 'nosplit',
-	laststatus = 3,
 	list = true,
 	listchars = 'tab:│ ,trail:·',
 	mouse = "a",
@@ -28,7 +26,11 @@ F.assign(vim.opt, {
 	swapfile = false,
 	tabstop = 3,
 	termguicolors = true,
-	updatetime = 300
+	updatetime = 300,
+	-- evaluating:
+	cmdwinheight = 16,
+	cmdheight = 0,
+	laststatus = 0
 })
 
 F.assign(vim.g, {
