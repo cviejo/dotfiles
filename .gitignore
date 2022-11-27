@@ -1,2 +1,4 @@
-ignore.*
 .DS_Store
+ignore.*
+*.ignore
+muttrc.aliases

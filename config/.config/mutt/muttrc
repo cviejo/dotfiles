@@ -1,0 +1,35 @@
+# options
+set auto_tag = yes # apply actions to all tagged messages
+set beep_new = yes
+set help = no
+set mailcap_path = ~/.config/mutt/mailcap
+set markers = no
+set mark_old = no
+set sort = "reverse-threads"
+set sort_aux = "last-date-received"
+set wait_key = no
+set indent_string = "> "
+set postpone = "ask-no"
+
+# format (add '%?X?📎&\ \ '  or when switched to offline, %Z for more info)
+set index_format = " %{%d-%m-%y %H:%M}│ %-31.31F (%-4.4c) %s" # 
+set attach_format = "%I  %T%-40d%*   %m/%M (%4.4s)"
+# set status_format = "─── Folder: %f ─── %m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ───%>─%?p?( %p postponed )?───"
+set status_format = " ──  %f ──  %d   %t   %F   %p ──%>──  %u  %R %P ───"
+
+# view
+auto_view text/html
+alternative_order text/plain text/html
+set implicit_autoview = yes
+
+# collapse by default
+folder-hook . "exec collapse-all"
+
+set mail_check = "30"
+set mail_check_stats = yes
+set mail_check_stats_interval = 60
+set timeout = "100"
+
+source ~/.config/mutt/muttrc.theme
+source ~/.config/mutt/muttrc.keybindings
+source ~/.config/mutt/muttrc.aliases

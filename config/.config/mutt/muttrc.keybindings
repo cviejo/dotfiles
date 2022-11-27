@@ -1,0 +1,33 @@
+set my_run = <shell-escape>bash\ $HOME/.config/mutt/utils.sh
+set my_tmp = /tmp/mutt
+
+bind   index,pager          g        noop
+bind   index                <Space>  noop
+bind   generic,index,pager  /        search
+bind   generic,index,pager  \;       enter-command
+bind   generic,index        G        last-entry
+bind   generic,index        gg       first-entry
+bind   index,pager          R        group-reply
+bind   index,pager          H        help
+bind   index                k        previous-entry
+bind   index                j        next-entry
+bind   index                o        sort-reverse
+bind   index                O        sort-mailbox
+bind   pager,attach         h        exit
+bind   pager                G        bottom
+bind   pager                gg       top
+bind   pager                j        next-line
+bind   pager                k        previous-line
+bind   index,pager          ga       view-attachments
+bind   compose              x        detach-file
+
+macro  index,pager          gu       <pipe-message>urlscan\ -W\n
+macro  index                zi       <collapse-all><redraw-screen>
+macro  index                \'e      <change-folder>?
+macro  generic,pager        \'r      :source\ ~/.config/mutt/muttrc\n<refresh><redraw-screen>
+macro  attach               o        "$my_run clean\n<save-entry>^A$my_tmp/index.html\n$my_run open\n" "open"
+macro  compose              a        "$my_run pick\n:source $my_tmp/pick\n$my_run clean\n" "attach"
+
+# not using the sidebar yet
+# macro index \'t "<enter-command>toggle sidebar_visible\n<refresh>"
+# macro pager \'t "<enter-command>toggle sidebar_visible\n<redraw-screen>"

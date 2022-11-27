@@ -1,0 +1,37 @@
+set my_blue = color12
+
+#_all
+color    error       red         default
+color    tilde       color8      default
+color    status      color8      default
+color    indicator   default     color241
+color    tree        color2      default
+#_index
+uncolor  index       *
+color    index       $my_blue    default   '(~N|~O)'
+color    index       brightcyan  default   '~T'                                               #_tagged_messages
+color    index       color2      default   '~v'
+color    index       color2      default   '~>(~p|!~p)'                                       #_colorize_the_first_of_thread_(~(!~x.)_not_working)
+color    index       default     default   '~<(~p|!~p)'
+color    index       red         default   '~D'                                               #_color247_alternative
+#_email
+color    hdrdefault  $my_blue    default
+color    header      color13     default   ^(Date|From|Subject|To):
+color    body        $my_blue    default   (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+         #_urls
+color    body        color2      default   [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+                #_emails
+color    body        $my_blue    default   (^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)      #_/italic/
+color    body        $my_blue    default   (^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)  #_*bold*
+color    body        $my_blue    default   (^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)      #__underlined_
+color    quoted      $my_blue    default
+color    quoted1     cyan        default
+color    quoted2     green       default
+color    quoted3     magenta     default
+color    attachment  color8      default
+
+# https://github.com/noisersup/dotfiles/blob/38984bdc06f9b6f8d633e8c367479e73340af70b/neomutt/styles.muttrc
+#
+# color    index       red         default   '~v~(~D)'                                          #_collapsed_thread_with_some_or_all_deleted
+# color    index       red         default   '~D~N'
+# color    index       red         default   '~D~R'
+# color    index       red         default   '~D~v'
+# color    index       red         default   '~D(!~p|~p)'
