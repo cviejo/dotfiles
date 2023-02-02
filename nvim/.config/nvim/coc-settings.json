@@ -1,5 +1,6 @@
 {
 	"Lua.diagnostics.globals": ["draw", "jit", "mpd", "of", "setup", "swig_type", "vim"],
+	"coc.source.snippets.priority": 100,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"awk",
 		"c++",
@@ -67,7 +68,6 @@
 	"prettier.singleQuote": true,
 	"prettier.tabWidth": 3,
 	"prettier.useTabs": true,
-	"snippets.priority": 100,
 	"suggest.noselect": false,
 	"svelte.plugin.typescript.enable": true,
 	"languageserver": {
