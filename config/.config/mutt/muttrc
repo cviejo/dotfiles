@@ -32,4 +32,3 @@ set timeout = "100"
 
 source ~/.config/mutt/muttrc.theme
 source ~/.config/mutt/muttrc.keybindings
-source ~/.config/mutt/muttrc.aliases
