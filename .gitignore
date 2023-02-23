@@ -2,3 +2,4 @@
 ignore.*
 *.ignore
 muttrc.aliases
+packer_compiled.lua

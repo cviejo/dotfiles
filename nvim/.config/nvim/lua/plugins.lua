@@ -19,13 +19,14 @@ require('packer').startup(function(use)
 	use 'mizlan/iswap.nvim'
 	use 'numToStr/Comment.nvim'
 	use 'uga-rosa/translate.nvim'
+	use 'github/copilot.vim'
 
 	use {'ziglang/zig.vim', disable = vscode}
 	use {'jbyuki/venn.nvim', disable = vscode}
 	use {'windwp/nvim-autopairs', disable = vscode}
 	use {'arjunmahishi/run-code.nvim', disable = vscode}
 	use {'jpalardy/vim-slime', disable = vscode}
-	use {'/usr/local/opt/fzf', disable = vscode}
+	use {'junegunn/fzf', disable = vscode}
 	use {'junegunn/fzf.vim', disable = vscode}
 	use {'norcalli/nvim-colorizer.lua', disable = vscode}
 	use {'sheerun/vim-polyglot', disable = vscode}
@@ -82,7 +83,8 @@ F.assign(vim.g, {
 		socket_name = 'default'
 	},
 	slime_dont_ask_default = 1,
-	slime_target = "tmux"
+	slime_target = "tmux",
+	slime_paste_file = '~/.local/share/nvim/.slime_paste',
 })
 -- LuaFormatter on
 

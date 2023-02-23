@@ -1,5 +1,4 @@
 # exports
-# -------------------------------------------------------------
 export BAT_STYLE=changes
 export BAT_THEME=base16
 export CLICOLOR=1
@@ -13,12 +12,17 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/args
 export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
+
+# local data
+export HISTFILE=$HOME/.local/share/zsh/.history
+export NODE_REPL_HISTORY=$HOME/.local/share/node/.repl_history
+export ZSHZ_DATA=$HOME/.local/share/zsh/.z
+export ZSH_COMPDUMP=$HOME/.local/share/zsh/.zcompdump-$HOST-$ZSH_VERSION
+
 if [[ ! -z $TMUX ]]; then
 	export TERM=screen-256color
 fi
 
-# fns
-# -------------------------------------------------------------
 safeSource(){
 	if [[ -f $1 && -r $1 ]]; then
 		source $1
@@ -26,12 +30,10 @@ safeSource(){
 }
 
 # oh-my-zsh
-# -------------------------------------------------------------
 plugins=(fzf fzf-tab git zsh-autosuggestions zsh-syntax-highlighting z)
 DISABLE_AUTO_UPDATE=true ZSH_THEME=cv safeSource $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # aliases
-# -------------------------------------------------------------
 alias c="clear; set-cursor insert"
 alias e='exit'
 alias n='nvim'
@@ -47,7 +49,6 @@ alias gr='git pull -r'
 alias qr="qrencode -o - -t UTF8 "
 
 # local scripts
-# -------------------------------------------------------------
 safeSource $HOME/.zshrc-vim
 safeSource $HOME/.zshrc-local
 safeSource $HOME/.nix-profile/etc/profile.d/nix.sh
