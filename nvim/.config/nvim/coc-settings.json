@@ -160,5 +160,6 @@
 			"command": "clang-format",
 			"args": []
 		}
-	}
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }

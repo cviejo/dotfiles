@@ -29,7 +29,7 @@ F.assign(vim.opt, {
 	updatetime = 300,
 	-- evaluating:
 	cmdwinheight = 16,
-	cmdheight = 0,
+	-- cmdheight = 0,
 	laststatus = 0
 })
 

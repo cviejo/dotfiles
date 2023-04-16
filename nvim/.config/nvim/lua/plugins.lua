@@ -84,7 +84,7 @@ F.assign(vim.g, {
 	},
 	slime_dont_ask_default = 1,
 	slime_target = "tmux",
-	slime_paste_file = '~/.local/share/nvim/.slime_paste',
+	slime_paste_file = os.getenv('HOME') .. '/.local/share/nvim/.slime_paste',
 })
 -- LuaFormatter on
 
@@ -160,10 +160,14 @@ require('true-zen').setup({
 require('bufferline').setup({
 	tabpages = true,
 	animation = false,
-	closable = false,
+	-- closable = false,
 	maximum_padding = 1,
-	icon_separator_active = '',
-	icon_separator_inactive = '',
+	icons = {
+		button = '',
+		modified = {buton = ''},
+		inactive = {left = '', right = '', button = ''},
+		separator = {left = '', right = ''}
+	},
 	add_in_buffer_number_order = false
 })
 
