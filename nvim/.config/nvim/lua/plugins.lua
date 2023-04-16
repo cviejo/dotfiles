@@ -54,6 +54,7 @@ end)
 F.assign(vim.g, {
 	-- ~/.local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/core/palettes/frappe.lua
 	catppuccin_flavour = "frappe",
+	deepl_api_auth_key = os.getenv("DEEPL_KEY"),
 	coc_global_extensions = {
 		'coc-diagnostic',
 		'coc-eslint',
@@ -110,8 +111,6 @@ require('hop').setup({keys = 'asdfjkl;weiocmr'})
 require('iswap').setup({flash_style = 'none', autoswap = true, hl_snipe = 'ErrorMsg'})
 
 require('Comment').setup({mappings = false})
-
-vim.g.deepl_api_auth_key = os.getenv("DEEPL_KEY")
 
 require("translate").setup({default = {command = "deepl_free", output = 'replace'}})
 
