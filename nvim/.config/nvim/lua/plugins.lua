@@ -90,7 +90,7 @@ F.assign(vim.g, {
 -- LuaFormatter on
 
 require('nvim-treesitter.configs').setup({
-	ensure_installed = {'c', 'lua', 'javascript', 'cpp', 'query', 'json'},
+	ensure_installed = {'c', 'lua', 'javascript', 'cpp', 'query', 'json', 'typescript'},
 	sync_install = false,
 	highlight = {enable = true},
 	disable = function(lang)
