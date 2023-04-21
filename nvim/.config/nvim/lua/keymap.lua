@@ -96,12 +96,13 @@ for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
 end
 
 -- make inner the default behaviour ---------
-for x in ([[qwbB(){}[]"'/]]):gmatch(".") do
+for x in ([[wbB(){}[]"'/]]):gmatch(".") do
 	createTextObject(x, 'i' .. x)
 end
 
--- (r)ound (c)urly (s)quare
-for from, to in pairs({s = '[', r = '(', c = '{'}) do
+-- double (q)uote
+for from, to in pairs({q = '"'}) do
+	createTextObject(from, 'i' .. to) -- inner is default
 	createTextObject('i' .. from, 'i' .. to)
 	createTextObject('a' .. from, 'a' .. to)
 end
