@@ -35,7 +35,7 @@ require('packer').startup(function(use)
 	use {'NicholasDunham/chuck.nvim', disable = vscode}
 	use {'Pocco81/true-zen.nvim', disable = vscode, requires = {devicons}}
 	use {'romgrk/barbar.nvim', disable = vscode, requires = {devicons}}
-	use {"catppuccin/nvim", disable = vscode, tag = 'v0.2.2', as = "catppuccin"}
+	use {"catppuccin/nvim", disable = vscode, as = "catppuccin"}
 	use {'neoclide/coc.nvim', disable = vscode, branch = 'release'}
 	use {'xolox/vim-notes', disable = vscode, requires = {'xolox/vim-misc'}}
 	use {'nvim-lualine/lualine.nvim', disable = vscode, requires = {devicons, opt = true}}
@@ -43,6 +43,11 @@ require('packer').startup(function(use)
 
 	-- evaluating:
 	use 'RRethy/vim-illuminate'
+	use({"Bryley/neoai.nvim", require = {"MunifTanjim/nui.nvim"}})
+	use({
+		"jackMort/ChatGPT.nvim",
+		requires = {"MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"}
+	})
 
 	-- not ready for use yet:
 	-- 'kylechui/nvim-surround'
@@ -68,6 +73,7 @@ F.assign(vim.g, {
 		'coc-svelte',
 		'coc-tsserver',
 		'coc-yaml',
+		'coc-html',
 		'https://github.com/nathanchapman/vscode-javascript-snippets'
 	},
 	coc_snippet_next = '<tab>',
@@ -184,3 +190,7 @@ require('run-code').setup({
 require('nvim-autopairs').setup({disable_in_macro = true})
 
 require('utils.venn')
+
+-- evaluating
+require("neoai").setup()
+require("chatgpt").setup()

@@ -88,6 +88,8 @@ map('n', '<C-w>-', cmd('sp'))
 map('n', '<C-w>z', toggleZoom)
 map('n', '<C-w>d', '<C-w>q')
 -- map('n', '<C-w>zs', cmd('BufferPick'))
+map('x', ',ai', ":'<,'>NeoAIContext<cr>")
+map('n', ',ai', ":NeoAI<cr>")
 
 -- make all marks global ---------------------
 for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
@@ -100,12 +102,14 @@ for x in ([[wbB(){}[]"'/]]):gmatch(".") do
 	createTextObject(x, 'i' .. x)
 end
 
--- double (q)uote
+-- double quote (q)
 for from, to in pairs({q = '"'}) do
 	createTextObject(from, 'i' .. to) -- inner is default
 	createTextObject('i' .. from, 'i' .. to)
 	createTextObject('a' .. from, 'a' .. to)
 end
+map('n', 'dsq', 'ds"', {remap = true})
+map('n', 'csq', 'cs"', {remap = true})
 
 -- shortcuts for frequent sequences ---------
 local abbreviations = {
@@ -159,6 +163,11 @@ map('x', '<leader>z', mapRunLines("'<", "'>", "zsh"))
 -- folding ----------------------------------
 map('n', 'zl', 'zr') -- opposite of fold (zm)ore is fold (zl)ess
 map('n', 'zL', 'zR') -- also, zr is not very ergonomical
+
+-- helix ----------------------------------
+map('n', 'ge', 'G')
+map('n', 'gl', '$')
+map('n', 'g0', '0')
 
 if vim.g.vscode then
 	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))

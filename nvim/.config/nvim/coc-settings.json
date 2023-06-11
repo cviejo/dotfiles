@@ -139,7 +139,7 @@
 	"diagnostic-languageserver.formatFiletypes": {
 		"cpp": "cpp-format",
 		"lua": "lua-format",
-		"sh": "shfmt"
+		"sh": "shfmt",
 	},
 	"diagnostic-languageserver.formatters": {
 		"shfmt": {
