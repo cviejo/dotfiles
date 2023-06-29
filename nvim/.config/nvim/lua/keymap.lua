@@ -163,11 +163,14 @@ map('x', '<leader>z', mapRunLines("'<", "'>", "zsh"))
 -- folding ----------------------------------
 map('n', 'zl', 'zr') -- opposite of fold (zm)ore is fold (zl)ess
 map('n', 'zL', 'zR') -- also, zr is not very ergonomical
+map('n', 'zh', 'zm') -- opposite of fold (zm)ore is fold (zl)ess
+map('n', 'zH', 'zM') -- opposite of fold (zm)ore is fold (zl)ess
 
 -- helix ----------------------------------
 map('n', 'ge', 'G')
 map('n', 'gl', '$')
 map('n', 'g0', '0')
+map('n', 'gh', '0')
 
 if vim.g.vscode then
 	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))

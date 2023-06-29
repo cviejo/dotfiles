@@ -182,10 +182,10 @@ require('lualine').setup({
 
 require("catppuccin").setup({integrations = {treesitter = true, bufferline = true}})
 
-require('run-code').setup({
-	output = {buffer = true, split_cmd = '20split'},
-	enable_custom_commands = false
-})
+-- require('run-code').setup({
+-- 	output = {buffer = true, split_cmd = '20split'},
+-- 	enable_custom_commands = false
+-- })
 
 require('nvim-autopairs').setup({disable_in_macro = true})
 
