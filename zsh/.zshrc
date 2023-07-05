@@ -30,8 +30,20 @@ safeSource(){
 }
 
 # oh-my-zsh
-plugins=(fzf fzf-tab git zsh-autosuggestions zsh-syntax-highlighting z)
+plugins=(fzf fzf-tab git zsh-autosuggestions zsh-syntax-highlighting z zsh-vi-mode)
 DISABLE_AUTO_UPDATE=true ZSH_THEME=cv safeSource $HOME/.oh-my-zsh/oh-my-zsh.sh
+
+# vim normal mode
+zvm_bindkey vicmd 'ZZ' exit_zsh
+zvm_bindkey vicmd '^r' fzf-history-widget
+zvm_bindkey vicmd 'qh' fzf-history-widget
+zvm_bindkey vicmd 'qr' fzf-history-widget
+zvm_bindkey vicmd 'qp' fzf-file-widget
+zvm_bindkey vicmd 'gh' beginning-of-line
+zvm_bindkey vicmd 'gl' end-of-line
+
+# vim insert mode
+zvm_bindkey viins 'jj' zvm_exit_insert_mode
 
 # aliases
 alias c="clear; set-cursor insert"
@@ -49,7 +61,6 @@ alias gr='git pull -r'
 alias qr="qrencode -o - -t UTF8 "
 
 # local scripts
-safeSource $HOME/.zshrc-vim
 safeSource $HOME/.zshrc-local
 safeSource $HOME/.nix-profile/etc/profile.d/nix.sh
 safeSource $HOME/.config/fzf/theme.sh

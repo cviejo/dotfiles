@@ -110,6 +110,7 @@ for from, to in pairs({q = '"'}) do
 end
 map('n', 'dsq', 'ds"', {remap = true})
 map('n', 'csq', 'cs"', {remap = true})
+map('n', "cs'q", 'cs\'"', {remap = true})
 
 -- shortcuts for frequent sequences ---------
 local abbreviations = {

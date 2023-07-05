@@ -22,6 +22,7 @@ stow oh-my-zsh
 git clone ${github}/zsh-users/zsh-autosuggestions ${zshplugins}/zsh-autosuggestions
 git clone ${github}/zsh-users/zsh-syntax-highlighting.git ${zshplugins}/zsh-syntax-highlighting
 git clone ${github}/Aloxaf/fzf-tab ${zshplugins}/fzf-tab
+git clone ${github}/jeffreytse/zsh-vi-mode ${zshplugins}/zsh-vi-mode
 
 git clone ${github}/tmux-plugins/tpm ${tmuxplugins}/tpm
 
