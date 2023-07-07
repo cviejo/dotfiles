@@ -107,6 +107,10 @@ for from, to in pairs({q = '"'}) do
 	createTextObject(from, 'i' .. to) -- inner is default
 	createTextObject('i' .. from, 'i' .. to)
 	createTextObject('a' .. from, 'a' .. to)
+	createTextObject('t' .. from, 't' .. to)
+	createTextObject('f' .. from, 'f' .. to)
+	createTextObject('T' .. from, 'T' .. to)
+	createTextObject('F' .. from, 'F' .. to)
 end
 map('n', 'dsq', 'ds"', {remap = true})
 map('n', 'csq', 'cs"', {remap = true})
