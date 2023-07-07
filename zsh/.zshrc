@@ -46,7 +46,7 @@ zvm_bindkey vicmd 'gl' end-of-line
 zvm_bindkey viins 'jj' zvm_exit_insert_mode
 
 # aliases
-alias c="clear; set-cursor insert"
+alias c='clear'
 alias e='exit'
 alias n='nvim'
 alias r='RD=$HOME/.config/ranger/dir; ranger --choosedir=$RD; cd `cat $RD`'
