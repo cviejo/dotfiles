@@ -38,7 +38,6 @@ require('packer').startup(function(use)
 	use {"catppuccin/nvim", disable = vscode, as = "catppuccin"}
 	use {'neoclide/coc.nvim', disable = vscode, branch = 'release'}
 	use {'xolox/vim-notes', disable = vscode, requires = {'xolox/vim-misc'}}
-	use {'nvim-lualine/lualine.nvim', disable = vscode, requires = {devicons, opt = true}}
 	use {'styled-components/vim-styled-components', disable = vscode, branch = 'main'}
 
 	-- evaluating:
@@ -153,13 +152,13 @@ require('true-zen').setup({
 	modes = {
 		ataraxis = {
 			padding = {
-				-- ok
+				--
 				top = 5
 			}
 		},
 		narrow = {folds_style = 'invisible'}
 	},
-	integrations = {tmux = true, lualine = true}
+	integrations = {tmux = true}
 })
 
 require('bufferline').setup({
@@ -174,10 +173,6 @@ require('bufferline').setup({
 		separator = {left = '', right = ''}
 	},
 	add_in_buffer_number_order = false
-})
-
-require('lualine').setup({
-	options = {theme = "catppuccin", section_separators = {left = "", right = ""}}
 })
 
 require("catppuccin").setup({integrations = {treesitter = true, bufferline = true}})

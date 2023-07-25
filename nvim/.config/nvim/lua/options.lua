@@ -28,9 +28,9 @@ F.assign(vim.opt, {
 	termguicolors = true,
 	updatetime = 300,
 	-- evaluating:
-	cmdwinheight = 16,
+	cmdwinheight = 16
 	-- cmdheight = 0,
-	laststatus = 0
+	-- laststatus = 0
 })
 
 F.assign(vim.g, {
