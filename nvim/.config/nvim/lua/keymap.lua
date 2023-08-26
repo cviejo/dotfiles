@@ -91,7 +91,7 @@ map('n', '<C-w>d', '<C-w>q')
 map('x', ',ai', ":'<,'>NeoAIContext<cr>")
 map('n', ',ai', ":NeoAI<cr>")
 
--- make all marks global ---------------------
+-- make all marks global --------------------
 for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
 	map('n', 'm' .. x:lower(), 'm' .. x)
 	map('n', '`' .. x:lower(), '`' .. x)
@@ -102,19 +102,25 @@ for x in ([[wbB(){}[]"'/]]):gmatch(".") do
 	createTextObject(x, 'i' .. x)
 end
 
--- double quote (q)
-for from, to in pairs({q = '"'}) do
-	createTextObject(from, 'i' .. to) -- inner is default
+-- double quote (q), curly brace (c) --------
+for from, to in pairs({q = '"', c = '{'}) do
+	-- createTextObject(from, 'i' .. to) -- inner is default
 	createTextObject('i' .. from, 'i' .. to)
 	createTextObject('a' .. from, 'a' .. to)
 	createTextObject('t' .. from, 't' .. to)
 	createTextObject('f' .. from, 'f' .. to)
 	createTextObject('T' .. from, 'T' .. to)
 	createTextObject('F' .. from, 'F' .. to)
+
+	for _, x in ipairs({'ds', 'cs'}) do
+		map('n', x .. from, x .. to, {remap = true})
+	end
+	map('v', 's' .. from, 's' .. to, {remap = true})
 end
-map('n', 'dsq', 'ds"', {remap = true})
-map('n', 'csq', 'cs"', {remap = true})
-map('n', "cs'q", 'cs\'"', {remap = true})
+map('n', "cs'q", "cs'\"", {remap = true})
+map('n', "cs`q", "cs`\"", {remap = true})
+map('n', "csbc", "csb{", {remap = true})
+map('n', "cs[c", "cs[{", {remap = true})
 
 -- shortcuts for frequent sequences ---------
 local abbreviations = {
@@ -135,7 +141,7 @@ end
 map('n', 'vp', 'vip')
 map('n', 'vrb', 'v])h')
 
--- leader ------------------------------------
+-- leader -----------------------------------
 vim.g.mapleader = "'"
 map('n', '<leader>;', '@:')
 map('v', '<leader>;', '@:')

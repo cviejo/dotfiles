@@ -19,7 +19,7 @@ command('CloseOtherBuffers', buffer.closeOther, {})
 -- lowercase abbreviations of commands ---------
 F.forEach(function(x)
 	abbrev(x:lower(), x)
-end, {'Note', 'Goyo', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd'})
+end, {'Note', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd'})
 
 abbrev('sw', 'ISwapNodeWithRight')
 
@@ -27,3 +27,16 @@ abbrev('swl', 'ISwapNodeWithLeft') -- probably not needed
 
 abbrev('sws', 'ISwapWith')
 
+abbrev('sws', 'ISwapWith')
+
+abbrev('frm', 'CocCommand prettier.formatFile')
+
+abbrev('frm', 'CocCommand prettier.formatFile')
+
+abbrev('jso', 'set filetype=json')
+
+abbrev('jsc', 'set filetype=javascript')
+
+abbrev('foc', 'TZAtaraxis')
+
+abbrev('focus', 'TZAtaraxis')
