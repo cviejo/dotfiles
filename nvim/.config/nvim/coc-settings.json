@@ -1,165 +1,188 @@
 {
-	"Lua.diagnostics.globals": ["draw", "jit", "mpd", "of", "setup", "swig_type", "vim"],
-	"coc.source.snippets.priority": 100,
-	"coc.preferences.formatOnSaveFiletypes": [
-		"awk",
-		"c++",
-		"cpp",
-		"elm",
-		"haskell",
-		"html",
-		"javascript",
-		"json",
-		"lua",
-		"purescript",
-		"sh",
-		"shell",
-		"svelte",
-		"typescript",
-		"yaml",
-		"zig"
-	],
-	"diagnostic.checkCurrentLine": true,
-	"diagnostic.enableMessage": "never",
-	"diagnostic.errorSign": "✖",
-	"diagnostic.floatConfig": {
-		"border": true
-	},
-	"diagnostic.hintSign": "ẍ",
-	"diagnostic.infoSign": "⚐",
-	"diagnostic.virtualText": true,
-	"diagnostic.virtualTextCurrentLineOnly": false,
-	"diagnostic.warningSign": "⚠",
-	"eslint.autoFixOnSave": true,
-	"eslint.probe": [
-		"html",
-		"javascript",
-		"javascriptreact",
-		"markdown",
-		"svelte",
-		"typescript",
-		"typescriptreact",
-		"vue"
-	],
-	"eslint.workingDirectories": [
-		{ "pattern": "./context/apps/*" },
-		{ "pattern": "./context/libs/*" },
-		{ "pattern": "./client/apps/*" },
-		{ "pattern": "./client/lins/*" },
-		{ "pattern": "./server/apps/*" },
-		{ "pattern": "./server/libs/*" },
-		{ "pattern": "./tests" }
-	],
-	"explorer.buffer.showHiddenBuffers": true,
-	"explorer.file.reveal.whenOpen": true,
-	"explorer.file.showHiddenFiles": true,
-	"explorer.icon.enableNerdfont": true,
-	"explorer.keyMappings.global": {
-		"y": "copyFile",
-		"Y": "copyFile",
-		"x": "delete",
-		"d": "cutFile",
-		"zh": "toggleHidden"
-	},
-	"explorer.previewAction.onHover": false,
-	"javascript.suggestionActions.enabled": false,
-	"prettier.onlyUseLocalVersion": false,
-	"prettier.printWidth": 100,
-	"prettier.singleQuote": true,
-	"prettier.tabWidth": 3,
-	"prettier.useTabs": true,
-	"suggest.noselect": false,
-	"svelte.plugin.typescript.enable": true,
-	"languageserver": {
-		"awk": {
-			"command": "awk-language-server",
-			"args": ["--noIndex"],
-			"filetypes": ["awk"],
-			"ignoredRootPaths": ["~"]
-		},
-		"zls": {
-			"command": "zls",
-			"filetypes": ["zig"]
-		},
-		"haskell": {
-			"command": "haskell-language-server-wrapper",
-			"args": ["--lsp"],
-			"rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
-			"filetypes": ["haskell", "lhaskell"],
-			"initializationOptions": {
-				"languageServerHaskell": {
-					"hlintOn": true,
-					"maxNumberOfProblems": 10,
-					"completionSnippetsOn": true
-				}
-			}
-		},
-		"elmLS": {
-			"command": "elm-language-server",
-			"filetypes": ["elm"],
-			"rootPatterns": ["elm.json"],
-			"initializationOptions": {
-				"elmPath": "elm",
-				"elmFormatPath": "elm-format",
-				"elmTestPath": "elm-test",
-				"elmAnalyseTrigger": "change",
-				"disableElmLSDiagnostics": false,
-				"skipInstallPackageConfirmation": false
-			}
-		},
-		"purescript": {
-			"command": "purescript-language-server",
-			"args": ["--stdio"],
-			"filetypes": ["purescript"],
-			"trace.server": "off",
-			"rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
-			"settings": {
-				"purescript": {
-					"addSpagoSources": true,
-					"addNpmPath": true
-				}
-			}
-		},
-		"ccls": {
-			"command": "ccls",
-			"filetypes": ["c", "cpp", "objc", "objcpp"],
-			"rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-			"initializationOptions": {
-				"cache": {
-					"directory": "/tmp/ccls"
-				}
-			}
-		}
-	},
-	"git.enableGutters": true,
-	"svelte.enable-ts-plugin": true,
-	"diagnostic-languageserver.filetypes": {
-		"sh": "shellcheck"
-	},
-	"diagnostic-languageserver.formatFiletypes": {
-		"cpp": "cpp-format",
-		"lua": "lua-format",
-		"sh": "shfmt",
-	},
-	"diagnostic-languageserver.formatters": {
-		"shfmt": {
-			"command": "shfmt",
-			"args": ["-i", "0"]
-		},
-		"lua-format": {
-			"command": "lua-format",
-			"args": [
-				"--no-keep-simple-control-block-one-line",
-				"--no-keep-simple-function-one-line",
-				"--use-tab",
-				"--indent-width=1",
-				"--column-limit=100"
-			]
-		},
-		"cpp-format": {
-			"command": "clang-format",
-			"args": []
-		}
-  },
-  "snippets.ultisnips.pythonPrompt": false
+   "Lua.diagnostics.globals": [
+      "draw",
+      "jit",
+      "mpd",
+      "of",
+      "setup",
+      "swig_type",
+      "vim"
+   ],
+   "coc.source.snippets.priority": 100,
+   "coc.preferences.formatOnSaveFiletypes": [
+      "awk",
+      "c++",
+      "cpp",
+      "elm",
+      "haskell",
+      "html",
+      "javascript",
+      "json",
+      "lua",
+      "purescript",
+      "python",
+      "sh",
+      "shell",
+      "svelte",
+      "typescript",
+      "yaml",
+      "zig"
+   ],
+   "coc.preferences.formatOnType": true,
+   "diagnostic.checkCurrentLine": true,
+   "diagnostic.enableMessage": "never",
+   "diagnostic.errorSign": "✖",
+   "diagnostic.floatConfig": {
+      "border": true
+   },
+   "diagnostic.hintSign": "ẍ",
+   "diagnostic.infoSign": "⚐",
+   "diagnostic.virtualText": true,
+   "diagnostic.virtualTextCurrentLineOnly": false,
+   "diagnostic.warningSign": "⚠",
+   "eslint.autoFixOnSave": true,
+   "eslint.probe": [
+      "html",
+      "javascript",
+      "javascriptreact",
+      "markdown",
+      "svelte",
+      "typescript",
+      "typescriptreact",
+      "vue"
+   ],
+   "eslint.workingDirectories": [
+      { "pattern": "./context/apps/*" },
+      { "pattern": "./context/libs/*" },
+      { "pattern": "./client/apps/*" },
+      { "pattern": "./client/lins/*" },
+      { "pattern": "./server/apps/*" },
+      { "pattern": "./server/libs/*" },
+      { "pattern": "./tests" }
+   ],
+   "explorer.buffer.showHiddenBuffers": true,
+   "explorer.file.reveal.whenOpen": true,
+   "explorer.file.showHiddenFiles": true,
+   "explorer.icon.enableNerdfont": true,
+   "explorer.keyMappings.global": {
+      "y": "copyFile",
+      "Y": "copyFile",
+      "x": "delete",
+      "d": "cutFile",
+      "zh": "toggleHidden"
+   },
+   "explorer.previewAction.onHover": false,
+   "javascript.suggestionActions.enabled": false,
+   "prettier.onlyUseLocalVersion": false,
+   "prettier.printWidth": 100,
+   "prettier.singleQuote": true,
+   "prettier.tabWidth": 3,
+   "prettier.useTabs": true,
+   "suggest.noselect": false,
+   "svelte.plugin.typescript.enable": true,
+   "languageserver": {
+      "awk": {
+         "command": "awk-language-server",
+         "args": ["--noIndex"],
+         "filetypes": ["awk"],
+         "ignoredRootPaths": ["~"]
+      },
+      "zls": {
+         "command": "zls",
+         "filetypes": ["zig"]
+      },
+      "haskell": {
+         "command": "haskell-language-server-wrapper",
+         "args": ["--lsp"],
+         "rootPatterns": [
+            "*.cabal",
+            "stack.yaml",
+            "cabal.project",
+            "package.yaml",
+            "hie.yaml"
+         ],
+         "filetypes": ["haskell", "lhaskell"],
+         "initializationOptions": {
+            "languageServerHaskell": {
+               "hlintOn": true,
+               "maxNumberOfProblems": 10,
+               "completionSnippetsOn": true
+            }
+         }
+      },
+      "elmLS": {
+         "command": "elm-language-server",
+         "filetypes": ["elm"],
+         "rootPatterns": ["elm.json"],
+         "initializationOptions": {
+            "elmPath": "elm",
+            "elmFormatPath": "elm-format",
+            "elmTestPath": "elm-test",
+            "elmAnalyseTrigger": "change",
+            "disableElmLSDiagnostics": false,
+            "skipInstallPackageConfirmation": false
+         }
+      },
+      "purescript": {
+         "command": "purescript-language-server",
+         "args": ["--stdio"],
+         "filetypes": ["purescript"],
+         "trace.server": "off",
+         "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
+         "settings": {
+            "purescript": {
+               "addSpagoSources": true,
+               "addNpmPath": true
+            }
+         }
+      },
+      "ccls": {
+         "command": "ccls",
+         "filetypes": ["c", "cpp", "objc", "objcpp"],
+         "rootPatterns": [
+            ".ccls",
+            "compile_commands.json",
+            ".vim/",
+            ".git/",
+            ".hg/"
+         ],
+         "initializationOptions": {
+            "cache": {
+               "directory": "/tmp/ccls"
+            }
+         }
+      }
+   },
+   "python.formatting.provider": "black",
+   "git.enableGutters": true,
+   "svelte.enable-ts-plugin": true,
+   "diagnostic-languageserver.filetypes": {
+      "sh": "shellcheck"
+   },
+   "diagnostic-languageserver.formatFiletypes": {
+      "cpp": "cpp-format",
+      "lua": "lua-format",
+      "sh": "shfmt"
+   },
+   "diagnostic-languageserver.formatters": {
+      "shfmt": {
+         "command": "shfmt",
+         "args": ["-i", "0"]
+      },
+      "lua-format": {
+         "command": "lua-format",
+         "args": [
+            "--no-keep-simple-control-block-one-line",
+            "--no-keep-simple-function-one-line",
+            "--use-tab",
+            "--indent-width=1",
+            "--column-limit=100"
+         ]
+      },
+      "cpp-format": {
+         "command": "clang-format",
+         "args": []
+      }
+   },
+   "snippets.ultisnips.pythonPrompt": false
 }
