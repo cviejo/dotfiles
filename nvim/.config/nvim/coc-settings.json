@@ -60,8 +60,10 @@
       { "pattern": "./server/libs/*" },
       { "pattern": "./tests" }
    ],
+   "explorer.buffer.root.template": "[icon] OPEN FILES",
    "explorer.buffer.showHiddenBuffers": true,
    "explorer.file.reveal.whenOpen": true,
+   "explorer.file.root.template": "[icon] FOLDERS [root]",
    "explorer.file.showHiddenFiles": true,
    "explorer.icon.enableNerdfont": true,
    "explorer.keyMappings.global": {
@@ -72,6 +74,10 @@
       "zh": "toggleHidden"
    },
    "explorer.previewAction.onHover": false,
+   "explorer.sources": [
+      { "name": "buffer", "expand": true },
+      { "name": "file", "expand": true }
+   ],
    "javascript.suggestionActions.enabled": false,
    "prettier.onlyUseLocalVersion": false,
    "prettier.printWidth": 100,
