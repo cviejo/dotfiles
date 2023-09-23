@@ -64,3 +64,7 @@ alias qr="qrencode -o - -t UTF8 "
 safeSource $HOME/.zshrc-local
 safeSource $HOME/.nix-profile/etc/profile.d/nix.sh
 safeSource $HOME/.config/fzf/theme.sh
+
+
+# bun completions
+[ -s "/Users/viejo/.bun/_bun" ] && source "/Users/viejo/.bun/_bun"

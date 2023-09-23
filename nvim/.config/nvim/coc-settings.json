@@ -8,26 +8,7 @@
       "swig_type",
       "vim"
    ],
-   "coc.source.snippets.priority": 100,
-   "coc.preferences.formatOnSaveFiletypes": [
-      "awk",
-      "c++",
-      "cpp",
-      "elm",
-      "haskell",
-      "html",
-      "javascript",
-      "json",
-      "lua",
-      "purescript",
-      "python",
-      "sh",
-      "shell",
-      "svelte",
-      "typescript",
-      "yaml",
-      "zig"
-   ],
+   "coc.preferences.formatOnSave": true,
    "coc.preferences.formatOnType": true,
    "diagnostic.checkCurrentLine": true,
    "diagnostic.enableMessage": "never",
@@ -92,10 +73,6 @@
          "args": ["--noIndex"],
          "filetypes": ["awk"],
          "ignoredRootPaths": ["~"]
-      },
-      "zls": {
-         "command": "zls",
-         "filetypes": ["zig"]
       },
       "haskell": {
          "command": "haskell-language-server-wrapper",
@@ -190,5 +167,7 @@
          "args": []
       }
    },
-   "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "zig.zls.path": "/Users/viejo/.config/coc/extensions/coc-zls-data/zls_install/zls",
+  "zig.zls.enabled": true
 }

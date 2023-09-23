@@ -74,6 +74,7 @@ F.assign(vim.g, {
 		'coc-yaml',
 		'coc-html',
 		'coc-pyright',
+		'coc-zls',
 		'https://github.com/nathanchapman/vscode-javascript-snippets'
 	},
 	coc_snippet_next = '<tab>',
