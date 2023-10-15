@@ -19,8 +19,8 @@ require('packer').startup(function(use)
 	use 'mizlan/iswap.nvim'
 	use 'numToStr/Comment.nvim'
 	use 'uga-rosa/translate.nvim'
-	use 'github/copilot.vim'
 
+	use {'github/copilot.vim', disable = vscode}
 	use {'ziglang/zig.vim', disable = vscode}
 	use {'jbyuki/venn.nvim', disable = vscode}
 	use {'windwp/nvim-autopairs', disable = vscode}

@@ -32,6 +32,10 @@
       "typescriptreact",
       "vue"
    ],
+   "html.format.enable": true,
+   "html.format.templating": true,
+   "html.format.indentHandlebars": true,
+   "html.filetypes": ["html", "handlebars"],
    "eslint.workingDirectories": [
       { "pattern": "./context/apps/*" },
       { "pattern": "./context/libs/*" },
@@ -167,7 +171,7 @@
          "args": []
       }
    },
-  "snippets.ultisnips.pythonPrompt": false,
-  "zig.zls.path": "/Users/viejo/.config/coc/extensions/coc-zls-data/zls_install/zls",
-  "zig.zls.enabled": true
+   "snippets.ultisnips.pythonPrompt": false,
+   "zig.zls.path": "/Users/viejo/.config/coc/extensions/coc-zls-data/zls_install/zls",
+   "zig.zls.enabled": true
 }
