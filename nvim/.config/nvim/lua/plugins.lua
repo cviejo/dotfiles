@@ -20,6 +20,7 @@ require('packer').startup(function(use)
 	use 'numToStr/Comment.nvim'
 	use 'uga-rosa/translate.nvim'
 
+	use {'stevearc/oil.nvim', disable = vscode}
 	use {'github/copilot.vim', disable = vscode}
 	use {'ziglang/zig.vim', disable = vscode}
 	use {'jbyuki/venn.nvim', disable = vscode}
@@ -150,6 +151,12 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 })
 
 vim.cmd('colorscheme catppuccin')
+
+require("oil").setup({
+	default_file_explorer = true,
+	view_options = {show_hidden = true},
+	delete_to_trash = true
+})
 
 require('colorizer').setup()
 

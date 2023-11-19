@@ -67,6 +67,7 @@ map('x', 'gz', ":'<,'>TZNarrow<cr>")
 -- vimium style bindings --------------------
 map('n', 'J', cmd('BufferPrevious'))
 map('n', 'K', cmd('BufferNext'))
+map('n', '<tab>', cmd('BufferNext'))
 map('n', '<c-d>', '5j')
 map('n', '<c-u>', '5k')
 map('n', 'co', buffer.closeOther)
@@ -134,7 +135,7 @@ end
 local abbreviations = {
 	p = 'ap',
 	rb = '])',
-	rB = ']]',
+	rB = ']}',
 	[','] = 't,',
 	['.'] = 't.',
 	[';'] = 't;',
@@ -147,6 +148,7 @@ end
 
 map('n', 'vp', 'vip')
 map('n', 'vrb', 'v])h')
+map('n', 'vrB', 'v]}h')
 
 -- leader -----------------------------------
 vim.g.mapleader = "'"
