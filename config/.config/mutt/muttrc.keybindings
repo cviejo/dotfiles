@@ -25,6 +25,8 @@ macro  index,pager          gu       <pipe-message>urlscan\ -W\n
 macro  index                zi       <collapse-all><redraw-screen>
 macro  index                \'e      <change-folder>?
 macro  generic,pager        \'r      :source\ ~/.config/mutt/muttrc\n<refresh><redraw-screen>
+macro  generic,pager        \'r      :source\ ~/.config/mutt/muttrc\n<refresh><redraw-screen>
+macro  generic,pager        \'m      :exec\ tag-prefix\ save-message\n
 macro  attach               o        "$my_run clean\n<save-entry>^A$my_tmp/index.html\n$my_run open\n" "open"
 macro  compose              a        "$my_run pick\n:source $my_tmp/pick\n$my_run clean\n" "attach"
 

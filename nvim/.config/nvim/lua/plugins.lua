@@ -25,7 +25,6 @@ require('packer').startup(function(use)
 	use {'ziglang/zig.vim', disable = vscode}
 	use {'jbyuki/venn.nvim', disable = vscode}
 	use {'windwp/nvim-autopairs', disable = vscode}
-	use {'arjunmahishi/run-code.nvim', disable = vscode}
 	use {'jpalardy/vim-slime', disable = vscode}
 	use {'junegunn/fzf', disable = vscode}
 	use {'junegunn/fzf.vim', disable = vscode}
@@ -188,11 +187,6 @@ require('bufferline').setup({
 })
 
 require("catppuccin").setup({integrations = {treesitter = true, bufferline = true}})
-
--- require('run-code').setup({
--- 	output = {buffer = true, split_cmd = '20split'},
--- 	enable_custom_commands = false
--- })
 
 require('nvim-autopairs').setup({disable_in_macro = true})
 
