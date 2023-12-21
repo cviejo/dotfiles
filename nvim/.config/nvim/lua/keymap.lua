@@ -49,10 +49,10 @@ map('n', 's', cmd('HopWord'))
 map('n', 'S', cmd('BufferPick'))
 
 -- g bindings (mostly coc) ------------------
-map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"',
-    {expr = true, replace_keycodes = false})
-map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"',
-    {expr = true, replace_keycodes = false})
+-- map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"',
+--     {expr = true, replace_keycodes = false})
+-- map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"',
+--     {expr = true, replace_keycodes = false})
 map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"',
     {expr = true, replace_keycodes = false})
 map('n', 'gd', '<Plug>(coc-definition)')
@@ -86,6 +86,7 @@ map('n', 'qh', cmd('History:'))
 
 -- window -----------------------------------
 map('n', ',', '<c-w>', {remap = true})
+map('n', '<C-w><tab>', '<C-w><C-w>')
 map('n', '<C-w>/', cmd('vsp'))
 map('n', '<C-w>-', cmd('sp'))
 map('n', '<C-w>z', toggleZoom)
