@@ -6,17 +6,17 @@ window:
 
 font:
    normal:
-      family: 'DejaVuSansMono Nerd Font Mono'
+      family: "DejaVuSansMono Nerd Font Mono"
    bold:
-      family: 'DejaVuSansMono Nerd Font Mono'
+      family: "DejaVuSansMono Nerd Font Mono"
    italic:
-      family: 'DejaVuSansMono Nerd Font Mono'
+      family: "DejaVuSansMono Nerd Font Mono"
    size: 15.0
 
 colors:
    primary:
-      background: '#303446'
-      foreground: '#EAEAEA'
+      background: "#303446"
+      foreground: "#EAEAEA"
 
 key_bindings:
    - { key: Space, mods: Control, chars: "\x00" }
@@ -31,3 +31,13 @@ key_bindings:
    - { key: L, mods: Shift|Alt, chars: "\x1bL" }
    - { key: I, mods: Alt, chars: "\x1bi" }
    - { key: M, mods: Alt, chars: "\x1bm" }
+
+   # \x00 is the c-space, tmux key + n
+   # - { key: Tab, mods: Shift, chars: "\x00n" }
+   - { key: Tab, mods: Control, chars: "\x00n" }
+   - { key: Return, mods: Control, chars: "\x00n" }
+   - { key: Comma, mods: Control, chars: "\x00<" }
+   - { key: Period, mods: Control, chars: "\x00>" }
+   - { key: Semicolon, mods: Control, chars: "\x00:" }
+   - { key: Minus, mods: Control, chars: "\x00-" }
+   - { key: Backslash, mods: Control, chars: "\x00/" }
