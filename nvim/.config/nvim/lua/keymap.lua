@@ -42,6 +42,7 @@ map('i', 'jj', '<Esc>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 map('t', 'jj', '<C-\\><C-n>')
+map('n', '<cr>', 'viw')
 
 -- plugins ----------------------------------
 map('x', 's', '<Plug>VSurround')
@@ -62,7 +63,7 @@ map('n', 'gp', '<plug>(coc-diagnostic-prev)')
 map('n', 'gr', '<Plug>(coc-references)')
 map('n', 'gt', '<Plug>(coc-type-definition)')
 map('n', 'gz', ':TZAtaraxis<cr>')
-map('x', 'gz', ":'<,'>TZNarrow<cr>")
+map('x', 'gz', ':\'<,\'>TZNarrow<cr>')
 
 -- vimium style bindings --------------------
 map('n', 'J', cmd('BufferPrevious'))
@@ -92,17 +93,17 @@ map('n', '<C-w>-', cmd('sp'))
 map('n', '<C-w>z', toggleZoom)
 map('n', '<C-w>d', '<C-w>q')
 -- map('n', '<C-w>zs', cmd('BufferPick'))
-map('x', ',ai', ":'<,'>NeoAIContext<cr>")
-map('n', ',ai', ":NeoAI<cr>")
+map('x', ',ai', ':\'<,\'>NeoAIContext<cr>')
+map('n', ',ai', ':NeoAI<cr>')
 
 -- make all marks global --------------------
-for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch(".") do
+for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch('.') do
 	map('n', 'm' .. x:lower(), 'm' .. x)
 	map('n', '`' .. x:lower(), '`' .. x)
 end
 
 -- make inner the default behaviour ---------
-for x in ([[wbB(){}[]"'/]]):gmatch(".") do
+for x in ([[wbB(){}[]"'/]]):gmatch('.') do
 	createTextObject(x, 'i' .. x)
 end
 
@@ -121,12 +122,12 @@ for from, to in pairs({q = '"', c = '{'}) do
 	end
 	map('v', 's' .. from, 's' .. to, {remap = true})
 end
-map('n', "cs'q", "cs'\"", {remap = true})
-map('n', "cs`q", "cs`\"", {remap = true})
-map('n', "csbc", "csb{", {remap = true})
-map('n', "cs[c", "cs[{", {remap = true})
+map('n', 'cs\'q', 'cs\'"', {remap = true})
+map('n', 'cs`q', 'cs`"', {remap = true})
+map('n', 'csbc', 'csb{', {remap = true})
+map('n', 'cs[c', 'cs[{', {remap = true})
 
-map('n', "]c", "]", {remap = true})
+map('n', ']c', ']', {remap = true})
 
 local verbs = {'d', 'c', 'y'}
 for _, x in ipairs(verbs) do
@@ -153,7 +154,7 @@ map('n', 'vrb', 'v])h')
 map('n', 'vrB', 'v]}h')
 
 -- leader -----------------------------------
-vim.g.mapleader = "'"
+vim.g.mapleader = '\''
 map('n', '<leader>;', '@:')
 map('v', '<leader>;', '@:')
 map('n', '<leader>a', 'ggVG')
@@ -166,21 +167,21 @@ map('v', '<leader>f', [["vy:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>g', cmd('G'))
 map('n', '<leader>h', cmd('noh'))
 map('n', '<leader>i', [[mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
-map('n', '<leader>j', mapRunLines("'{", "'}", "node"))
-map('x', '<leader>j', mapRunLines("'<", "'>", "node"))
+map('n', '<leader>j', mapRunLines('\'{', '\'}', 'node'))
+map('x', '<leader>j', mapRunLines('\'<', '\'>', 'node'))
 map('n', '<leader>n', '*')
 map('x', '<leader>n', feedkeys('*')) -- 0.8
 map('n', '<leader>o', 'o<Esc>')
 map('v', '<leader>p', '"_dP')
 map('n', '<leader>q', '@q')
-map('x', '<leader>q', ": norm @q<cr>")
+map('x', '<leader>q', ': norm @q<cr>')
 map('n', '<leader>r', 'q:k<cr>') -- probably don't need this, enough with 'q for the macros
 map('x', '<leader>s', '<Plug>SlimeRegionSend')
 map('n', '<leader>s', '<Plug>SlimeParagraphSend')
-map('x', '<leader>t', ":'<,'>Translate DE<cr>")
+map('x', '<leader>t', ':\'<,\'>Translate DE<cr>')
 map('n', '<leader>w', cmd('w'))
-map('n', '<leader>z', mapRunLines("'{", "'}", "zsh"))
-map('x', '<leader>z', mapRunLines("'<", "'>", "zsh"))
+map('n', '<leader>z', mapRunLines('\'{', '\'}', 'zsh'))
+map('x', '<leader>z', mapRunLines('\'<', '\'>', 'zsh'))
 map('n', '<leader>/', tmux.verticalSplit)
 map('n', '<leader>-', tmux.horizontalSplit)
 

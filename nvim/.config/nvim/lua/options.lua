@@ -1,11 +1,11 @@
 local F = require('utils.functional')
 
-vim.opt.shortmess:append("I")
-vim.opt.diffopt:append("vertical")
+vim.opt.shortmess:append('I')
+vim.opt.diffopt:append('vertical')
 
 F.assign(vim.opt, {
 	autoread = true,
-	clipboard = "unnamedplus",
+	clipboard = 'unnamedplus',
 	cursorline = true,
 	expandtab = false,
 	foldenable = false,
@@ -16,7 +16,7 @@ F.assign(vim.opt, {
 	inccommand = 'nosplit',
 	list = true,
 	listchars = 'tab:│ ,trail:·',
-	mouse = "a",
+	mouse = 'a',
 	number = true,
 	shiftwidth = 3,
 	smartcase = true,

@@ -20,7 +20,6 @@ colors:
 
 key_bindings:
    - { key: Space, mods: Control, chars: "\x00" }
-   - { key: Slash, mods: Control, chars: "\x1f" }
    - { key: H, mods: Alt, chars: "\x1bh" }
    - { key: H, mods: Shift|Alt, chars: "\x1bH" }
    - { key: J, mods: Alt, chars: "\x1bj" }
@@ -33,11 +32,17 @@ key_bindings:
    - { key: M, mods: Alt, chars: "\x1bm" }
 
    # \x00 is the c-space, tmux key + n
-   # - { key: Tab, mods: Shift, chars: "\x00n" }
-   - { key: Tab, mods: Control, chars: "\x00n" }
+   # - { key: Tab, mods: Control, chars: "\x00n" }
    - { key: Return, mods: Control, chars: "\x00n" }
+   - { key: U, mods: Control, chars: "\x00u" }
+   - { key: F, mods: Control, chars: "\x00f" }
    - { key: Comma, mods: Control, chars: "\x00<" }
    - { key: Period, mods: Control, chars: "\x00>" }
    - { key: Semicolon, mods: Control, chars: "\x00:" }
    - { key: Minus, mods: Control, chars: "\x00-" }
-   - { key: Backslash, mods: Control, chars: "\x00/" }
+   - { key: Slash, mods: Control, chars: "\x00/" }
+   - { key: Apostrophe, mods: Control, chars: "\x00c" }
+
+   # - { key: Tab, mods: Shift, chars: "\x00n" }
+   # - { key: Backslash, mods: Control, chars: "\x00/" }
+   # - { key, mods: Control, chars: "\x00c" }
