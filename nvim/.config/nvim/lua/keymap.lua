@@ -50,15 +50,10 @@ map('n', 's', cmd('HopWord'))
 map('n', 'S', cmd('BufferPick'))
 
 -- g bindings (mostly coc) ------------------
--- map('i', '<tab>', 'coc#pum#visible() ? coc#pum#next(1) : "<tab>"',
---     {expr = true, replace_keycodes = false})
--- map('i', '<s-tab>', 'coc#pum#visible() ? coc#pum#prev(1) : "<s-tab>"',
---     {expr = true, replace_keycodes = false})
 map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"',
-    {expr = true, replace_keycodes = false})
+	{ expr = true, replace_keycodes = false })
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', 'gn', '<plug>(coc-diagnostic-next)')
--- map('n', 'gh', cmd('call CocAction("definitionHover")'))
 map('n', 'gp', '<plug>(coc-diagnostic-prev)')
 map('n', 'gr', '<Plug>(coc-references)')
 map('n', 'gt', '<Plug>(coc-type-definition)')
@@ -86,13 +81,12 @@ map('n', 'qr', cmd('History'))
 map('n', 'qh', cmd('History:'))
 
 -- window -----------------------------------
-map('n', ',', '<c-w>', {remap = true})
+map('n', ',', '<c-w>', { remap = true })
 map('n', '<C-w><tab>', '<C-w><C-w>')
 map('n', '<C-w>/', cmd('vsp'))
 map('n', '<C-w>-', cmd('sp'))
 map('n', '<C-w>z', toggleZoom)
 map('n', '<C-w>d', '<C-w>q')
--- map('n', '<C-w>zs', cmd('BufferPick'))
 map('x', ',ai', ':\'<,\'>NeoAIContext<cr>')
 map('n', ',ai', ':NeoAI<cr>')
 
@@ -108,7 +102,7 @@ for x in ([[wbB(){}[]"'/]]):gmatch('.') do
 end
 
 -- double quote (q), curly brace (c) --------
-for from, to in pairs({q = '"', c = '{'}) do
+for from, to in pairs({ q = '"', c = '{' }) do
 	-- createTextObject(from, 'i' .. to) -- inner is default
 	createTextObject('i' .. from, 'i' .. to)
 	createTextObject('a' .. from, 'a' .. to)
@@ -117,21 +111,21 @@ for from, to in pairs({q = '"', c = '{'}) do
 	createTextObject('T' .. from, 'T' .. to)
 	createTextObject('F' .. from, 'F' .. to)
 
-	for _, x in ipairs({'ds', 'cs'}) do
-		map('n', x .. from, x .. to, {remap = true})
+	for _, x in ipairs({ 'ds', 'cs' }) do
+		map('n', x .. from, x .. to, { remap = true })
 	end
-	map('v', 's' .. from, 's' .. to, {remap = true})
+	map('v', 's' .. from, 's' .. to, { remap = true })
 end
-map('n', 'cs\'q', 'cs\'"', {remap = true})
-map('n', 'cs`q', 'cs`"', {remap = true})
-map('n', 'csbc', 'csb{', {remap = true})
-map('n', 'cs[c', 'cs[{', {remap = true})
+map('n', 'cs\'q', 'cs\'"', { remap = true })
+map('n', 'cs`q', 'cs`"', { remap = true })
+map('n', 'csbc', 'csb{', { remap = true })
+map('n', 'cs[c', 'cs[{', { remap = true })
 
-map('n', ']c', ']', {remap = true})
+map('n', ']c', ']', { remap = true })
 
-local verbs = {'d', 'c', 'y'}
+local verbs = { 'd', 'c', 'y' }
 for _, x in ipairs(verbs) do
-	map('n', x .. '<CR>', '<CR>' .. x, {remap = true})
+	map('n', x .. '<CR>', '<CR>' .. x, { remap = true })
 end
 
 -- shortcuts for frequent sequences ---------
@@ -192,7 +186,7 @@ map('n', 'zh', 'zm') -- opposite of fold (zm)ore is fold (zl)ess
 map('n', 'zH', 'zM') -- opposite of fold (zm)ore is fold (zl)ess
 
 -- helix ----------------------------------
-for from, to in pairs({gl = '$', gh = '0', gk = 'gg', gj = 'G'}) do
+for from, to in pairs({ gl = '$', gh = '0', gk = 'gg', gj = 'G' }) do
 	createTextObject(from, to)
 	map('n', from, to)
 	map('x', from, to)
