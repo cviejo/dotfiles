@@ -19,7 +19,7 @@ command('CloseOtherBuffers', buffer.closeOther, {})
 -- lowercase abbreviations of commands ---------
 F.forEach(function(x)
 	abbrev(x:lower(), x)
-end, {'Note', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd'})
+end, { 'Note', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd' })
 
 abbrev('sw', 'ISwapNodeWithRight')
 
@@ -40,3 +40,5 @@ abbrev('jsc', 'set filetype=javascript')
 abbrev('foc', 'TZAtaraxis')
 
 abbrev('focus', 'TZAtaraxis')
+
+abbrev('z', 'TZAtaraxis')
