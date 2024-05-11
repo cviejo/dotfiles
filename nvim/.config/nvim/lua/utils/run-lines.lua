@@ -5,7 +5,7 @@ local format = string.format
 local getline, expand, system = vim.fn.getline, vim.fn.expand, vim.fn.system
 
 local echo = function(txt)
-	vim.api.nvim_echo({{txt}}, false, {})
+	vim.api.nvim_echo({ { txt } }, false, {})
 end
 
 return function(from, to, bin)
@@ -14,4 +14,3 @@ return function(from, to, bin)
 
 	echo(system('cd ' .. expand('%:p:h') .. ' && ' .. command))
 end
-

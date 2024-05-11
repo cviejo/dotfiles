@@ -1,0 +1,122 @@
+[colors.primary]
+background = "#303446"
+foreground = "#EAEAEA"
+
+[window]
+decorations = "full"
+
+[window.padding]
+x = 8
+y = 8
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "DejaVuSansM Nerd Font Mono"
+
+[font.italic]
+family = "DejaVuSansM Nerd Font Mono"
+
+[font.normal]
+family = "DejaVuSansM Nerd Font Mono"
+
+[[keyboard.bindings]]
+chars = "\u0000"
+key = "Space"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001Bh"
+key = "H"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BH"
+key = "H"
+mods = "Shift|Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bj"
+key = "J"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BJ"
+key = "J"
+mods = "Shift|Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bk"
+key = "K"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BK"
+key = "K"
+mods = "Shift|Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bl"
+key = "L"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BL"
+key = "L"
+mods = "Shift|Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bi"
+key = "I"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bm"
+key = "M"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u0000n"
+key = "Return"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000u"
+key = "U"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000f"
+key = "F"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000<"
+key = "Comma"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000>"
+key = "Period"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000:"
+key = "Semicolon"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000-"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000/"
+key = "Slash"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000c"
+key = "'"
+mods = "Control"

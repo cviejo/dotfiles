@@ -1,5 +1,5 @@
 local map = function(mode, from, to)
-	vim.api.nvim_buf_set_keymap(0, mode, from, to, {noremap = true})
+	vim.api.nvim_buf_set_keymap(0, mode, from, to, { noremap = true })
 end
 
 -- venn.nvim: enable or disable keymappings

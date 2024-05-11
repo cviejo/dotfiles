@@ -3,4 +3,5 @@ double_quote_to_single_quote: true
 indent_width: 1
 keep_simple_control_block_one_line: false
 keep_simple_function_one_line: false
+spaces_inside_table_braces: true
 use_tab: true

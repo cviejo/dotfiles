@@ -65,7 +65,7 @@ end
 
 M.unapply = function(fn)
 	return function(...)
-		return fn({...})
+		return fn({ ... })
 	end
 end
 
@@ -176,7 +176,7 @@ end)
 -- avoid inlining / creating functions dynamically in potentially hot paths
 -- in this case means declaring the reducer only once
 M.pipe = function(...)
-	local fns = {...}
+	local fns = { ... }
 	local reducer = function(acc, fn)
 		return fn(acc)
 	end
@@ -266,7 +266,7 @@ end)
 
 M.thunkify = function(fn)
 	return function(...)
-		local args = {...}
+		local args = { ... }
 		return function()
 			return fn(unpack(args))
 		end

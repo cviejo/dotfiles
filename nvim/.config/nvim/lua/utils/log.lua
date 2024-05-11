@@ -23,7 +23,7 @@ local selection = function()
 	vim.cmd('norm gv')
 end
 
-return {underCursor = underCursor, selection = selection}
+return { underCursor = underCursor, selection = selection }
 
 -- usage
 -- map('n', '<leader>l', log.underCursor)

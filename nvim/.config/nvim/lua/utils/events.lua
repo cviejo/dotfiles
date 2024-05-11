@@ -7,7 +7,7 @@ M.getBufType = function(id)
 end
 
 M.onBufLeave = function(callback)
-	on("BufLeave", {pattern = {'<buffer>'}, callback = callback})
+	on("BufLeave", { pattern = { '<buffer>' }, callback = callback })
 end
 
 M.onTermOpen = function(callback)

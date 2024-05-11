@@ -158,8 +158,8 @@
       },
       "lua-format": {
          "shell": true,
-         "command": "lua-format"
-         // "args": ["--config=/Users/viejo/.config/lua/lua-format.yml"]
+         "command": "lua-format",
+         "args": ["--config=/Users/viejo/.config/lua/.lua-format"]
       },
       "cpp-format": {
          "command": "clang-format",
