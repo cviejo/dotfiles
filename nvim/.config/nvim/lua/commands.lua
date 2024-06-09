@@ -43,4 +43,4 @@ abbrev('focus', 'TZAtaraxis')
 
 abbrev('z', 'TZAtaraxis')
 
-abbrev('qq', 'qa!')
+abbrev('qaa', 'qa!')
