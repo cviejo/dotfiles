@@ -16,6 +16,8 @@ command('TmuxHorizontalSplit', tmux.horizontalSplit, {})
 
 command('CloseOtherBuffers', buffer.closeOther, {})
 
+command('UseTabs', 'set noet ci pi sts=0 sw=3 ts=3', {})
+
 -- lowercase abbreviations of commands ---------
 F.forEach(function(x)
 	abbrev(x:lower(), x)
