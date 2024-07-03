@@ -18,11 +18,6 @@ command('CloseOtherBuffers', buffer.closeOther, {})
 
 command('UseTabs', 'set noet ci pi sts=0 sw=3 ts=3', {})
 
--- lowercase abbreviations of commands ---------
-F.forEach(function(x)
-	abbrev(x:lower(), x)
-end, { 'Note', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd' })
-
 abbrev('sw', 'ISwapNodeWithRight')
 
 abbrev('swl', 'ISwapNodeWithLeft') -- probably not needed
@@ -46,3 +41,7 @@ abbrev('focus', 'TZAtaraxis')
 abbrev('z', 'TZAtaraxis')
 
 abbrev('qaa', 'qa!')
+
+F.forEach(function(x)
+	abbrev(x:lower(), x)
+end, { 'Note', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd' })
