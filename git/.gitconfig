@@ -20,3 +20,9 @@
 	prompt = false
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[user]
+	name = cviejo
+	signingkey = 0B86782B8AA1F893
+	email = 1179357+cviejo@users.noreply.github.com
+[commit]
+	gpgsign = true
