@@ -148,6 +148,7 @@
    },
    "diagnostic-languageserver.formatFiletypes": {
       "cpp": "cpp-format",
+      "chuck": "chuck-format",
       "lua": "lua-format",
       "sh": "shfmt"
    },
@@ -163,6 +164,10 @@
       },
       "cpp-format": {
          "command": "clang-format",
+         "args": []
+      },
+      "chuck-format": {
+         "command": "chuck-format",
          "args": []
       }
    },

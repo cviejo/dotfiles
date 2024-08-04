@@ -1,0 +1,24 @@
+#! /bin/bash
+# shellcheck disable=2086
+set -e
+
+clang-format $1 |
+	awk ' {
+		gsub(/=\ >/,"=>");
+		gsub(/=\ </,"=<");
+		gsub(/\ ::/,"::");
+		gsub(/@ =>/,"@=>");
+		gsub(/<<</,"<<< ");
+		gsub(/>>>/," >>>");
+
+		# fixes clang-format splitting `plublic class` into two lines
+		if ($0 == "public") {
+			printPublic = 1;
+		} else if (printPublic) {
+			printPublic = 0;
+			print "public "$0
+		} else {
+			print;
+		}
+	}
+'
