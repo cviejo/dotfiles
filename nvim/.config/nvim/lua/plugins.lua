@@ -63,6 +63,7 @@ F.assign(vim.g, {
 		'coc-eslint',
 		'coc-explorer',
 		'coc-git',
+		'coc-go',
 		'coc-json',
 		'coc-lua',
 		'coc-prettier',
