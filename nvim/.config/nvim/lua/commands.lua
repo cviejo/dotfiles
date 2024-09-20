@@ -30,11 +30,13 @@ abbrev('frm', 'CocCommand prettier.formatFile')
 
 abbrev('frm', 'CocCommand prettier.formatFile')
 
-abbrev('jso', 'set filetype=json')
+abbrev('sjn', 'set filetype=json')
 
-abbrev('jsc', 'set filetype=javascript')
+abbrev('sjs', 'set filetype=javascript')
 
-abbrev('foc', 'TZAtaraxis')
+abbrev('tmh', 'TmuxHorizontalSplit')
+
+abbrev('tmv', 'TmuxVerticalSplit')
 
 abbrev('focus', 'TZAtaraxis')
 

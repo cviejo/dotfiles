@@ -12,6 +12,7 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/args
 export TERM=xterm-256color
 export ZSH=$HOME/.oh-my-zsh
+export MANPAGER='nvim +Man!'
 
 # local data
 export HISTFILE=$HOME/.local/share/zsh/.history

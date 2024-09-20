@@ -2,14 +2,19 @@
 # shellcheck disable=2086
 set -e
 
-clang-format $1 |
-	awk ' {
+clang-format $1 | awk '
+	# gensub/capture groups only available in gawk
+	/<<<[^ ]/ {
+		gsub(/<<</,"<<< ");
+	}
+	/[^ ]>>>/ {
+		gsub(/>>>/," >>>");
+	}
+	{
 		gsub(/=\ >/,"=>");
 		gsub(/=\ </,"=<");
 		gsub(/\ ::/,"::");
 		gsub(/@ =>/,"@=>");
-		gsub(/<<</,"<<< ");
-		gsub(/>>>/," >>>");
 
 		# fixes clang-format splitting `plublic class` into two lines
 		if ($0 == "public") {
@@ -20,5 +25,4 @@ clang-format $1 |
 		} else {
 			print;
 		}
-	}
-'
+	}'
