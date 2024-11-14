@@ -16,7 +16,7 @@ clang-format $1 | awk '
 		gsub(/\ ::/,"::");
 		gsub(/@ =>/,"@=>");
 
-		# fixes clang-format splitting `plublic class` into two lines
+		# fixes clang-format splitting `public class` into two lines
 		if ($0 == "public") {
 			printPublic = 1;
 		} else if (printPublic) {

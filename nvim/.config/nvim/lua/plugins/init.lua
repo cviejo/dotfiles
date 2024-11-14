@@ -2,9 +2,10 @@ local notVsCode = vim.g.vscode ~= 1
 
 vim.g.deepl_api_auth_key = os.getenv('DEEPL_KEY')
 vim.g.notes_word_boundaries = 1
+
 -- LuaFormatter off
 vim.g.vim_printer_items = {
-	chuck = 'console.log("{$}:", {$});',
+	chuck = '<<< "{$}:", {$} >>>;',
 	lua = 'print("{$}: ", {$})'
 }
 
@@ -16,8 +17,15 @@ return {
 	{ 'mg979/vim-visual-multi' },
 	{ 'neoclide/jsonc.vim' },
 	{ 'meain/vim-printer' },
-	{ 'phaazon/hop.nvim',          opts = { keys = 'asdfjkl;weiocmr' } },
-	{ 'mizlan/iswap.nvim',         opts = { flash_style = 'none', autoswap = true, hl_snipe = 'ErrorMsg' } },
+	{ 'tpope/vim-fugitive', },
+	{
+		'phaazon/hop.nvim',
+		opts = { keys = 'asdfjkl;weiocmr' }
+	},
+	{
+		'mizlan/iswap.nvim',
+		opts = { flash_style = 'none', autoswap = true, hl_snipe = 'ErrorMsg' }
+	},
 	{
 		'numToStr/Comment.nvim',
 		config = function()
@@ -25,12 +33,27 @@ return {
 			require('Comment.ft').set('chuck', { '//%s', '/*%s*/' })
 		end
 	},
-	{ 'uga-rosa/translate.nvim',   opts = { default = { command = 'deepl_free', output = 'replace' } } },
+	{
+		'uga-rosa/translate.nvim',
+		opts = { default = { command = 'deepl_free', output = 'replace' } }
+	},
 
 	-- disabled in vscode:
-	{ 'NicholasDunham/chuck.nvim', cond = notVsCode,                                                   lazy = false },
-	{ 'windwp/nvim-autopairs',     cond = notVsCode,                                                   opts = { disable_in_macro = true } },
-	{ 'sheerun/vim-polyglot',      cond = notVsCode },
+	{
+		'NicholasDunham/chuck.nvim',
+		cond = notVsCode,
+		lazy = false
+	},
+	{
+		'windwp/nvim-autopairs',
+		cond = notVsCode,
+		opts = { disable_in_macro = true
+	}
+	},
+	{
+		'sheerun/vim-polyglot',
+		cond = notVsCode
+	},
 	{
 		'stevearc/oil.nvim',
 		cond = notVsCode,
@@ -42,7 +65,6 @@ return {
 	},
 	{ 'github/copilot.vim',                      cond = notVsCode },
 	{ 'norcalli/nvim-colorizer.lua',             cond = notVsCode, opts = {} },
-	{ 'tpope/vim-fugitive',                      cond = notVsCode },
 	{ 'xolox/vim-notes',                         cond = notVsCode, dependencies = { 'xolox/vim-misc' } },
 	{ 'styled-components/vim-styled-components', cond = notVsCode, branch = 'main' },
 
