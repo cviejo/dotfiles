@@ -25,8 +25,7 @@ M.curry2 = function(fn)
 	return handler
 end
 
--- not pretty, but fast. after receiving the first two arguments
--- performance is similar to non-curried form
+-- see curry2 comment
 M.curry3 = function(fn)
 	local function handler(a, b, c)
 		if a == nil then -- no args
@@ -58,51 +57,54 @@ M.curry3 = function(fn)
 	return handler()
 end
 
--- not is a lua keyword
-M.negate = function(x)
-	return not x
-end
-
-M.unapply = function(fn)
-	return function(...)
-		return fn({ ... })
-	end
-end
-
 M.curry = function(fn)
-	local nparams = debug.getinfo(fn).nparams
-
-	if nparams == 2 then
+	if debug.getinfo(fn).nparams == 2 then
 		return M.curry2(fn)
 	else
 		return M.curry3(fn)
 	end
 end
 
+M.add = M.curry2(function(a, b)
+	return a + b
+end)
+
+-- not pure, but convenient
+M.assign = M.curry2(function(target, source)
+	for key, value in pairs(source) do
+		target[key] = value
+	end
+end)
+
+M.complement = function(fn)
+	return function(...)
+		return not fn(...)
+	end
+end
+
+M.concat = M.curry2(function(a, b)
+	local result = {}
+	for i = 1, #a do
+		result[#result + 1] = a[i]
+	end
+	for i = 1, #b do
+		result[#result + 1] = b[i]
+	end
+	return result
+end)
+
 M.equals = M.curry2(function(a, b)
 	return a == b
 end)
 
-M.isNil = function(x)
-	return x == nil
-end
-
-M.unless = M.curry(function(cond, success, x)
-	if (not cond(x)) then
-		return success(x)
-	end
-	return x
-end)
-
-M.safe = function(fn)
-	return function(x)
-		if x == nil then
-			return x
-		else
-			return fn(x)
+M.find = M.curry2(function(fn, xs)
+	for i = 1, #xs do
+		local item = xs[i]
+		if fn(item) then
+			return item
 		end
 	end
-end
+end)
 
 M.includes = M.curry(function(x, xs)
 	for i = 1, #xs do
@@ -125,11 +127,9 @@ M.intersects = function(a, b)
 	return false
 end
 
-M.prop = M.curry(function(name, x)
-	if x then
-		return x[name]
-	end
-end)
+M.isNil = function(x)
+	return x == nil
+end
 
 M.map = M.curry(function(fn, xs)
 	local result = {}
@@ -139,10 +139,45 @@ M.map = M.curry(function(fn, xs)
 	return result
 end)
 
+M.max = M.curry2(function(a, b)
+	return a > b and a or b
+end)
+
+M.negate = function(x)
+	return not x
+end
+
+M.safe = function(fn)
+	return function(x)
+		if x == nil then
+			return x
+		else
+			return fn(x)
+		end
+	end
+end
+
+M.prop = M.curry(function(name, x)
+	if x then
+		return x[name]
+	end
+end)
+
 M.forEach = M.curry(function(fn, xs)
 	for i = 1, #xs do
 		fn(xs[i], i)
 	end
+end)
+
+M.filter = M.curry(function(fn, xs)
+	local result = {}
+	for i = 1, #xs do
+		local x = xs[i]
+		if fn(x) then
+			result[#result + 1] = x
+		end
+	end
+	return result
 end)
 
 M.forEachReverse = M.curry(function(fn, xs)
@@ -161,27 +196,15 @@ M.reduce = M.curry3(function(fn, init, xs)
 	return acc
 end)
 
-M.join = M.curry(function(sep, xs) -- todo: reduce
-	local length = #xs
-	if length == 0 then
-		return ''
-	end
-	local acc = '' .. xs[1]
-	for i = 2, #xs do
-		acc = acc .. sep .. xs[i]
-	end
-	return acc
-end)
-
 -- avoid inlining / creating functions dynamically in potentially hot paths
 -- in this case means declaring the reducer only once
 M.pipe = function(...)
 	local fns = { ... }
-	local reducer = function(acc, fn)
+	local run = M.reduce(function(acc, fn)
 		return fn(acc)
-	end
+	end)
 	return function(x)
-		return M.reduce(reducer, x, fns)
+		return run(x, fns)
 	end
 end
 
@@ -231,17 +254,10 @@ M.keys = function(x)
 	return result
 end
 
--- not pure, but for convenience let's keep them here
-M.assign = M.curry2(function(target, source)
-	for key, value in pairs(source) do
-		target[key] = value
-	end
-end)
-
+-- not pure, but convenient
 M.push = function(x, xs)
 	xs[#xs + 1] = x
 end
--- not pure, but for convenience let's keep them here
 
 M.merge = M.curry2(function(a, b)
 	local result = {}
@@ -250,10 +266,33 @@ M.merge = M.curry2(function(a, b)
 	return result
 end)
 
-M.complement = function(fn)
-	return function(...)
-		return not fn(...)
+M.path = M.curry2(function(parts, x)
+	local current = x
+	for i = 1, #parts do
+		current = current[parts[i]]
+		if current == nil then
+			return nil
+		end
 	end
+	return current
+end)
+
+M.pathEq = M.curry3(function(parts, value, x)
+	return M.path(parts, x) == value
+end)
+
+M.reject = M.curry(function(fn, xs)
+	return M.filter(function(x)
+		return not fn(x)
+	end, xs)
+end)
+
+M.reverse = function(xs)
+	local result = {}
+	M.forEachReverse(function(x)
+		result[#result + 1] = x
+	end, xs)
+	return result
 end
 
 M.times = M.curry2(function(fn, n)
@@ -273,40 +312,36 @@ M.thunkify = function(fn)
 	end
 end
 
-M.reverse = function(xs)
+M.toUpper = function(x)
+	return x:upper()
+end
+
+M.unapply = function(fn)
+	return function(...)
+		return fn({ ... })
+	end
+end
+
+M.unless = M.curry(function(cond, success, x)
+	if (not cond(x)) then
+		return success(x)
+	end
+	return x
+end)
+
+M.values = function(x)
 	local result = {}
-	M.forEachReverse(function(x)
-		result[#result + 1] = x
-	end, xs)
+	for _, value in pairs(x) do
+		result[#result + 1] = value
+	end
 	return result
 end
 
-M.find = M.curry2(function(fn, xs)
-	for i = 1, #xs do
-		local item = xs[i]
-		if fn(item) then
-			return item
-		end
-	end
-end)
-
-M.add = M.curry2(function(a, b)
-	return a + b
-end)
-
-M.max = M.curry2(function(a, b)
-	return a > b and a or b
-end)
-
-M.path = M.curry2(function(parts, x)
-	local current = x
-	for i = 1, #parts do
-		current = current[parts[i]]
-		if current == nil then
-			return nil
-		end
-	end
-	return current
+M.sort = M.curry2(function(fn, xs)
+	local result = {}
+	M.assign(result, xs)
+	table.sort(result, fn)
+	return result
 end)
 
 return M

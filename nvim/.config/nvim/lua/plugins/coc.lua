@@ -2,7 +2,7 @@
 vim.g.coc_global_extensions = {
 	'coc-diagnostic',
 	'coc-eslint',
-	'coc-explorer',
+	-- 'coc-explorer',
 	'coc-git',
 	'coc-go',
 	'coc-json',

@@ -51,7 +51,7 @@ map('n', 'S', cmd('BufferPick'))
 
 -- g bindings (mostly coc) ------------------
 map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"',
-	{ expr = true, replace_keycodes = false })
+    { expr = true, replace_keycodes = false })
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', 'gn', '<plug>(coc-diagnostic-next)')
 map('n', 'gp', '<plug>(coc-diagnostic-prev)')
@@ -155,7 +155,8 @@ map('n', '<leader>a', 'ggVG')
 map('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)')
 map('v', '<leader>c', '<Plug>(comment_toggle_linewise_visual)')
 map('n', '<leader>d', buffer.close)
-map('n', '<leader>e', cmd('CocCommand explorer'))
+-- map('n', '<leader>e', cmd('CocCommand explorer'))
+map('n', '<leader>e', cmd('Neotree toggle'))
 map('n', '<leader>f', ':Rg ')
 map('v', '<leader>f', [["vy:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>g', cmd('G'))
@@ -164,7 +165,7 @@ map('n', '<leader>i', [[mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>j', mapRunLines('\'{', '\'}', 'node'))
 map('x', '<leader>j', mapRunLines('\'<', '\'>', 'node'))
 map('n', '<leader>n', '*')
-map('x', '<leader>n', feedkeys('*'))                  -- 0.8
+map('x', '<leader>n', feedkeys('*')) -- 0.8
 map('n', '<leader>o', 'o<Esc>')
 map('n', '<leader>p', ':call AddPrintLine(0, 0)<CR>') -- default mappings broken after updating to lazy.nvim
 map('v', '<leader>p', ':call AddPrintLine(1, 0)<CR>')
