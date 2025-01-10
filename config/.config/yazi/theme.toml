@@ -1,0 +1,7 @@
+[manager]
+border_symbol = " "
+
+# seems to mess the source file previews, unfortunately
+# [flavor]
+# dark = "catppuccin-frappe"
+# light = "catppuccin-frappe"

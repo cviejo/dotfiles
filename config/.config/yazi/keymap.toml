@@ -1,0 +1,18 @@
+[manager]
+prepend_keymap = [
+	{ on = ["l"], run = "plugin smart-enter", desc =  "Enter the child directory, or open the file" },
+
+	# bookmarks
+	{ on = [ "`", "h" ], run = "cd ~/", desc = "go to $HOME" },
+	{ on = [ "`", "r" ], run = "cd /", desc = "go to root" },
+	{ on = [ "`", "c" ], run = "cd ~/.config", desc = "go to ~/.config" },
+	{ on = [ "`", "." ], run = "cd ~/.dotfiles", desc = "go to ~/.dotfiles" },
+	{ on = [ "`", "d" ], run = "cd ~/Downloads", desc = "go to ~/Downloads" },
+	{ on = [ "`", "i" ], run = "cd ~/developer/in-context-testing", desc = "go to in-context-testing" },
+	{ on = [ "`", "s" ], run = "cd ~/Storage/syncthing", desc = "go to ~/Storage/syncthing" },
+	{ on = [ "g", "r" ], run = "cd /", desc = "go to root" },
+
+	# leader
+	{ on = [ "'", "z" ], run = "plugin compress", desc = "archive selected files" },
+	{ on = [ "'", "a" ], run = "toggle_all", desc = "Select all" },
+]
