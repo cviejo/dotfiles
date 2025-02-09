@@ -3,16 +3,18 @@ export BAT_STYLE=changes
 export BAT_THEME=base16
 export CLICOLOR=1
 export EDITOR=nvim
-export FZF_DEFAULT_COMMAND='ag --hidden -f -g ""'
-export FZF_DEFAULT_OPTS=''
 export KEYTIMEOUT=1
 export LANG=en_US.UTF-8
 export LC_COLLATE=C
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/args
 export TERM=xterm-256color
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/args
 export ZSH=$HOME/.oh-my-zsh
 export MANPAGER='nvim +Man!'
+export FZF_DEFAULT_COMMAND='ag --hidden -f -g ""'
+export FZF_DEFAULT_OPTS=''
+export FZF_BASE=$HOME/.local/bin
+export DISABLE_FZF_KEY_BINDINGS="true"
 
 # local data
 export HISTFILE=$HOME/.local/share/zsh/.history

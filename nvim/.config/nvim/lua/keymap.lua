@@ -61,8 +61,15 @@ map('n', 'gz', ':TZAtaraxis<cr>')
 map('x', 'gz', ':\'<,\'>TZNarrow<cr>')
 
 -- vimium style bindings --------------------
-map('n', 'J', cmd('BufferPrevious'))
-map('n', 'K', cmd('BufferNext'))
+-- map('n', 'J', cmd('BufferPrevious'))
+-- map('n', 'K', cmd('BufferNext'))
+
+map('n', '[', cmd('BufferPrevious'), { nowait = true })
+map('n', ']', cmd('BufferNext'), { nowait = true })
+
+map('n', 'J', '}')
+map('n', 'K', '{')
+
 map('n', '<tab>', cmd('BufferNext'))
 map('n', '<s-tab>', cmd('BufferPrevious'))
 map('n', '<c-d>', '5j')
@@ -97,12 +104,13 @@ for x in ('QWERTYUIOPASDFGHJKLZXCVBNM'):gmatch('.') do
 end
 
 -- make inner the default behaviour ---------
+-- for x in ([[wbB(){}[]"'/]]):gmatch('.') do
 for x in ([[wbB(){}[]"'/]]):gmatch('.') do
 	createTextObject(x, 'i' .. x)
 end
 
 -- double quote (q), curly brace (c) --------
-for from, to in pairs({ q = '"', c = '{' }) do
+for from, to in pairs({ q = '"', c = '}' }) do
 	-- createTextObject(from, 'i' .. to) -- inner is default
 	createTextObject('i' .. from, 'i' .. to)
 	createTextObject('a' .. from, 'a' .. to)
@@ -121,7 +129,7 @@ map('n', 'cs`q', 'cs`"', { remap = true })
 map('n', 'csbc', 'csb{', { remap = true })
 map('n', 'cs[c', 'cs[{', { remap = true })
 
-map('n', ']c', ']', { remap = true })
+-- map('n', ']c', ']', { remap = true })
 
 local verbs = { 'd', 'c', 'y' }
 for _, x in ipairs(verbs) do
@@ -155,8 +163,8 @@ map('n', '<leader>a', 'ggVG')
 map('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)')
 map('v', '<leader>c', '<Plug>(comment_toggle_linewise_visual)')
 map('n', '<leader>d', buffer.close)
--- map('n', '<leader>e', cmd('CocCommand explorer'))
-map('n', '<leader>e', cmd('Neotree toggle'))
+map('n', '<leader>e', cmd('CocCommand explorer'))
+-- map('n', '<leader>e', cmd('Neotree toggle'))
 map('n', '<leader>f', ':Rg ')
 map('v', '<leader>f', [["vy:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>g', cmd('G'))

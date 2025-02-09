@@ -1,7 +1,7 @@
 [plugin]
 deps = [
 	{ use = "KKV9/compress", rev = "60b24af" },
-	{ use = "yazi-rs/plugins:smart-enter", rev = "71c4fc2" }
+	{ use = "yazi-rs/plugins:smart-enter", rev = "02d18be" }
 ]
 
 [flavor]

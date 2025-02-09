@@ -1,4 +1,6 @@
 vim.g.catppuccin_flavour = 'frappe'
+-- light theme:
+-- vim.g.catppuccin_flavour = 'latte'
 
 local config = {
 	integrations = {
@@ -18,4 +20,3 @@ return {
 		require('catppuccin').setup(config)
 	end
 }
-
