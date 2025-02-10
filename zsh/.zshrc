@@ -69,4 +69,4 @@ safeSource $HOME/.nix-profile/etc/profile.d/nix.sh
 safeSource $HOME/.config/fzf/theme.sh
 
 # bun completions
-safeSource "/Users/viejo/.bun/_bun"
+safeSource $HOME/.bun/_bun
