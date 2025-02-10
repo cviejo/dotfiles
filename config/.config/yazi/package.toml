@@ -1,8 +1,12 @@
-[plugin]
-deps = [
-	{ use = "KKV9/compress", rev = "60b24af" },
-	{ use = "yazi-rs/plugins:smart-enter", rev = "02d18be" }
-]
+# [[plugin.deps]]
+# use = "KKV9/compress"
+# rev = "60b24af"
+# hash = "ee025be766240cc98e671754ac836da3"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "62f0789"
+hash = "c1a2739e9ef2d837030ccb4267be3ed1"
 
 [flavor]
 deps = []
