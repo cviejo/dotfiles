@@ -51,7 +51,7 @@ map('n', 'S', cmd('BufferPick'))
 
 -- g bindings (mostly coc) ------------------
 map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"',
-    { expr = true, replace_keycodes = false })
+	{ expr = true, replace_keycodes = false })
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', 'gn', '<plug>(coc-diagnostic-next)')
 map('n', 'gp', '<plug>(coc-diagnostic-prev)')
@@ -173,7 +173,7 @@ map('n', '<leader>i', [[mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>j', mapRunLines('\'{', '\'}', 'node'))
 map('x', '<leader>j', mapRunLines('\'<', '\'>', 'node'))
 map('n', '<leader>n', '*')
-map('x', '<leader>n', feedkeys('*')) -- 0.8
+map('x', '<leader>n', feedkeys('*'))                  -- 0.8
 map('n', '<leader>o', 'o<Esc>')
 map('n', '<leader>p', ':call AddPrintLine(0, 0)<CR>') -- default mappings broken after updating to lazy.nvim
 map('v', '<leader>p', ':call AddPrintLine(1, 0)<CR>')
@@ -196,7 +196,7 @@ map('n', 'zh', 'zm') -- opposite of fold (zm)ore is fold (zl)ess
 map('n', 'zH', 'zM') -- opposite of fold (zm)ore is fold (zl)ess
 
 -- helix ----------------------------------
-for from, to in pairs({ gl = '$', gh = '0', gk = 'gg', gj = 'G' }) do
+for from, to in pairs({ gl = '$', gh = '0', gk = 'gg', gj = 'G', ge = 'G' }) do
 	createTextObject(from, to)
 	map('n', from, to)
 	map('x', from, to)

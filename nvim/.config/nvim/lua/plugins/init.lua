@@ -7,7 +7,9 @@ vim.g.notes_word_boundaries = 1
 -- LuaFormatter off
 vim.g.vim_printer_items = {
 	chuck = '<<< "{$}:", {$} >>>;',
-	lua = 'print("{$}: ", {$})'
+	lua = 'print("{$}: ", {$})',
+	javascript = 'console.log("[tmp] {$}: ", {$});',
+	typescript = 'console.log("[tmp] {$}: ", {$});'
 }
 
 -- run on both neovim and vscode
