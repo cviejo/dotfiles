@@ -51,7 +51,7 @@ map('n', 'S', cmd('BufferPick'))
 
 -- g bindings (mostly coc) ------------------
 map('i', '<cr>', 'coc#pum#visible() ? coc#pum#confirm() : "<cr>"',
-	{ expr = true, replace_keycodes = false })
+    { expr = true, replace_keycodes = false })
 map('n', 'gd', '<Plug>(coc-definition)')
 map('n', 'gn', '<plug>(coc-diagnostic-next)')
 map('n', 'gp', '<plug>(coc-diagnostic-prev)')
@@ -61,14 +61,13 @@ map('n', 'gz', ':TZAtaraxis<cr>')
 map('x', 'gz', ':\'<,\'>TZNarrow<cr>')
 
 -- vimium style bindings --------------------
--- map('n', 'J', cmd('BufferPrevious'))
--- map('n', 'K', cmd('BufferNext'))
+map('n', 'J', cmd('BufferPrevious'))
+map('n', 'K', cmd('BufferNext'))
 
-map('n', '[', cmd('BufferPrevious'), { nowait = true })
-map('n', ']', cmd('BufferNext'), { nowait = true })
-
-map('n', 'J', '}')
-map('n', 'K', '{')
+-- map('n', '[', cmd('BufferPrevious'), { nowait = true })
+-- map('n', ']', cmd('BufferNext'), { nowait = true })
+-- map('n', 'J', '}')
+-- map('n', 'K', '{')
 
 map('n', '<tab>', cmd('BufferNext'))
 map('n', '<s-tab>', cmd('BufferPrevious'))
@@ -173,7 +172,7 @@ map('n', '<leader>i', [[mb"vyiw`b:Rg <c-r>=escape(@v, '[].')<cr><cr>]])
 map('n', '<leader>j', mapRunLines('\'{', '\'}', 'node'))
 map('x', '<leader>j', mapRunLines('\'<', '\'>', 'node'))
 map('n', '<leader>n', '*')
-map('x', '<leader>n', feedkeys('*'))                  -- 0.8
+map('x', '<leader>n', feedkeys('*')) -- 0.8
 map('n', '<leader>o', 'o<Esc>')
 map('n', '<leader>p', ':call AddPrintLine(0, 0)<CR>') -- default mappings broken after updating to lazy.nvim
 map('v', '<leader>p', ':call AddPrintLine(1, 0)<CR>')
@@ -203,6 +202,8 @@ for from, to in pairs({ gl = '$', gh = '0', gk = 'gg', gj = 'G', ge = 'G' }) do
 end
 
 if vim.g.vscode then
+	map('n', '[', VSCodeCall('workbench.action.previousEditor'))
+	map('n', ']', VSCodeCall('workbench.action.nextEditor'))
 	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))
 	map('n', 'K', VSCodeCall('workbench.action.nextEditor'))
 	map('n', 'qp', VSCodeCall('workbench.action.quickOpen'))

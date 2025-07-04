@@ -11,7 +11,7 @@ export TERM=xterm-256color
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/args
 export ZSH=$HOME/.oh-my-zsh
 export MANPAGER='nvim +Man!'
-export FZF_DEFAULT_COMMAND='ag --hidden -f -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore=".aider.*" -f -g ""'
 export FZF_DEFAULT_OPTS=''
 export FZF_BASE=$HOME/.local/bin
 export DISABLE_FZF_KEY_BINDINGS="true"
@@ -62,6 +62,16 @@ alias gf='git fetch -p && git rebase'
 alias gp='git push'
 alias gr='git pull -r'
 alias qr="qrencode -o - -t UTF8 "
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 
 # local scripts
 safeSource $HOME/.zshrc-local

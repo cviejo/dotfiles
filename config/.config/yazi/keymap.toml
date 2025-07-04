@@ -15,4 +15,12 @@ prepend_keymap = [
 	# leader
 	{ on = [ "'", "z" ], run = "plugin compress", desc = "archive selected files" },
 	{ on = [ "'", "a" ], run = "toggle_all", desc = "Select all" },
+
+	# change tabs
+	{ on = [ "J" ], run = "tab_switch --relative -1", desc = "Move to the next tab" },
+	{ on = [ "K" ], run = "tab_switch --relative +1", desc = "Move to the previous tab" },
+
+	# folding like ranger (toggle hidden with zh)
+	{ on = [ "z" ], run = "noop" },
+	{ on = [ "z", "h" ], run =[ "hidden", "toggle" ], desc = "Toggle hidden files" },
 ]

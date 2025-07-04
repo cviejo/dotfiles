@@ -9,6 +9,7 @@ vim.g.vim_printer_items = {
 	chuck = '<<< "{$}:", {$} >>>;',
 	lua = 'print("{$}: ", {$})',
 	javascript = 'console.log("[tmp] {$}: ", {$});',
+	svelte = 'console.log("[tmp] {$}: ", {$});',
 	typescript = 'console.log("[tmp] {$}: ", {$});'
 }
 
@@ -98,7 +99,8 @@ local notVsCode = {
 		}
 	},
 	-- evaluating:
-	{ 'RRethy/vim-illuminate' },
+	-- { 'RRethy/vim-illuminate' },
+	-- issue after updating, error on every movement
 }
 -- LuaFormatter on
 

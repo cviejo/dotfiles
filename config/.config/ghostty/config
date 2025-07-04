@@ -5,9 +5,9 @@ background = 303446
 
 font-family = "DejaVuSansM Nerd Font Mono"
 
-window-padding-x = 5,4
-window-padding-y = 5,2
-window-padding-color = background
+# window-padding-x = 5,4
+# window-padding-y = 5,2
+# window-padding-color = background
 
 font-size = 15
 
@@ -20,4 +20,4 @@ keybind = ctrl+f=text:\x00f
 
 # keybind = ctrl+[=text:\x00p
 
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden

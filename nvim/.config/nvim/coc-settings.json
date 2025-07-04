@@ -173,5 +173,6 @@
    "snippets.ultisnips.pythonPrompt": false,
    "zig.zls.path": "/Users/viejo/.zvm/bin/zls",
    "zig.zls.enabled": true,
-   "zig.zls.checkForUpdate": false
+   "zig.zls.checkForUpdate": false,
+   "eslint.migration.2_x": "off"
 }

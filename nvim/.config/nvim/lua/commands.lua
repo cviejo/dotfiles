@@ -44,6 +44,8 @@ abbrev('z', 'TZAtaraxis')
 
 abbrev('qaa', 'qa!')
 
+abbrev('qq', 'qa!')
+
 F.forEach(function(x)
 	abbrev(x:lower(), x)
 end, { 'Note', 'Git', 'Gr', 'Gw', 'Qr', 'Qe', 'Qd' })
