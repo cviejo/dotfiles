@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
+gh=https://github.com
 dotfiles=~/.dotfiles
-github=https://github.com
-zshplugins=~/.oh-my-zsh/custom/plugins
-tmuxplugins=~/.config/tmux-plugins
+zshPlugins=~/.oh-my-zsh/custom/plugins
+tmuxPlugins=~/.config/tmux-plugins
+brewApps=(clang-format fnm neovim)
+brewCasks=(font-dejavu-sans-mono-nerd-font rectangle)
+nixApps=(tmux ranger fzf stow)
 
-git clone ${github}/cviejo/dotfiles ${dotfiles}
+git clone ${gh}/cviejo/dotfiles ${dotfiles}
 
-apt update
+if [[ "$(uname)" == "Darwin" ]]; then
+	brew install "${brewApps[@]}"
+	brew install --cask "${brewCasks[@]}"
+	nix-env -i "${nixApps[@]}"
+else
+	apt update
+	apt install -y git curl zsh "${brewApps[@]}" "${nixApps[@]}"
+fi
 
-apt install -y git curl neovim zsh tmux ranger fzf stow
-
-cd ${dotfiles}
+cd ${dotfiles} || exit
 
 stow zsh nvim bin
 
@@ -19,16 +27,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 stow oh-my-zsh
 
-git clone ${github}/zsh-users/zsh-autosuggestions ${zshplugins}/zsh-autosuggestions
-git clone ${github}/zsh-users/zsh-syntax-highlighting.git ${zshplugins}/zsh-syntax-highlighting
-git clone ${github}/Aloxaf/fzf-tab ${zshplugins}/fzf-tab
-git clone ${github}/jeffreytse/zsh-vi-mode ${zshplugins}/zsh-vi-mode
+git clone ${gh}/zsh-users/zsh-autosuggestions ${zshPlugins}/zsh-autosuggestions
+git clone ${gh}/zsh-users/zsh-syntax-highlighting.git ${zshPlugins}/zsh-syntax-highlighting
+git clone ${gh}/Aloxaf/fzf-tab ${zshPlugins}/fzf-tab
+git clone ${gh}/jeffreytse/zsh-vi-mode ${zshPlugins}/zsh-vi-mode
 
-git clone ${github}/tmux-plugins/tpm ${tmuxplugins}/tpm
+git clone ${gh}/tmux-plugins/tpm ${tmuxPlugins}/tpm
 
 stow config
 
-${tmuxplugins}/tpm/bin/install_plugins
-
-nvim --headless -es -c "lua require('utils.install-packer')"
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+${tmuxPlugins}/tpm/bin/install_plugins
