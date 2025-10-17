@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
-gh=https://github.com
-dotfiles=~/.dotfiles
-zshPlugins=~/.oh-my-zsh/custom/plugins
-tmuxPlugins=~/.config/tmux-plugins
+# apps
 brewApps=(clang-format fnm neovim)
 brewCasks=(font-dejavu-sans-mono-nerd-font rectangle)
 nixApps=(tmux ranger fzf stow)
 
-git clone ${gh}/cviejo/dotfiles ${dotfiles}
+clone() {
+	git clone "https://github.com/$1" "$2"
+}
+
+clone 'cviejo/dotfiles' ~/.dotfiles
+cd ~/.dotfiles || exit
 
 if [[ "$(uname)" == "Darwin" ]]; then
 	brew install "${brewApps[@]}"
@@ -19,21 +21,22 @@ else
 	apt install -y git curl zsh "${brewApps[@]}" "${nixApps[@]}"
 fi
 
-cd ${dotfiles} || exit
-
 stow zsh nvim bin
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
 
 stow oh-my-zsh
 
-git clone ${gh}/zsh-users/zsh-autosuggestions ${zshPlugins}/zsh-autosuggestions
-git clone ${gh}/zsh-users/zsh-syntax-highlighting.git ${zshPlugins}/zsh-syntax-highlighting
-git clone ${gh}/Aloxaf/fzf-tab ${zshPlugins}/fzf-tab
-git clone ${gh}/jeffreytse/zsh-vi-mode ${zshPlugins}/zsh-vi-mode
+zshPlugins=~/.oh-my-zsh/custom/plugins
+clone 'zsh-users/zsh-autosuggestions' "${zshPlugins}/zsh-autosuggestions"
+clone 'zsh-users/zsh-syntax-highlighting.git' "${zshPlugins}/zsh-syntax-highlighting"
+clone 'Aloxaf/fzf-tab' "${zshPlugins}/fzf-tab"
+clone 'jeffreytse/zsh-vi-mode' "${zshPlugins}/zsh-vi-mode"
 
-git clone ${gh}/tmux-plugins/tpm ${tmuxPlugins}/tpm
+tmuxPlugins=~/.config/tmux-plugins
+clone 'tmux-plugins/tpm' "${tmuxPlugins}/tpm"
 
 stow config
 
-${tmuxPlugins}/tpm/bin/install_plugins
+"${tmuxPlugins}/tpm/bin/install_plugins"
+
