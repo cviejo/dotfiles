@@ -39,4 +39,3 @@ clone 'tmux-plugins/tpm' "${tmuxPlugins}/tpm"
 stow config
 
 "${tmuxPlugins}/tpm/bin/install_plugins"
-

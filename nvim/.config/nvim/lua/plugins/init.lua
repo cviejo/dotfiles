@@ -1,16 +1,16 @@
-local F = require('utils.functional')
+local F = require("utils.functional")
 
 vim.g.deepl_api_auth_key = os.getenv('DEEPL_KEY')
 
 vim.g.notes_word_boundaries = 1
 
--- LuaFormatter off
 vim.g.vim_printer_items = {
 	chuck = '<<< "{$}:", {$} >>>;',
 	lua = 'print("{$}: ", {$})',
 	javascript = 'console.log("[tmp] {$}: ", {$});',
 	svelte = 'console.log("[tmp] {$}: ", {$});',
-	typescript = 'console.log("[tmp] {$}: ", {$});'
+	typescript = 'console.log("[tmp] {$}: ", {$});',
+	html = 'console.log("[tmp] {$}: ", {$});'
 }
 
 -- run on both neovim and vscode
@@ -40,6 +40,7 @@ local alwaysOn = {
 		opts = { default = { command = 'deepl_free', output = 'replace' } }
 	},
 	-- evaluating:
+	{ 'https://codeberg.org/ziglang/zig.vim', cond = true },
 	{ 'OXY2DEV/markview.nvim', cond = false },
 	{ 'chrisgrieser/nvim-chainsaw', cond = false },
 	{ 'epwalsh/obsidian.nvim', cond = false },
