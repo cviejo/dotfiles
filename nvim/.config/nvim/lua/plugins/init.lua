@@ -9,8 +9,7 @@ vim.g.vim_printer_items = {
 	lua = 'print("{$}: ", {$})',
 	javascript = 'console.log("[tmp] {$}: ", {$});',
 	svelte = 'console.log("[tmp] {$}: ", {$});',
-	typescript = 'console.log("[tmp] {$}: ", {$});',
-	html = 'console.log("[tmp] {$}: ", {$});'
+	typescript = 'console.log("[tmp] {$}: ", {$});'
 }
 
 -- run on both neovim and vscode
@@ -40,7 +39,6 @@ local alwaysOn = {
 		opts = { default = { command = 'deepl_free', output = 'replace' } }
 	},
 	-- evaluating:
-	{ 'https://codeberg.org/ziglang/zig.vim', cond = true },
 	{ 'OXY2DEV/markview.nvim', cond = false },
 	{ 'chrisgrieser/nvim-chainsaw', cond = false },
 	{ 'epwalsh/obsidian.nvim', cond = false },
