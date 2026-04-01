@@ -15,6 +15,9 @@ clang-format $1 | awk '
 		gsub(/=\ </,"=<");
 		gsub(/\ ::/,"::");
 		gsub(/@ =>/,"@=>");
+		if ($0 ~ /(^|[ \t])repeat\(/) {
+			gsub(/repeat\(/,"repeat (");
+		}
 
 		# fixes clang-format splitting `public class` into two lines
 		if ($0 == "public") {

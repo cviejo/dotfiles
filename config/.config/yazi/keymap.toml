@@ -12,6 +12,8 @@ prepend_keymap = [
 	{ on = [ "`", "s" ], run = "cd ~/Storage/syncthing", desc = "go to ~/Storage/syncthing" },
 	{ on = [ "g", "r" ], run = "cd /", desc = "go to root" },
 
+
+
 	# leader
 	{ on = [ "'", "z" ], run = "plugin compress", desc = "archive selected files" },
 	{ on = [ "'", "a" ], run = "toggle_all", desc = "Select all" },
@@ -23,4 +25,6 @@ prepend_keymap = [
 	# folding like ranger (toggle hidden with zh)
 	{ on = [ "z" ], run = "noop" },
 	{ on = [ "z", "h" ], run =[ "hidden", "toggle" ], desc = "Toggle hidden files" },
+
+	{ on   = [ "P" ], run = "link --relative", desc = "Symlink the yanked files" }
 ]
