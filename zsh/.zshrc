@@ -65,7 +65,7 @@ alias qr="qrencode -o - -t UTF8 "
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
+	yazi "$@" --cwd-file="$tmp" < /dev/tty
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"
 	fi

@@ -1,13 +1,24 @@
 #!/usr/bin/env bash
 
 # apps
-brewApps=(clang-format fnm neovim)
+brewApps=(clang-format neovim)
 brewCasks=(font-dejavu-sans-mono-nerd-font rectangle)
-nixApps=(tmux ranger fzf stow)
+nixApps=(tmux ranger fzf stow make unzip)
 
 clone() {
 	git clone "https://github.com/$1" "$2"
 }
+
+isInstalled() {
+	command -v "$1" &>/dev/null
+}
+
+# install git if not present && not mac
+if ! isInstalled git && [[ "$(uname)" != "Darwin" ]]; then
+	echo "here"
+	apt update
+	apt install -y git
+fi
 
 clone 'cviejo/dotfiles' ~/.dotfiles
 cd ~/.dotfiles || exit
@@ -21,6 +32,7 @@ else
 	apt install -y git curl zsh "${brewApps[@]}" "${nixApps[@]}"
 fi
 
+chsh -s "$(which zsh)"
 stow zsh nvim bin
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
@@ -37,5 +49,10 @@ tmuxPlugins=~/.config/tmux-plugins
 clone 'tmux-plugins/tpm' "${tmuxPlugins}/tpm"
 
 stow config
+
+source ~/.zshrc
+
+# curl -fsSL https://fnm.vercel.app/install | bash
+# fnm install --lts
 
 "${tmuxPlugins}/tpm/bin/install_plugins"

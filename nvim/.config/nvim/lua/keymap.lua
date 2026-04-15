@@ -85,6 +85,9 @@ map('n', 'ql', cmd('Lines'))
 map('n', 'qp', cmd('Files'))
 map('n', 'qr', cmd('History'))
 map('n', 'qh', cmd('History:'))
+map('n', '[', cmd('History:'), { nowait = true })
+
+-- map('n', '[', cmd('BufferPrevious'), { nowait = true })
 
 -- window -----------------------------------
 map('n', ',', '<c-w>', { remap = true })
@@ -202,8 +205,8 @@ for from, to in pairs({ gl = '$', gh = '0', gk = 'gg', gj = 'G', ge = 'G' }) do
 end
 
 if vim.g.vscode then
-	map('n', '[', VSCodeCall('workbench.action.previousEditor'))
-	map('n', ']', VSCodeCall('workbench.action.nextEditor'))
+	-- map('n', '[', VSCodeCall('workbench.action.previousEditor'))
+	-- map('n', ']', VSCodeCall('workbench.action.nextEditor'))
 	map('n', 'J', VSCodeCall('workbench.action.previousEditor'))
 	map('n', 'K', VSCodeCall('workbench.action.nextEditor'))
 	map('n', 'qp', VSCodeCall('workbench.action.quickOpen'))
