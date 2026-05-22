@@ -4,6 +4,13 @@
 brewApps=(clang-format neovim)
 brewCasks=(font-dejavu-sans-mono-nerd-font rectangle)
 nixApps=(tmux ranger fzf stow make unzip)
+nvimNixApps=(
+	lua-language-server-3.13.6
+	ccls-0.20241108
+	typescript-5.9.3
+	typescript-language-server-5.1.3
+	vscode-langservers-extracted-4.10.0
+)
 
 clone() {
 	git clone "https://github.com/$1" "$2"
@@ -26,7 +33,7 @@ cd ~/.dotfiles || exit
 if [[ "$(uname)" == "Darwin" ]]; then
 	brew install "${brewApps[@]}"
 	brew install --cask "${brewCasks[@]}"
-	nix-env -i "${nixApps[@]}"
+	nix-env -i "${nixApps[@]}" "${nvimNixApps[@]}"
 else
 	apt update
 	apt install -y git curl zsh "${brewApps[@]}" "${nixApps[@]}"

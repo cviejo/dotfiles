@@ -63,7 +63,7 @@ local alwaysOn = {
 -- don't run on vscode
 local notVsCode = {
 	{ 'sheerun/vim-polyglot' },
-	{ 'github/copilot.vim' },
+	-- { 'github/copilot.vim' },
 	{ 'norcalli/nvim-colorizer.lua', opts = {} },
 	{ 'windwp/nvim-autopairs', opts = { disable_in_macro = true } },
 	{ 'xolox/vim-notes', dependencies = { 'xolox/vim-misc' } },

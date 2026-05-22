@@ -1,5 +1,8 @@
 require('options')
 require('lazy-init')
+if vim.g.vscode ~= 1 then
+	require('lsp')
+end
 require('commands')
 require('keymap')
 require('cmd-height')
