@@ -2,3 +2,5 @@
 --max-columns=150
 --max-columns-preview
 --hidden
+# --glob=!.gemini/**
+# --glob=!.claude/**

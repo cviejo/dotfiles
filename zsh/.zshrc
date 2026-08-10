@@ -48,6 +48,12 @@ zvm_bindkey vicmd 'gl' end-of-line
 # vim insert mode
 zvm_bindkey viins 'jj' zvm_exit_insert_mode
 
+# edit current command line in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^g' edit-command-line
+bindkey -M vicmd '^g' edit-command-line
+
 # aliases
 alias c='clear'
 alias e='exit'

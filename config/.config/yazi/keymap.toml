@@ -12,11 +12,15 @@ prepend_keymap = [
 	{ on = [ "`", "s" ], run = "cd ~/Storage/syncthing", desc = "go to ~/Storage/syncthing" },
 	{ on = [ "g", "r" ], run = "cd /", desc = "go to root" },
 
-
-
 	# leader
 	{ on = [ "'", "z" ], run = "plugin compress", desc = "archive selected files" },
 	{ on = [ "'", "a" ], run = "toggle_all", desc = "Select all" },
+	{ on = [ "'", "d" ], run = "close", desc = "Close the current tab" },
+
+	# make yy to copy files, yn, copy name, yp copy path
+	{ on = [ "y", "y" ], run = "yank", desc = "Copy selected files" },
+	{ on = [ "y", "n" ], run = "copy filename", desc = "Copy the name of selected files" },
+	{ on = [ "y", "p" ], run = "copy path", desc = "Copy the path of selected files" },
 
 	# change tabs
 	{ on = [ "J" ], run = "tab_switch --relative -1", desc = "Move to the next tab" },
